@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BleedStop Case Study | AI Agent Security and Cost Guard | Osama Malik, Full Stack and AI Agent Engineer</title>
+<meta name="description" content="How Osama Malik built BleedStop, a runtime cost and security guard for AI agents: Docker Compose, Helm on Kubernetes, GitHub Actions CI, Redis budgets, a Postgres audit log and measured results under load.">
+<link rel="canonical" href="https://osamamalik.me/bleedstop.html">
+<meta name="theme-color" content="#0b0d12">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Osama Malik">
+<meta property="og:title" content="BleedStop Case Study | AI Agent Security and Cost Guard | Osama Malik, Full Stack and AI Agent Engineer">
+<meta property="og:description" content="How Osama Malik built BleedStop, a runtime cost and security guard for AI agents: Docker Compose, Helm on Kubernetes, GitHub Actions CI, Redis budgets, a Postgres audit log and measured results under load.">
+<meta property="og:url" content="https://osamamalik.me/bleedstop.html">
+<meta property="og:image" content="https://osamamalik.me/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BleedStop Case Study | AI Agent Security and Cost Guard | Osama Malik, Full Stack and AI Agent Engineer">
+<meta name="twitter:description" content="How Osama Malik built BleedStop, a runtime cost and security guard for AI agents: Docker Compose, Helm on Kubernetes, GitHub Actions CI, Redis budgets, a Postgres audit log and measured results under load.">
+<meta name="twitter:image" content="https://osamamalik.me/assets/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%235eead4%27/%3E%3Ctext x=%2716%27 y=%2722%27 font-size=%2716%27 font-weight=%27700%27 text-anchor=%27middle%27 fill=%27%2304141a%27 font-family=%27Arial%27%3EOM%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="index.html"><span class="logo" aria-hidden="true">OM</span>Osama Malik</a>
+<nav aria-label="Main"><ul>
+<li><a href="index.html#about">About</a></li>
+<li><a href="index.html#skills">Skills</a></li>
+<li><a href="index.html#experience">Experience</a></li>
+<li><a href="index.html#work">Work</a></li>
+<li><a href="open-source.html">Open source</a></li>
+<li><a href="index.html#contact">Contact</a></li>
+</ul></nav>
+</div></header>
+<main id="main">
+<section class="hero">
+<div class="wrap">
+<div class="crumbs"><a href="index.html">Home</a> / Case study</div>
+<span class="eyebrow">Case study</span>
+<h1>BleedStop: a runtime cost and security guard for AI agents</h1>
+<p class="lead">A control plane for LLM, SMS and payment APIs, mapped to OWASP LLM10 (Unbounded Consumption). Apps call it before they spend money, and it answers ALLOW, LIMIT, CHALLENGE or DENY.</p>
+<div class="cta">
+<a class="btn primary" href="https://github.com/usmamalik345/bleedstop" rel="noopener">Source on GitHub</a>
+<a class="btn" href="https://bleedstop-demo.vercel.app" rel="noopener">Live demo</a>
+<a class="btn" href="https://usmamalik345.github.io/bleedstop/" rel="noopener">Project site</a>
+</div>
+<p class="muted small" style="margin-top:18px">Built end to end as a full stack and DevOps project. Stack: Node.js, Python, Postgres, Redis, Kubernetes. All numbers below were measured by me on one shared 8 vCPU Linux machine, where the load generator, load balancer and services all share the same hardware. Raw results are in the repository.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>The problem</h2>
+<p class="lead">Once an agent can call tools and paid APIs, one prompt injection or one runaway loop can leak data or burn a budget.</p>
+<p class="muted">BleedStop puts a decision in front of the spend. An application calls <code>POST /decide</code> before it pays for a call. Rules are deterministic and set per tenant, and budgets are enforced atomically across several instances through Redis.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>What I built, end to end</h2>
+<div class="grid g2">
+<article class="card"><h3>Spend guard</h3><p class="muted">Sits in front of LLM APIs and caps tokens and budget per request. In a test against a live model API, a capped request returned 64 output tokens instead of 2,618, which is 97.6% fewer.</p></article>
+<article class="card"><h3>Prompt injection detection</h3><p class="muted">A DeBERTa classifier quantized to 8 bit so it also runs in the browser. On a held out test set it caught 77.5% of injections at a 5% false positive rate.</p></article>
+<article class="card"><h3>Atomic budgets</h3><p class="muted">Redis enforces budgets across instances. In a correctness test of 2,000 concurrent calls against a $5 ceiling on 3 instances, overspend was $0.000.</p></article>
+<article class="card"><h3>Append only audit log</h3><p class="muted">Every decision is written to a Postgres audit table where a trigger blocks UPDATE and DELETE, so decisions can be reviewed later but not edited.</p></article>
+<article class="card"><h3>Deployment</h3><p class="muted">Docker Compose stack with 3 API replicas, Redis, Postgres and nginx, plus a Helm chart for Kubernetes with readiness and liveness probes, a PodDisruptionBudget, an HPA and graceful drain.</p></article>
+<article class="card"><h3>Observability and CI</h3><p class="muted">Prometheus metrics, Grafana dashboards, alert rules and GitHub Actions CI. Node SDK with Express middleware, Python SDK, multi tenant YAML policy, and OpenTelemetry support.</p></article>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>Measured results</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>Test</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>Docker Compose stack (3 API replicas, Redis, Postgres, nginx), one 8 vCPU machine</td><td>5,433 decisions per second, p99 36.2 ms, 0 failed requests out of 60,000</td></tr>
+<tr><td>3 instances behind a load balancer with Redis atomic budgets</td><td>6,291 decisions per second, p99 31.9 ms, $0.000 overspend against a $5 ceiling</td></tr>
+<tr><td>Kubernetes rolling restart of 6 pods under load</td><td>0 failed requests out of 287,403</td></tr>
+<tr><td>Postgres stopped for about 7 seconds under load</td><td>86,071 requests, 0 failed, 0 ledger rows dropped</td></tr>
+<tr><td>Golden set of 12,140 labeled requests</td><td>Precision 100%, benign false positive rate 0.0%, recall 48.0%</td></tr>
+<tr><td>Prompt injection classifier, held out set</td><td>77.5% caught at a 5% false positive rate</td></tr>
+<tr><td>Capped request against a live model API</td><td>64 output tokens instead of 2,618 (97.6% fewer)</td></tr>
+</tbody></table></div>
+<p class="muted small">Absolute numbers are a lower bound for a real cluster because the load generator and services share one machine.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>Bugs that only appeared under load or failure</h2>
+<p class="muted">Running the system under stress found problems that unit tests did not. All of them are fixed. Examples:</p>
+<ul class="clean">
+<li>Pods crash looping after loading 1.09 million rows at boot. Hydration is now skipped when Redis is authoritative, and otherwise capped to the top 50,000 rows by spend.</li>
+<li>A Postgres writer that hung for good when the database went down. Connect and query timeouts fixed it.</li>
+<li>Unhandled connection errors that crashed replicas when Postgres was stopped.</li>
+<li>State kept per process, which split abuse signals across replicas behind a round robin load balancer. It now lives in Redis, and results match a single instance.</li>
+</ul>
+<p class="muted">In total I found and fixed eight such bugs by running the stack, then kept the evidence in the repository.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>What is honest to say about it</h2>
+<ul class="clean">
+<li>The golden set and the rules share an author, so the accuracy numbers are not field results.</li>
+<li>Recall on the golden set is 48.0%. Precision is 100% with no benign false positives.</li>
+<li>Not measured: NetworkPolicy enforcement, multi node or cloud clusters, Postgres high availability, and real provider latency or pricing.</li>
+</ul>
+<div class="cta"><a class="btn primary" href="https://github.com/usmamalik345/bleedstop" rel="noopener">Read the code and results</a><a class="btn" href="open-source.html">Open source work</a></div>
+</div>
+</section>
+<section id="contact">
+<div class="wrap">
+<span class="eyebrow">Contact</span>
+<h2>Let us talk about your agents or your product</h2>
+<p class="lead">I am available full time from November 2026, working remotely. If you are putting AI agents into production, or need a full stack engineer who cares about security, cost and reliability, send me a note.</p>
+<ul class="contact-list">
+<li><span>Email</span><a href="mailto:usmamalik346@gmail.com">usmamalik346@gmail.com</a></li>
+<li><span>Email</span><a href="mailto:usmamalik344@gmail.com">usmamalik344@gmail.com</a></li>
+<li><span>LinkedIn</span><a href="https://www.linkedin.com/in/osamamalik346" rel="me noopener">linkedin.com/in/osamamalik346</a></li>
+<li><span>GitHub</span><a href="https://github.com/usmamalik345" rel="me noopener">github.com/usmamalik345</a></li>
+</ul>
+<div class="cta"><a class="btn primary" href="mailto:usmamalik346@gmail.com?subject=Hello%20Osama">Email me</a></div>
+</div>
+</section>
+</main>
+<footer><div class="wrap">
+<div>Osama Malik. AI agent engineer and full stack developer. Remote.</div>
+<div><a href="mailto:usmamalik346@gmail.com">usmamalik346@gmail.com</a> · <a href="https://github.com/usmamalik345" rel="me noopener">GitHub</a> · <a href="https://www.linkedin.com/in/osamamalik346" rel="me noopener">LinkedIn</a></div>
+</div></footer>
+</body>
+</html>

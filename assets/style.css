@@ -90,3 +90,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 .sub{font-family:var(--mono);font-size:clamp(.95rem,1.8vw,1.1rem);color:var(--accent);margin:-4px 0 16px}
+
+/* demo video */
+.vidbox{margin:18px 0 18px;max-width:860px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--card)}
+.vidbox video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#000}
+.vidbox figcaption{padding:10px 14px;border-top:1px solid var(--line)}

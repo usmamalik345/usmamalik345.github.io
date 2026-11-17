@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://osamamalik.me/">
+<meta http-equiv="refresh" content="0; url=https://osamamalik.me/">
+<script>location.replace("https://osamamalik.me/");</script>
+<title>Osama Malik | AI Agent Engineer</title>
+<meta name="description" content="This page has moved to osamamalik.me. Osama Malik is an AI Agent Engineer at Onlinx Solutions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+
+:root{
+  --bg:#080b0a; --panel:#0d1210; --panel2:#111815; --line:#1d2622; --line2:#2a3631;
+  --text:#dde6e0; --dim:#8a978f; --faint:#6b7770; --accent:#3ddc84; --accent-dim:rgba(61,220,132,.12);
+  --warn:#e5b567;
+  --sans:"Inter Tight","Helvetica Neue",Arial,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono","SF Mono",ui-monospace,Menlo,Consolas,"DejaVu Sans Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--accent);color:#04100a}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.mono{font-family:var(--mono)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+
+/* spotlight + grid */
+.bgfx{position:absolute;inset:0 0 auto 0;height:900px;pointer-events:none;z-index:0;overflow:hidden}
+.bgfx::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;opacity:.35;-webkit-mask-image:radial-gradient(ellipse 70% 80% at 50% 0%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 70% 80% at 50% 0%,#000 20%,transparent 75%)}
+.spot{position:absolute;inset:0;background:radial-gradient(520px circle at var(--mx,70%) var(--my,25%),rgba(61,220,132,.10),transparent 60%)}
+header,main,footer{position:relative;z-index:1}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:20;background:rgba(8,11,10,.82);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+.brand{font-family:var(--mono);font-size:13px;font-weight:500;display:flex;align-items:center;gap:10px}
+.brand .sq{width:22px;height:22px;border:1px solid var(--accent);display:grid;place-items:center;color:var(--accent);font-size:11px;font-weight:700}
+.nav{display:flex;gap:26px;font-family:var(--mono);font-size:12.5px;color:var(--dim)}
+.nav a{padding:6px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+.nav a:hover{color:var(--accent);border-color:var(--accent)}
+.nav a::before{content:"./";color:var(--faint)}
+
+/* hero */
+.hero{padding-top:56px;padding-bottom:24px}
+.statusbar{display:flex;flex-wrap:wrap;border:1px solid var(--line2);background:var(--panel);font-family:var(--mono);font-size:12px;color:var(--dim)}
+.statusbar>div{padding:9px 16px;border-right:1px solid var(--line2);display:flex;gap:8px;align-items:center;white-space:nowrap}
+.statusbar>div:last-child{border-right:0;margin-left:auto}
+.statusbar b{font-weight:500;color:var(--text)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(61,220,132,.6)}
+@media (prefers-reduced-motion:no-preference){.dot{animation:pulse 2.4s infinite}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(61,220,132,.55)}70%{box-shadow:0 0 0 8px rgba(61,220,132,0)}100%{box-shadow:0 0 0 0 rgba(61,220,132,0)}}
+h1{font-size:clamp(32px,4.9vw,66px);line-height:1.04;letter-spacing:-.03em;font-weight:600;margin:44px 0 24px;max-width:21ch}
+h1 .a{color:var(--accent)}
+.lede{max-width:62ch;color:var(--dim);font-size:18px}
+.lede b{color:var(--text);font-weight:500}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.btn{font-family:var(--mono);font-size:13px;font-weight:500;padding:12px 18px;border:1px solid var(--line2);display:inline-flex;gap:10px;align-items:center;transition:all .2s;background:transparent;color:var(--text);cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#03130a}
+.btn.pri:hover{background:#6af0a5;color:#03130a}
+.btn .ar{transition:transform .2s}.btn:hover .ar{transform:translate(2px,-2px)}
+
+/* section head */
+.sh{display:flex;align-items:baseline;gap:14px;margin:56px 0 18px;font-family:var(--mono);font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.12em}
+.sh::before{content:"";width:8px;height:8px;background:var(--accent)}
+.sh::after{content:"";flex:1;height:1px;background:var(--line2)}
+
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2)}
+.tile{background:var(--panel);padding:18px 20px 18px;position:relative;transition:background .25s;min-height:150px;display:flex;flex-direction:column}
+.tile:hover{background:var(--panel2)}
+.tile .k{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);display:flex;flex-direction:column;gap:3px}
+.tile .k i{font-style:normal;color:var(--faint);letter-spacing:.04em;text-transform:none;font-size:11px}
+.tile .v{font-family:var(--mono);font-size:38px;font-weight:500;letter-spacing:-.04em;margin:10px 0 2px;color:var(--text);line-height:1.1;font-variant-numeric:tabular-nums}
+.tile .v small{font-size:15px;color:var(--dim);letter-spacing:0;margin-left:4px;font-weight:400}
+.tile .v em{font-style:normal;color:var(--accent)}
+.tile .s{font-size:13px;color:var(--dim);line-height:1.4}
+.cells{display:flex;gap:2px;margin-top:auto}
+.cells span{flex:1;height:10px;background:var(--accent);opacity:.85;min-width:0}
+.cells span.x{background:var(--warn);opacity:.9}
+.cells.line{display:block;padding:0;position:relative;height:1px;background:var(--line2);margin-top:auto;overflow:hidden}
+.tile .s{margin-bottom:14px}
+.cells.line::after{content:'';position:absolute;left:0;top:0;height:1px;width:28%;background:linear-gradient(90deg,transparent,var(--accent))}
+@media (prefers-reduced-motion:no-preference){.cells.line::after{animation:scan 4.5s linear infinite}@keyframes scan{from{transform:translateX(-100%)}to{transform:translateX(360%)}}}
+@media (prefers-reduced-motion:no-preference){
+  .js .tiles.in .cells span{animation:cell .5s both;animation-delay:calc(var(--i)*14ms)}
+  @keyframes cell{from{opacity:0;transform:scaleY(.2)}to{opacity:.85;transform:none}}
+  .js .tiles:not(.in) .cells span{opacity:0}
+}
+
+/* flagship */
+.flag{display:grid;grid-template-columns:1fr 1.15fr;gap:40px;align-items:start}
+.flag .tag{font-family:var(--mono);font-size:12px;color:var(--accent);margin-bottom:12px}
+.flag h2{font-size:clamp(28px,3.4vw,42px);letter-spacing:-.025em;line-height:1.1;font-weight:600;margin-bottom:16px}
+.flag p{color:var(--dim);margin-bottom:14px}
+.flag p b{color:var(--text);font-weight:500}
+.checks{list-style:none;margin:18px 0 24px;border-top:1px solid var(--line2)}
+.checks li{display:flex;gap:14px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14.5px;color:var(--dim)}
+.checks li span{font-family:var(--mono);font-size:11.5px;color:var(--accent);min-width:104px;padding-top:3px;text-transform:uppercase;letter-spacing:.06em}
+.checks li b{font-weight:500;color:var(--text)}
+.term{border:1px solid var(--line2);background:#060908;font-family:var(--mono);font-size:13px;line-height:1.7;box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+.term .bar{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid var(--line2);color:var(--dim);font-size:11.5px}
+.term .bar i{width:9px;height:9px;border-radius:50%;background:var(--line2)}
+.term .bar span{margin-left:auto}
+.term pre{font:inherit;padding:16px 18px 18px;white-space:pre-wrap;word-break:break-word}
+.term .ln{display:block}
+.term .ln.p{display:grid;grid-template-columns:44px 168px 1fr}
+.term .nm{color:var(--text)}
+.term .c{color:var(--faint)}.term .g{color:var(--accent)}.term .w{color:var(--warn)}.term .d{color:var(--dim)}.term .t{color:#fff}
+.term .caret{display:inline-block;width:8px;height:15px;background:var(--accent);vertical-align:-3px}
+@media (prefers-reduced-motion:no-preference){
+  .caret{animation:blink 1.1s steps(1) infinite}@keyframes blink{50%{opacity:0}}
+  .js .term:not(.run) .ln{opacity:0;transform:translateY(4px)}
+  .js .term.run .ln{animation:ln .4s both;animation-delay:calc(var(--i)*260ms)}
+  @keyframes ln{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+}
+.term .go{display:flex;flex-wrap:wrap;gap:10px;padding:0 18px 18px}
+.term .go a{border:1px solid var(--line2);padding:8px 12px;font-size:12px;color:var(--text);transition:all .2s}
+.term .go a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.term .go a.cs{border-color:transparent;color:var(--dim)}
+.note{font-size:13px;color:var(--faint);margin-top:12px;font-family:var(--mono)}
+
+/* project list */
+.rows{border-top:1px solid var(--line2)}
+.row{display:grid;grid-template-columns:48px 220px 1fr 190px;gap:24px;padding:20px 12px;border-bottom:1px solid var(--line);align-items:start;position:relative;transition:background .25s}
+.row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent);transform:scaleY(0);transition:transform .25s}
+.row:hover{background:var(--panel)}.row:hover::before{transform:scaleY(1)}
+.row .n{font-family:var(--mono);font-size:12px;color:var(--faint);padding-top:4px}
+.row h3{font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.25}
+.row h3 small{display:block;font-family:var(--mono);font-size:11px;font-weight:400;color:var(--accent);margin-top:6px;letter-spacing:.06em;text-transform:uppercase}
+.row p{color:var(--dim);font-size:15px}
+.row .lk{font-family:var(--mono);font-size:12px;display:flex;flex-direction:column;gap:6px;align-items:flex-start;color:var(--dim)}
+.row .lk a{border-bottom:1px solid var(--line2);transition:all .2s}
+.row .lk a:hover{color:var(--accent);border-color:var(--accent)}
+.row .lk a::after{content:" ↗";color:var(--faint)}
+.row .lk span{color:var(--faint)}
+.sub{color:var(--dim);font-size:14px;margin:-8px 0 18px;font-family:var(--mono)}
+
+/* stack + contact */
+.stack{display:flex;flex-wrap:wrap;gap:8px}
+.stack span{font-family:var(--mono);font-size:12.5px;padding:7px 12px;border:1px solid var(--line2);color:var(--text);background:var(--panel);transition:all .2s}
+.stack span:hover{border-color:var(--accent);color:var(--accent)}
+.contact{margin-top:64px;border:1px solid var(--line2);background:var(--panel);display:grid;grid-template-columns:1.2fr 1fr;gap:0}
+.contact>div{padding:32px}
+.contact>div:first-child{border-right:1px solid var(--line2)}
+.contact h2{font-size:clamp(26px,3vw,38px);letter-spacing:-.025em;line-height:1.12;font-weight:600;margin-bottom:12px}
+.contact p{color:var(--dim);max-width:46ch}
+.kv{font-family:var(--mono);font-size:13.5px;display:grid;grid-template-columns:90px 1fr;row-gap:12px;align-content:center;height:100%}
+.kv dt{color:var(--faint);text-transform:uppercase;font-size:11px;letter-spacing:.1em;padding-top:2px}
+.kv dd a{border-bottom:1px solid var(--line2);transition:all .2s;word-break:break-all}
+.kv dd a:hover{color:var(--accent);border-color:var(--accent)}
+footer{padding:28px 0 40px;font-family:var(--mono);font-size:12px;color:var(--faint)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;border-top:1px solid var(--line);padding-top:20px}
+
+/* reveal */
+@media (prefers-reduced-motion:no-preference){
+  .js .rv{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+  .js .rv.in{opacity:1;transform:none}
+  html{scroll-behavior:smooth}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.spot{display:none}}
+
+@media (max-width:1060px){
+  .tiles{grid-template-columns:repeat(2,1fr)}
+  .flag{grid-template-columns:1fr}
+  .row{grid-template-columns:40px 1fr;gap:6px 16px}
+  .row p,.row .lk{grid-column:2}
+  .row .lk{flex-direction:row;gap:16px;flex-wrap:wrap;margin-top:4px}
+}
+@media (max-width:640px){
+  .wrap{padding:0 18px}
+  .nav{gap:16px;font-size:12px}
+  .nav a:nth-child(3){display:none}
+  .hero{padding-top:36px;padding-bottom:24px}
+  .statusbar{font-size:11px}
+  .statusbar>div{border-right:0;border-bottom:1px solid var(--line2);width:50%;padding:8px 12px;white-space:normal}
+  .statusbar>div:nth-child(odd){border-right:1px solid var(--line2)}
+  .statusbar>div:last-child{margin:0;width:100%;border-bottom:0;border-right:0}
+  .statusbar>div:nth-last-child(2){border-bottom:1px solid var(--line2)}
+  h1{margin:30px 0 18px}
+  .lede{font-size:16.5px}
+  .tile{padding:14px;min-height:140px}.tile .v{font-size:28px}.tile .v small{font-size:12px;display:block;margin:2px 0 0}
+  .tile .k{font-size:10px;flex-direction:column;gap:2px}
+  .tile .s{font-size:12px}
+  .checks li{flex-direction:column;gap:2px}
+  .term{font-size:12px}
+  .term .ln.p{grid-template-columns:36px 1fr}
+  .term .ln.p .ds{grid-column:2;padding-bottom:6px}
+  .contact{grid-template-columns:1fr}.contact>div:first-child{border-right:0;border-bottom:1px solid var(--line2)}
+  .contact>div{padding:22px}
+  .kv{grid-template-columns:78px 1fr}
+  .statusbar .hide-m{display:none}
+}
+/* ===== full-portfolio additions ===== */
+h1{max-width:none;font-size:clamp(32px,3.9vw,54px);margin:36px 0 22px;line-height:1.06}
+.hero{padding-top:44px;padding-bottom:28px}
+.herogrid{display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:56px;align-items:start}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-top:34px}
+.kicker em{font-style:normal;color:var(--accent)}
+.herogrid h1{margin-top:14px}
+.cta .btn{font-family:var(--mono)}
+button.btn{font:inherit;font-family:var(--mono);font-size:13px;font-weight:500}
+.nav .xl{display:none}
+.nav{gap:22px}
+.sociallinks{display:flex;gap:18px;font-family:var(--mono);font-size:12.5px;color:var(--dim)}
+.sociallinks a:hover{color:var(--accent)}
+@media (min-width:1180px){.sociallinks{display:flex}}
+.headr{display:flex;align-items:center;gap:30px}
+
+.metrics3{display:flex;margin-top:34px;border:1px solid var(--line2);background:var(--panel);max-width:460px}
+.metrics3>div{flex:1;padding:12px 16px;border-right:1px solid var(--line2)}
+.metrics3>div:last-child{border-right:0}
+.metrics3 b{display:block;font-family:var(--mono);font-size:24px;font-weight:500;color:var(--accent);line-height:1.1;letter-spacing:-.03em}
+.metrics3 span{display:block;line-height:1.4;margin-top:4px;font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.04em}
+/* chat console */
+.chat{border:1px solid var(--line2);background:#060908;display:flex;flex-direction:column;box-shadow:0 30px 60px -30px rgba(0,0,0,.85);position:relative;margin-top:34px}
+.chat::before{content:"";position:absolute;left:-1px;top:-1px;width:28px;height:2px;background:var(--accent)}
+.chat-head{display:flex;gap:12px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line2)}
+.avatar{width:34px;height:34px;border:1px solid var(--accent);color:var(--accent);display:grid;place-items:center;font-family:var(--mono);font-size:12px;font-weight:700;flex:none}
+.chat-head strong{font-family:var(--mono);font-size:13px;font-weight:500;display:block;line-height:1.25}
+.chat-head p{font-size:12.5px;color:var(--dim);line-height:1.3;margin-top:2px}
+.live{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--accent);display:flex;align-items:center;gap:6px;flex:none}
+.live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+@media (prefers-reduced-motion:no-preference){.live::before{animation:pulse 2.4s infinite}}
+.log{min-height:150px;max-height:340px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;scrollbar-width:thin;scrollbar-color:var(--line2) transparent}
+.msg{font-size:14px;line-height:1.5;padding:10px 12px;max-width:92%;white-space:pre-wrap;word-break:break-word;overflow-wrap:anywhere}
+.msg.bot{background:var(--panel);border:1px solid var(--line);color:var(--text);align-self:flex-start}
+.msg.me{background:var(--accent-dim);border:1px solid rgba(61,220,132,.35);color:var(--text);align-self:flex-end;font-family:var(--mono);font-size:13px}
+.msg.typing{display:flex;gap:5px;padding:12px}
+.msg.typing i{width:6px;height:6px;background:var(--dim);display:block}
+@media (prefers-reduced-motion:no-preference){.msg.typing i{animation:blink2 1s infinite}.msg.typing i:nth-child(2){animation-delay:.15s}.msg.typing i:nth-child(3){animation-delay:.3s}@keyframes blink2{50%{opacity:.25}}}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 12px}
+.chips button{font-family:var(--mono);font-size:11.5px;color:var(--dim);background:transparent;border:1px solid var(--line2);padding:6px 10px;cursor:pointer;transition:all .2s;text-align:left}
+.chips button:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-dim)}
+#form{display:flex;border-top:1px solid var(--line2)}
+#form::before{content:">";font-family:var(--mono);color:var(--accent);padding:12px 0 0 14px;font-size:14px}
+#q{flex:1;min-width:0;background:transparent;border:0;color:var(--text);font-family:var(--mono);font-size:13px;padding:13px 10px;outline:0}
+#q::placeholder{color:var(--faint)}
+#form:focus-within{box-shadow:inset 0 -2px 0 var(--accent)}
+.send{background:transparent;border:0;border-left:1px solid var(--line2);color:var(--accent);font-family:var(--mono);font-size:12px;padding:0 16px;cursor:pointer;transition:background .2s}
+.send:hover{background:var(--accent-dim)}
+
+/* ticker */
+.ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;font-family:var(--mono);font-size:12px;color:var(--faint);padding:11px 0;margin-top:34px;position:relative;z-index:1}
+.ticker-track{display:inline-flex;gap:34px;padding-left:34px}
+.ticker span::before{content:"◆";color:var(--accent);margin-right:12px;font-size:8px;vertical-align:2px}
+@media (prefers-reduced-motion:no-preference){.ticker-track{animation:tick 60s linear infinite}@keyframes tick{to{transform:translateX(-50%)}}}
+
+/* section head */
+.sechead{margin:72px 0 24px}
+.sechead .sh{margin:0 0 18px}
+.sechead h2{font-size:clamp(26px,3vw,38px);letter-spacing:-.025em;line-height:1.1;font-weight:600;margin-bottom:8px}
+.sechead p{color:var(--dim);max-width:62ch}
+.sh.in-sec{margin-top:48px}
+
+/* services */
+.svc{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2)}
+.svc article{background:var(--panel);padding:22px 22px 24px;transition:background .25s}
+.svc article:hover{background:var(--panel2)}
+.svc .tag,.tag2{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;display:block}
+.svc h3{font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.25;margin-bottom:8px}
+.svc p{color:var(--dim);font-size:15px}
+
+/* flagship in projects */
+.flag{margin-top:0}
+.flag p.proj{color:var(--dim);margin-bottom:14px;font-size:15.5px}
+.flag p.proj b{color:var(--text);font-weight:500}
+.flag .tag{margin-bottom:12px}
+.flaglinks{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:var(--mono);font-size:12.5px;margin-top:6px}
+.flaglinks a{border-bottom:1px solid var(--line2);transition:all .2s}
+.flaglinks a:hover{color:var(--accent);border-color:var(--accent)}
+.flaglinks a.arr::after{content:" ↗";color:var(--faint)}
+.rows.after{margin-top:48px}
+.row .lk a.int::after{content:" ↓"}
+.term{font-variant-ligatures:none}
+
+/* oss grid */
+.oss{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2)}
+.oss article{background:var(--panel);padding:20px 22px;transition:background .25s}
+.oss article:hover{background:var(--panel2)}
+.oss h3{font-size:17px;font-weight:600;margin-bottom:6px}
+.oss p{color:var(--dim);font-size:15px}
+.oss p a{font-family:var(--mono);font-size:12px;border-bottom:1px solid var(--line2);margin-left:6px;transition:all .2s}
+.oss p a:hover{color:var(--accent);border-color:var(--accent)}
+.oss p a::after{content:" ↗";color:var(--faint)}
+
+/* angular/react lists */
+.deck2{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2)}
+.deck2 article{background:var(--panel);padding:22px}
+.deck2 h3{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:12px}
+.ll{font-size:15px;line-height:2;color:var(--faint)}
+.ll a{color:var(--text);border-bottom:1px solid var(--line2);transition:all .2s;padding-bottom:1px}
+.ll a:hover{color:var(--accent);border-color:var(--accent)}
+.ll .live{margin:0;display:inline;font-size:11px;color:var(--accent)}
+.ll .live::before{display:none}
+.ll .dsep{color:var(--faint);margin:0 6px}
+
+/* experience */
+.exp{display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:start}
+.tl{list-style:none;border-top:1px solid var(--line2)}
+.tl li{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:16px 4px;border-bottom:1px solid var(--line)}
+.tl .d{font-family:var(--mono);font-size:12px;color:var(--dim);padding-top:3px}
+.tl b{font-size:17px;font-weight:600;display:block;line-height:1.3}
+.tl span.r{display:block;color:var(--dim);font-size:15px;margin-top:3px}
+.tl a{border-bottom:1px solid var(--line2)}.tl a:hover{color:var(--accent);border-color:var(--accent)}
+.skills{border:1px solid var(--line2);background:var(--panel)}
+.skills div{padding:14px 18px;border-bottom:1px solid var(--line)}
+.skills div:last-child{border-bottom:0}
+.skills dt,.skills .k{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;display:block}
+.skills dd,.skills .v2{font-size:14.5px;color:var(--text);line-height:1.5;display:block}
+
+.contact h2{font-size:clamp(26px,3vw,38px)}
+footer .fin{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;border-top:1px solid var(--line);padding-top:20px}
+footer .wrap{display:block;border-top:0;padding-top:0}
+footer .wrap a:hover{color:var(--accent)}
+footer .fl{display:flex;flex-wrap:wrap;gap:6px 22px}
+
+@media (max-width:1100px){
+  .herogrid{grid-template-columns:1fr;gap:0}
+  .chat{margin-top:36px}
+  .svc{grid-template-columns:repeat(2,1fr)}
+  .exp{grid-template-columns:1fr;gap:28px}
+  .sociallinks{display:none}
+}
+@media (max-width:760px){
+  .oss,.deck2{grid-template-columns:1fr}
+  .tl li{grid-template-columns:1fr;gap:4px}
+}
+@media (max-width:640px){
+  .svc{grid-template-columns:1fr}
+  .log{max-height:300px}
+  .brand .loc{display:none}
+  .brand{white-space:nowrap}
+  .statusbar{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line2)}
+  .statusbar>div,.statusbar>div:nth-child(odd),.statusbar>div:nth-last-child(2),.statusbar>div:last-child{background:var(--panel);border:0;width:auto;margin:0}
+  .sechead{margin-top:56px}
+  .nav a:nth-child(1),.nav a:nth-child(2),.nav a:nth-child(4){display:none}
+  .nav a:nth-child(3),.nav a:nth-child(5){display:inline}
+  .nav{gap:18px}
+  .kicker{font-size:11px}
+  .chips button{font-size:11px}
+  .ticker{margin-top:26px}
+}
+
+/* demo video */
+.vid{margin-top:48px;border:1px solid var(--line2);background:#060908;box-shadow:0 30px 60px -30px rgba(0,0,0,.8);max-width:1000px}
+.vid .bar{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid var(--line2);color:var(--dim);font-family:var(--mono);font-size:11.5px}
+.vid .bar i{width:9px;height:9px;border-radius:50%;background:var(--line2)}
+.vid .bar span{margin-left:auto}
+.vid video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#000}
+.vid .cap{padding:14px 18px 16px;font-size:13.5px;line-height:1.6;color:var(--dim);border-top:1px solid var(--line2)}
+.vid .cap b{color:var(--text);font-weight:500}
+.vid .cap a{color:var(--accent)}
+@media(max-width:700px){.vid{margin-top:32px}.vid .cap{padding:12px 14px 14px}}
+</style>
+</head>
+<body>
+<div class="bgfx" aria-hidden="true"><div class="spot" id="spot"></div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Osama Malik home"><span class="sq">OM</span>Osama Malik <span class="loc" style="color:var(--faint);font-weight:400">/ Islamabad</span></a>
+    <div class="headr">
+      <nav class="nav" aria-label="Primary">
+        <a href="#metrics">metrics</a><a href="#services">services</a><a href="#projects">projects</a><a href="#experience">experience</a><a href="#contact">contact</a>
+      </nav>
+      <div class="sociallinks"><a href="mailto:usmamalik346@gmail.com">Email</a><a href="https://github.com/usmamalik345" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/osamamalik346/" target="_blank" rel="noreferrer">LinkedIn</a></div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero wrap">
+  <div class="statusbar" role="group" aria-label="Profile status">
+    <div><span class="dot"></span><b>SHIPPING</b></div>
+    <div>ROLE <b>ai-agent-engineer</b></div>
+    <div>OFFER <b>AI agents, primary</b></div>
+    <div>LOC <b>Islamabad</b> <span id="clock" class="hide-m"></span></div>
+    <div>EXP <b>4+ yrs shipping</b></div>
+    <div>OSS <b>9 agent fixes</b></div>
+  </div>
+
+  <div class="herogrid">
+    <div>
+      <div class="kicker"><em>AI agents</em> · Voice · RAG · Full-stack delivery</div>
+      <h1>Build agents that ship: <span class="a">policy decides first</span>, a guard checks every sentence, and evals prove it.</h1>
+      <p class="lede">I design and deliver production AI agents: <b>chat, voice, RAG, CRM tool-calling, and multi-agent workflows</b>. Proof includes Darwin AI, LiveKit Agents, Pipecat, Genkit, and Swarms. Full-stack Angular and React when the product needs a UI.</p>
+      <div class="cta">
+        <button class="btn pri" type="button" id="focusChat">Ask about AI agents <span class="ar">→</span></button>
+        <a class="btn" href="/portfolio-agent/case-study.html">Read the case study <span class="ar">→</span></a>
+        <a class="btn" href="mailto:usmamalik346@gmail.com">Email me <span class="ar">↗</span></a>
+      </div>
+      <div class="metrics3">
+        <div><b>AI</b><span>agents primary offer</span></div>
+        <div><b>9</b><span>OSS agent fixes</span></div>
+        <div><b>4+</b><span>years shipping</span></div>
+      </div>
+    </div>
+
+    <div class="stage-wrap" id="stage">
+      <div class="chat-shell" id="chatShell">
+        <aside class="chat" aria-label="Portfolio agent">
+          <div class="chat-head">
+            <div class="avatar">OM</div>
+            <div>
+              <strong>Osama agent</strong>
+              <p>Professional answers on AI agents and delivery</p>
+            </div>
+            <span class="live">online</span>
+          </div>
+          <div class="log" id="log" role="log" aria-live="polite"></div>
+          <div class="chips" id="chips"></div>
+          <form id="form">
+            <input id="q" autocomplete="off" aria-label="Ask about my work" placeholder="Ask anything about my work…" />
+            <button class="send" type="submit">Send</button>
+          </form>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>AI Agents</span><span>Jivi AI</span><span>Darwin AI</span><span>RAG</span><span>Voice</span><span>LiveKit</span><span>Pipecat</span><span>Genkit</span><span>Swarms</span><span>CRM tools</span><span>Angular</span><span>AWS</span>
+    <span>AI Agents</span><span>Jivi AI</span><span>Darwin AI</span><span>RAG</span><span>Voice</span><span>LiveKit</span><span>Pipecat</span><span>Genkit</span><span>Swarms</span><span>CRM tools</span><span>Angular</span><span>AWS</span>
+  </div>
+</div>
+
+<section class="wrap" id="metrics">
+  <div class="sh">telemetry · measured, not claimed</div>
+  <div class="tiles rv" id="tiles">
+    <div class="tile"><div class="k">Deterministic eval <i>agent-receptionist</i></div><div class="v"><em>44</em>/44</div><div class="s">Hotel 23/23, dental 21/21.</div><div class="cells" data-n="44"></div></div>
+    <div class="tile"><div class="k">Live Groq eval <i>2026-10-24</i></div><div class="v">43/44</div><div class="s">One miss: an eval regex too narrow, reply was right.</div><div class="cells" data-n="44" data-x="1"></div></div>
+    <div class="tile"><div class="k">Live 20-question test <i>2026-10-24</i></div><div class="v">19/20</div><div class="s">Same cause: too-narrow regex, correct reply.</div><div class="cells" data-n="20" data-x="1"></div></div>
+    <div class="tile"><div class="k">First token <i>live check</i></div><div class="v">~0.8<small>s</small></div><div class="s">~840 ms on the public URL. Real token streaming, not one buffered reply.</div><div class="cells line" data-n="44"></div></div>
+    <div class="tile"><div class="k">Cost / question <i>live check</i></div><div class="v">~$0.0002</div><div class="s">563 prompt + 251 completion tokens. A single check, not a benchmark.</div><div class="cells line" data-n="44"></div></div>
+    <div class="tile"><div class="k">Policy-routed replies <i>pre-router</i></div><div class="v"><em>0</em><small>tokens</small></div><div class="s">Emergencies, hours and handoff never reach the model.</div><div class="cells line" data-n="44"></div></div>
+    <div class="tile"><div class="k">Throughput <i>bleedstop</i></div><div class="v">6,291<small>decisions/s</small></div><div class="s">p99 32 ms on 3 instances.</div><div class="cells line" data-n="44"></div></div>
+    <div class="tile"><div class="k">Rolling restart <i>bleedstop · k8s</i></div><div class="v"><em>0</em><small>/ 287,403 failed</small></div><div class="s">Requests during a Kubernetes rolling restart. 0% false positives on benign eval scenarios.</div><div class="cells" data-n="44"></div></div>
+  </div>
+</section>
+
+<section class="wrap" id="services">
+  <div class="sechead rv">
+    <div class="sh">01 · services</div>
+    <h2>AI agent services</h2>
+    <p>Primary offer. I scope chat, voice, RAG, and CRM-connected agents for production, then ship the product UI around them when needed.</p>
+  </div>
+  <div class="svc rv">
+    <article><span class="tag">Primary</span><h3>Chat and RAG agents</h3><p>Ground answers in your documents. Tool calls into CRM and internal APIs. Guardrails, escalation to humans, and evaluation so the agent stays reliable in production.</p></article>
+    <article><span class="tag">Realtime</span><h3>Voice agents</h3><p>Phone and in-app voice with interruption handling, tool use, and clean call teardown. Hands-on with LiveKit Agents and Pipecat reliability paths.</p></article>
+    <article><span class="tag">Orchestration</span><h3>Multi-agent workflows</h3><p>Specialized workers for inbound, outbound, support, and collections-style flows. Experience across Genkit, Swarms, and harness SDKs.</p></article>
+    <article><span class="tag">Delivery</span><h3>Product UI around the agent</h3><p>Angular and React interfaces, Node and .NET APIs, Docker and AWS, so the agent is part of a shippable product, not a demo notebook.</p></article>
+  </div>
+</section>
+
+<section class="wrap" id="projects">
+  <div class="sechead rv">
+    <div class="sh">02 · projects</div>
+    <h2>AI agent projects</h2>
+    <p>Detailed proof behind the pitch.</p>
+  </div>
+  <div class="flag" id="flagship">
+    <div class="rv">
+      <div class="tag">AI agent · engineering case study</div>
+      <h2 style="font-size:clamp(28px,3.4vw,42px);letter-spacing:-.025em;line-height:1.1;font-weight:600;margin-bottom:16px">Agent Receptionist</h2>
+      <p class="proj">Tool-calling LLM agent (Groq, <b>gpt-oss-120b</b>) for appointment-based businesses. RAG with cited sources, policy pre-routing for emergencies, hours and handoff at zero tokens, a per-sentence guard, a deterministic booking fallback, and streaming SSE replies. Measured: deterministic eval 44/44, live Groq eval 43/44 (one eval-regex miss), live 20-question test 19/20, about $0.0002 per question in one live check. Demos use fictional businesses; source is private, available on request.</p>
+      <ul class="checks">
+        <li><span>before model</span><div><b>Policy pre-router.</b> Rules decide emergencies, hours and handoff.</div></li>
+        <li><span>after model</span><div><b>Per-sentence guard.</b> Entity allowlist, hours check, required-fact check.</div></li>
+        <li><span>security</span><div><b>Secrets and raw provider errors stay server-side.</b></div></li>
+      </ul>
+      <div class="flaglinks"><a href="/portfolio-agent/case-study.html">Case study</a><a class="arr" href="https://agent-receptionist.vercel.app/dashboard?biz=dental" target="_blank" rel="noreferrer">Live demo: dental</a><a class="arr" href="https://agent-receptionist.vercel.app/dashboard?biz=hotel" target="_blank" rel="noreferrer">Live demo: hotel</a></div>
+    </div>
+    <div class="term rv" id="term" role="img" aria-label="Pipeline of the Agent Receptionist: policy pre-router, tool-calling agent, per-sentence guard, SSE stream, with eval 44 of 44">
+      <div class="bar"><i></i><i></i><i></i><span>agent-receptionist — pipeline</span></div>
+      <pre aria-hidden="true"><span class="ln" style="--i:0"><span class="g">$</span> <span class="t">agent-receptionist --pipeline</span></span><span class="ln p" style="--i:1"><span class="c">[1]</span><span class="nm">policy pre-router</span><span class="ds"><span class="d">emergencies · hours · handoff</span> <span class="g" style="margin-left:10px;white-space:nowrap">0 tokens</span></span></span><span class="ln p" style="--i:2"><span class="c">[2]</span><span class="nm">tool-calling agent</span><span class="ds"><span class="d">groq / gpt-oss-120b · RAG + sources</span></span></span><span class="ln p" style="--i:3"><span class="c">[3]</span><span class="nm">per-sentence guard</span><span class="ds"><span class="d">allowlist · hours · required facts</span></span></span><span class="ln p" style="--i:4"><span class="c">[4]</span><span class="nm">SSE stream</span><span class="ds"><span class="d">real token streaming + cost panel</span></span></span><span class="ln p" style="--i:5"><span class="w">[fb]</span><span class="nm">booking engine</span><span class="ds"><span class="d">deterministic fallback path</span></span></span><span class="ln" style="--i:6">&nbsp;</span><span class="ln" style="--i:7"><span class="g">$</span> <span class="t">eval --deterministic</span></span><span class="ln" style="--i:8"><span class="g">PASS</span> 44/44  <span class="d">(hotel 23/23, dental 21/21)</span></span><span class="ln" style="--i:9"><span class="g">$</span> <span class="caret"></span></span></pre>
+      <div class="go">
+        <a href="https://agent-receptionist.vercel.app/dashboard?biz=dental" target="_blank" rel="noreferrer">▶ live demo: dental ↗</a>
+        <a href="https://agent-receptionist.vercel.app/dashboard?biz=hotel" target="_blank" rel="noreferrer">▶ live demo: hotel ↗</a>
+        <a class="cs" href="/portfolio-agent/case-study.html">case study →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="vid rv" id="demo-video">
+    <div class="bar"><i></i><i></i><i></i><span>agent-receptionist — demo video · 73 s · voiceover</span></div>
+    <video controls preload="metadata" playsinline poster="/assets/agent-receptionist-demo-poster.jpg" aria-label="Voiceover walkthrough of the Agent Receptionist: case study, live demo with tool calls and RAG sources, and the same engine on a different business">
+      <source src="/assets/agent-receptionist-demo.mp4" type="video/mp4">
+      Your browser can't play this video. <a href="/assets/agent-receptionist-demo.mp4">Download the MP4</a>.
+    </video>
+    <div class="cap"><b>Watch the demo.</b> A 73 second walkthrough with voiceover: the case study, the live demo (tool calling, RAG with sources, latency and cost per turn) and the same engine on a different fictional business.</div>
+  </div>
+
+  <div class="rows after rv">
+    <article class="row"><div class="n">01</div><h3>BleedStop<small>LLM security · infrastructure</small></h3><p>Cost abuse control plane for LLM, SMS and payment APIs (OWASP LLM10). Apps ask before they spend; deterministic multi tenant rules, Redis atomic budgets, Postgres durable mode, agent guard, Node and Python SDKs, Helm on Kubernetes. Measured: 6,291 decisions/s at p99 32 ms on 3 instances, 0 failed of 287,403 requests during a Kubernetes rolling restart, 0% false positives on benign eval scenarios.</p><div class="lk"><a href="https://github.com/usmamalik345/bleedstop" target="_blank" rel="noreferrer">Repo</a><a href="https://usmamalik345.github.io/bleedstop/" target="_blank" rel="noreferrer">Project site</a><a href="https://bleedstop-demo.vercel.app/" target="_blank" rel="noreferrer">Live demo</a></div></article>
+    <article class="row"><div class="n">02</div><h3>Jivi AI medical agents<small>Healthcare · multi-agent</small></h3><p>Multi-agent healthcare system for doctors, patients, and providers. Clinical agents for triage, risk, treatment, medication safety, radiology, ECG, and labs. Wellness agents for nutrition, stress, and mental health. Doctor Co-Pilot for summaries, auto-scribe, diagnosis support, and medical coding.</p><div class="lk"><a href="https://www.jivi.ai/ai-agents" target="_blank" rel="noreferrer">jivi.ai/ai-agents</a></div></article>
+    <article class="row"><div class="n">03</div><h3>Darwin AI<small>Production product</small></h3><p>Angular UI for AI employees that run customer conversations on WhatsApp, Instagram, and phone. Specialized roles for inbound, outbound, CX, collections, and post-sales, with CRM updates and human escalation.</p><div class="lk"><a href="https://www.getdarwin.ai/en" target="_blank" rel="noreferrer">getdarwin.ai</a></div></article>
+    <article class="row"><div class="n">04</div><h3>LiveKit Agents<small>Voice · contribution</small></h3><p>Bounded EndCallTool wait for tool-reply audio. Skipped the drain when that reply times out so voice sessions do not hang on teardown.</p><div class="lk"><a href="https://github.com/usmamalik345/agents" target="_blank" rel="noreferrer">Fork</a></div></article>
+    <article class="row"><div class="n">05</div><h3>Pipecat<small>Realtime · contribution</small></h3><p>Skipped Responses drain on early cancel. Kept function-call timeouts armed across intermediate results. Added sequencing on turn-stopped messages.</p><div class="lk"><a href="https://github.com/usmamalik345/pipecat" target="_blank" rel="noreferrer">Fork</a></div></article>
+    <article class="row"><div class="n">06</div><h3>Genkit · Swarms · harness<small>Frameworks</small></h3><p>Genkit: decode base64 OpenAI embeddings for retrieval. Swarms: optional swarm description for multi-agent prompts. Harness SDK: JSON-safe AgentResult with bytes.</p><div class="lk"></div></article>
+    <article class="row"><div class="n">07</div><h3>AI code reviewer<small>Node</small></h3><p>Express and Apollo GraphQL service with MySQL and SQL Server, plus scripts that check code quality for AI-assisted review workflows.</p><div class="lk"><a href="https://github.com/usmamalik345/AI-code-reviewer" target="_blank" rel="noreferrer">Repo</a></div></article>
+    <article class="row"><div class="n">08</div><h3>Darwin Studio<small>GenAI product</small></h3><p>IT Pixelz. Angular, Node, MySQL. Prompted generation with ChatGPT and Stability AI, plus upscaling, model switching, and image-to-motion.</p><div class="lk"><a href="https://locx.com.au/darwin/aigc" target="_blank" rel="noreferrer">Darwin AIGC</a></div></article>
+  </div>
+
+  <div class="sechead rv" id="product">
+    <div class="sh">03 · product work</div>
+    <h2>More product work</h2>
+    <p>Angular and full-stack delivery alongside agent work.</p>
+  </div>
+  <div class="rows rv">
+    <article class="row"><div class="n">09</div><h3>ERA Citizen Science<small>Angular · live</small></h3><p>Angular work on Malta Environment and Resources Authority citizen-science platform.</p><div class="lk"><a href="https://era.org.mt/citizen-science/" target="_blank" rel="noreferrer">era.org.mt</a></div></article>
+    <article class="row"><div class="n">10</div><h3>Doctor appointments<small>MERN</small></h3><p>React, Node, Express, MongoDB, Tailwind. Book by specialization. Admin adds doctors.</p><div class="lk"><a href="https://doctor-appointment-website-henna.vercel.app" target="_blank" rel="noreferrer">Live</a><a href="https://github.com/usmamalik345/doctor-appointment-website" target="_blank" rel="noreferrer">Repo</a></div></article>
+    <article class="row"><div class="n">11</div><h3>IT Staffing Solutions<small>Staffing</small></h3><p>About 1.5 years. Angular and Bootstrap, then WordPress, Strapi, and API modules.</p><div class="lk"></div></article>
+    <article class="row"><div class="n">12</div><h3>Angular and React apps<small>Frontend</small></h3><p>Ecommerce, book store, LMS, portfolio, and more under GitHub. Full list in the Angular and React section below.</p><div class="lk"><a class="int" href="#angular-react">Angular &amp; React</a></div></article>
+  </div>
+</section>
+
+<section class="wrap" id="oss">
+  <div class="sechead rv">
+    <div class="sh">04 · open source</div>
+    <h2>Open source I worked on</h2>
+    <p>Contributions. I didn’t start these — I shipped the fix named here.</p>
+  </div>
+  <div class="oss rv">
+    <article><h3>LiveKit Agents</h3><p>Bounded EndCallTool wait; skipped drain on tool-reply timeout. <a href="https://github.com/usmamalik345/agents" target="_blank" rel="noreferrer">Fork</a></p></article>
+    <article><h3>Pipecat</h3><p>Skip Responses drain on early cancel; keep function-call timeouts armed; sequence turn-stopped. <a href="https://github.com/usmamalik345/pipecat" target="_blank" rel="noreferrer">Fork</a></p></article>
+    <article><h3>Genkit · Swarms · harness SDK</h3><p>Embeddings decode · optional swarm description · JSON-safe AgentResult with bytes.</p></article>
+    <article><h3>TMail · Drift · Palinode · Celluloid</h3><p>Reply-to fallback + tests · FAQ · CLI exit codes · --mpv-pause flags.</p></article>
+  </div>
+</section>
+
+<section class="wrap" id="angular-react">
+  <div class="sechead rv">
+    <div class="sh">05 · interfaces</div>
+    <h2>Angular &amp; React</h2>
+    <p>More interface work on my GitHub.</p>
+  </div>
+  <div class="deck2 rv">
+    <article>
+      <h3>Angular</h3>
+      <p class="ll">
+        <a href="https://www.getdarwin.ai/en" target="_blank" rel="noreferrer">Darwin AI (live)</a><br />
+        <a href="https://era.org.mt/citizen-science/" target="_blank" rel="noreferrer">ERA Citizen Science (live)</a><br />
+        <a href="https://github.com/usmamalik345/ai-project" target="_blank" rel="noreferrer">AI project (Angular 16)</a><br />
+        <a href="https://github.com/usmamalik345/AngularEcommrcestore" target="_blank" rel="noreferrer">Ecommerce</a><span class="dsep">·</span><a href="https://github.com/usmamalik345/angularbook-store" target="_blank" rel="noreferrer">Book store</a><br />
+        <a href="https://github.com/usmamalik345/Nodejs-angular" target="_blank" rel="noreferrer">Node + Angular</a><span class="dsep">·</span><a href="https://github.com/usmamalik345/Employers-data" target="_blank" rel="noreferrer">Employers data</a>
+      </p>
+    </article>
+    <article>
+      <h3>React</h3>
+      <p class="ll">
+        <a href="https://shopping-store-alpha.vercel.app" target="_blank" rel="noreferrer">Shopping store (live)</a><br />
+        <a href="https://github.com/usmamalik345/reactportfolio" target="_blank" rel="noreferrer">Portfolio</a><span class="dsep">·</span><a href="https://github.com/usmamalik345/airbnd" target="_blank" rel="noreferrer">Stay listings</a><span class="dsep">·</span><a href="https://github.com/usmamalik345/restaurant-app" target="_blank" rel="noreferrer">Restaurant</a><br />
+        <a href="https://github.com/usmamalik345/lms-clone" target="_blank" rel="noreferrer">LMS</a><span class="dsep">·</span><a href="https://github.com/usmamalik345/Ecommrceredex" target="_blank" rel="noreferrer">Redux shop</a><span class="dsep">·</span><a href="https://github.com/usmamalik345/expense-Traker" target="_blank" rel="noreferrer">Expenses</a>
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="wrap" id="experience">
+  <div class="sechead rv">
+    <div class="sh">06 · experience &amp; skills</div>
+    <h2>About four years of professional delivery</h2>
+    <p>Based in Islamabad, Pakistan. Remote-friendly with distributed teams. Timezone PKT, UTC+5.</p>
+  </div>
+  <div class="exp rv">
+    <ol class="tl">
+      <li><div class="d">Jul 2024 → present</div><div><b>AI Agent Engineer, Onlinx Solutions</b><span class="r">Current role.</span></div></li>
+      <li><div class="d">Agent work</div><div><b>Jivi AI medical agents</b><span class="r">Multi-agent clinical, wellness, and doctor co-pilot systems. <a href="https://www.jivi.ai/ai-agents" target="_blank" rel="noreferrer">jivi.ai/ai-agents</a></span></div></li>
+      <li><div class="d">Mar 2023 → Jun 2024</div><div><b>Angular · IT Pixelz</b><span class="r">CRM dashboards, appointment scheduling, and reporting, plus Darwin Studio GenAI work.</span></div></li>
+      <li><div class="d">Jan 2022 → Feb 2023</div><div><b>Junior Angular developer · Zepto Systems</b></div></li>
+      <li><div class="d">2017 – 2021</div><div><b>BS Computer Science · Allama Iqbal Open University</b><span class="r">Islamabad. Additional coursework: MEAN bootcamp with DevNation, Frontend Masters courses on Git and JavaScript design patterns.</span></div></li>
+    </ol>
+    <dl class="skills">
+      <div><span class="k">AI and agents</span><span class="v2">LLMs, RAG, chat agents, voice agents, multi-agent systems, LiveKit Agents, Pipecat, Genkit, Swarms, harness SDKs</span></div>
+      <div><span class="k">Frontend</span><span class="v2">Angular, React, TypeScript, RxJS</span></div>
+      <div><span class="k">Backend</span><span class="v2">Node, Express, .NET, FastAPI, REST, GraphQL</span></div>
+      <div><span class="k">Data</span><span class="v2">SQL, MongoDB, MySQL, SQL Server</span></div>
+      <div><span class="k">Delivery</span><span class="v2">Docker, AWS, Git, CI/CD</span></div>
+      <div><span class="k">Also</span><span class="v2">Node.js, RabbitMQ, Docker / Nginx, vector DBs, LangChain, Ollama</span></div>
+    </dl>
+  </div>
+</section>
+
+<section class="wrap" id="contact">
+  <div class="contact rv">
+    <div>
+      <h2>Need an agent that holds up in production?</h2>
+      <p>I scope price and timeline after a short brief. Source for Agent Receptionist is private, available on request or in interviews. Write to me directly.</p>
+      <div class="cta"><a class="btn pri" href="mailto:usmamalik346@gmail.com">Email me <span class="ar">↗</span></a></div>
+    </div>
+    <div>
+      <dl class="kv">
+        <dt>email</dt><dd><a href="mailto:usmamalik346@gmail.com">usmamalik346@gmail.com</a></dd>
+        <dt>phone</dt><dd><a href="tel:+923069607679">+92 306 9607679</a></dd>
+        <dt>linkedin</dt><dd><a href="https://www.linkedin.com/in/osamamalik346/" target="_blank" rel="noreferrer">in/osamamalik346</a></dd>
+        <dt>github</dt><dd><a href="https://github.com/usmamalik345" target="_blank" rel="noreferrer">usmamalik345</a></dd>
+      </dl>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><div class="fin">
+  <span>Osama Malik · Islamabad · BS CS, AIOU</span>
+  <div class="fl"><a href="mailto:usmamalik346@gmail.com">usmamalik346@gmail.com</a><a href="tel:+923069607679">+92 306 9607679</a><a href="https://www.linkedin.com/in/osamamalik346/" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://github.com/usmamalik345" target="_blank" rel="noreferrer">GitHub</a></div>
+</div></div></footer>
+
+<script>
+    /* —— Agent knowledge —— */
+    const ME = {
+      name: "Osama Malik",
+      city: "Islamabad",
+      email: "usmamalik346@gmail.com",
+      phone: "+92 306 9607679",
+      linkedin: "https://www.linkedin.com/in/osamamalik346/",
+      github: "https://github.com/usmamalik345",
+      years: "about four years",
+      contactLine: () => `Email ${ME.email}\nPhone ${ME.phone}\nLinkedIn ${ME.linkedin}`
+    };
+
+    const KB = [
+      { id: "identity", tags: ["who", "yourself", "about you", "name", "introduce", "hello", "hi", "hey", "background"], weight: 2,
+        speak() { return `I am ${ME.name}, an AI agent engineer and full-stack developer based in ${ME.city}. My primary offer is production AI agents: chat, voice, RAG, CRM tool-calling, and multi-agent workflows. I also deliver the Angular and React product layer around those agents.`; } },
+      { id: "hire", tags: ["hire", "freelance", "available", "contract", "work with", "engage", "retain", "need you", "looking for"], weight: 5,
+        speak() { return `I am available for contract and freelance work, with AI agents as the primary engagement.\n\nTypical scope: customer support or sales agents, voice agents, RAG over your documents, CRM and API tool-calling, plus the product UI if required.\n\nI do not publish a fixed rate. Share a short brief and I will scope timeline and cost.\n${ME.contactLine()}`; } },
+      { id: "price", tags: ["price", "rate", "cost", "budget", "fee", "charge", "how much", "salary", "hourly"], weight: 5,
+        speak() { return `Pricing depends on the agent type, channels, integrations, and reliability requirements. I provide a scoped estimate after a brief, not a public rate card.\n${ME.contactLine()}`; } },
+      { id: "contact", tags: ["contact", "email", "phone", "call", "reach", "message", "number"], weight: 5,
+        speak() { return `Contact:\nEmail: ${ME.email}\nPhone: ${ME.phone}\nLinkedIn: ${ME.linkedin}\nGitHub: ${ME.github}`; } },
+      { id: "services", tags: ["service", "offer", "sell", "what do you", "what can you", "help with", "build for", "deliver", "pitch"], weight: 5,
+        speak() { return `Primary offer: AI agent engineering for production.\n\nI build chat agents with RAG, voice agents, multi-agent workflows, and CRM-connected workers that call your APIs safely. Delivery includes evaluation, timeouts, escalation, and the product UI when the agent needs a customer-facing interface.\n\nProof: Agent Receptionist (Groq gpt-oss-120b, RAG with sources, policy pre-routing, per-sentence guard, measured evals), Jivi AI medical multi-agent system, Darwin AI product UI, contributions to LiveKit Agents and Pipecat, plus Genkit, Swarms, and harness SDK work.\n\nSecondary offer: Angular and React full-stack delivery around those systems.`; } },
+      { id: "ai-agents", tags: ["agent", "rag", "llm", "genai", "chatbot", "voice agent", "openai", "multi-agent", "orchestration", "tool call", "crm agent"], weight: 6,
+        speak() { return `I design agents for real operations, not demos.\n\nChat and RAG: retrieve from your docs, answer in scope, call tools into CRM or internal APIs, escalate to a human when confidence is low.\nVoice: realtime sessions with tool use and reliable teardown. I have contributed reliability fixes to LiveKit Agents and Pipecat.\nMulti-agent: specialized workers that collaborate by role. Healthcare example: Jivi AI clinical, wellness, and doctor co-pilot agents. Commercial example: Darwin AI employees for WhatsApp, Instagram, and phone.\n\nTell me the channel and the business outcome. I will map architecture and delivery.`; } },
+      { id: "jivi", tags: ["jivi", "medical", "healthcare", "hospital", "clinical", "radiology", "ecg", "wellness", "medx", "co-pilot", "copilot"], weight: 7,
+        speak() { return `I worked on Jivi AI medical agents, a multi-agent healthcare system for doctors, patients, and providers.\n\nClinical agents cover symptom triage, risk, emergency guidance, treatment plans, medication and drug safety, radiology, ECG, and lab analysis.\nWellness agents cover nutrition, emotion, stress, hydration, skin, mental health, and fitness.\nDoctor Co-Pilot agents cover clinical summaries, consultation prompts, auto-scribe, diagnosis support, pharmacy checks, pre-visit summaries, and medical coding.\n\nThe product flow takes patient data into MedX AI processing, then specialized agents collaborate and return personalized insights. Multi-modal inputs include text, voice, images, and medical data.\n\nLive: https://www.jivi.ai/ai-agents`; } },
+      { id: "voice", tags: ["voice", "phone", "realtime", "call agent", "telephony"], weight: 6,
+        speak() { return `For voice agents I focus on interruption handling, tool use during the call, and clean session teardown.\n\nOn LiveKit Agents I bounded EndCallTool wait for tool-reply audio and skipped the drain when that reply times out, so calls do not hang. On Pipecat I fixed Responses drain on early cancel, kept function-call timeouts armed across intermediate results, and sequenced turn-stopped messages.\n\nLiveKit fork: https://github.com/usmamalik345/agents\nPipecat fork: https://github.com/usmamalik345/pipecat`; } },
+      { id: "rag", tags: ["rag", "retrieval", "document", "knowledge base", "embedding", "vector"], weight: 5,
+        speak() { return `For RAG agents I connect your documents and knowledge base to the model with retrieval, then constrain answers to that context. Tool calls stay separate from retrieval so the agent can both cite documents and update systems.\n\nRelated work: Genkit OpenAI embeddings decode fix for correct float vectors, which matters for retrieval quality. Darwin AI and Jivi AI show conversational agents wired into real product domains.\n\nGenkit fork: https://github.com/usmamalik345/genkit`; } },
+      { id: "stack", tags: ["stack", "skill", "tech", "technology", "framework", "language", "tools", "know"], weight: 3,
+        speak() { return `AI and agents: LLMs, RAG, chat agents, voice agents, multi-agent systems, LiveKit Agents, Pipecat, Genkit, Swarms, harness SDKs.\nFrontend: Angular, React, TypeScript, RxJS.\nBackend: Node, Express, .NET, FastAPI, REST, GraphQL.\nData: SQL, MongoDB, MySQL, SQL Server.\nDelivery: Docker, AWS, Git, CI/CD.`; } },
+      { id: "angular", tags: ["angular", "rxjs", "frontend", "ui", "component"], weight: 3,
+        speak() { return `Angular supports the agent pitch when a product UI is required. I am currently an AI Agent Engineer at Onlinx Solutions.\n\nLive Angular products: Darwin AI at https://www.getdarwin.ai/en and ERA Citizen Science at https://era.org.mt/citizen-science/.\n\nAgent product UI example: Darwin AI specialized employees for WhatsApp, Instagram, and phone with CRM updates. Healthcare multi-agent example: Jivi AI at https://www.jivi.ai/ai-agents`; } },
+      { id: "darwin-ai", tags: ["getdarwin", "darwin ai", "ai employee", "alba", "bruno", "sofia", "eva", "lucas"], weight: 7,
+        speak() { return `Darwin AI is a production agent product I worked on in Angular.\n\nIt provides specialized AI employees for customer conversations on WhatsApp, Instagram, and phone. Roles cover inbound, outbound, CX, collections, and post-sales. Agents update CRM fields, keep brand tone, and escalate to humans when needed.\n\nLive product: https://www.getdarwin.ai/en`; } },
+      { id: "era", tags: ["era", "malta", "citizen science", "citizen-science", "environment"], weight: 6,
+        speak() { return `I worked on the ERA Malta citizen-science platform in Angular for the Environment and Resources Authority.\n\nLive: https://era.org.mt/citizen-science/`; } },
+      { id: "darwin", tags: ["darwin", "image", "stability", "dall", "chatgpt", "aigc", "studio", "generation"], weight: 5,
+        speak() { return `There are two Darwin-related projects.\n\nDarwin AI is the agent product: Angular UI for AI employees handling customer conversations and CRM updates. Live: https://www.getdarwin.ai/en\n\nDarwin Studio at IT Pixelz was a GenAI image product: Angular, Node, MySQL, ChatGPT and Stability AI, plus image-to-motion. Related page: https://locx.com.au/darwin/aigc\n\nFor an AI agents pitch, Darwin AI is the primary reference.`; } },
+      { id: "react", tags: ["react", "mern", "redux", "next"], weight: 3,
+        speak() { return `React and MERN support product delivery around agents when needed. Examples include a doctor appointment platform and other apps on ${ME.github}. For hiring focused on AI agents, Angular plus agent frameworks is the stronger match; React is available when the frontend stack requires it.`; } },
+      { id: "experience", tags: ["experience", "job", "career", "company", "onlinx", "pixelz", "zepto", "jivi", "years", "worked"], weight: 3,
+        speak() { return `About four years of professional delivery in ${ME.city}.\n\nOnlinx Solutions, AI Agent Engineer, July 2024 to present.\nJivi AI medical agents: multi-agent clinical, wellness, and doctor co-pilot systems. Live: https://www.jivi.ai/ai-agents\nIT Pixelz, Angular, March 2023 to June 2024, including CRM and Darwin Studio GenAI work.\nZepto Systems, junior Angular, January 2022 to February 2023.\n\nAI agent work also includes Darwin AI product UI and open-source contributions to LiveKit Agents, Pipecat, Genkit, and Swarms.\n\nEducation: BS Computer Science, Allama Iqbal Open University, 2017 to 2021.`; } },
+      { id: "doctor", tags: ["appointment", "clinic", "booking", "doctor appointment"], weight: 5,
+        speak() { return `Doctor Appointment Website is a MERN product I built: MongoDB, Express, React, Node, Tailwind. Patients book by specialization; admins manage doctors.\n\nLive: https://doctor-appointment-website-henna.vercel.app\nRepo: https://github.com/usmamalik345/doctor-appointment-website`; } },
+      { id: "crm", tags: ["crm", "dashboard", "staffing", "reporting"], weight: 4,
+        speak() { return `At IT Pixelz I built CRM dashboards, appointment scheduling, and reporting. That experience pairs with agent work when agents must read and write CRM fields, as in Darwin AI style workflows.\n\nI also spent about 1.5 years on an IT staffing platform using Angular, then WordPress, Strapi, and APIs.`; } },
+      { id: "code-reviewer", tags: ["code review", "reviewer", "graphql", "apollo"], weight: 4,
+        speak() { return `AI Code Reviewer is a Node service for AI-assisted review workflows: Express, Apollo GraphQL, MySQL, SQL Server, and quality-check scripts.\nhttps://github.com/usmamalik345/AI-code-reviewer`; } },
+      { id: "livekit", tags: ["livekit", "endcall"], weight: 7,
+        speak() { return `I contributed to LiveKit Agents. I did not create the framework.\n\nThe change bounded how long EndCallTool waits for tool-reply audio, and skipped the drain when that reply times out. That improves voice agent reliability at call end.\n\nFork: https://github.com/usmamalik345/agents`; } },
+      { id: "pipecat", tags: ["pipecat", "daily"], weight: 7,
+        speak() { return `I contributed to Pipecat. I did not create the framework.\n\nI skipped the Responses API drain when cancel happens before response.create, kept function-call timeouts armed across intermediate results, and added a monotonic sequence on turn-stopped messages.\n\nFork: https://github.com/usmamalik345/pipecat`; } },
+      { id: "oss", tags: ["open source", "opensource", "contribution", "oss", "pull request", "pr", "upstream", "fork"], weight: 4,
+        speak() { return `Open-source contributions relevant to AI agents:\n\nLiveKit Agents: EndCallTool wait and drain timeout.\nPipecat: Responses drain, function-call timeouts, turn-stopped sequence.\nGenkit: base64 OpenAI embeddings to float vectors.\nSwarms: optional swarm description for multi-agent prompts.\nHarness SDK: JSON-safe AgentResult when bytes are present.\nPalinode: non-zero CLI exit on red errors for agent memory tooling.\n\nI contribute fixes. I do not claim ownership of those frameworks.`; } },
+      { id: "genkit", tags: ["genkit", "google"], weight: 5,
+        speak() { return `On Genkit I fixed the Python OpenAI plugin so base64 embeddings decode into float vectors. That matters for RAG and retrieval accuracy.\nhttps://github.com/usmamalik345/genkit`; } },
+      { id: "swarms", tags: ["swarm", "multi agent"], weight: 5,
+        speak() { return `In Swarms I made the swarm description optional so configuration matches AUTO_GEN_PROMPT in multi-agent orchestration.\nhttps://github.com/usmamalik345/swarms`; } },
+      { id: "projects", tags: ["project", "portfolio", "demo", "ecommerce", "shop", "book", "restaurant", "lms", "github"], weight: 3,
+        speak() { return `For an AI agents pitch, start here:\n\nAgent Receptionist (case study with measured results): https://osamamalik.me/portfolio-agent/case-study.html\nJivi AI medical agents: https://www.jivi.ai/ai-agents\nDarwin AI (live): https://www.getdarwin.ai/en\nLiveKit Agents contribution: https://github.com/usmamalik345/agents\nPipecat contribution: https://github.com/usmamalik345/pipecat\nAI Code Reviewer: https://github.com/usmamalik345/AI-code-reviewer\n\nAlso: ERA Citizen Science, Darwin Studio GenAI, and additional Angular and React apps on ${ME.github}.`; } },
+      { id: "education", tags: ["education", "degree", "university", "study", "graduate", "bs", "computer science"], weight: 4,
+        speak() { return `BS Computer Science, Allama Iqbal Open University, Islamabad, 2017 to 2021. Additional coursework: MEAN bootcamp with DevNation, Frontend Masters courses on Git and JavaScript design patterns.`; } },
+      { id: "receptionist", tags: ["receptionist", "agent receptionist", "groq", "gpt-oss", "policy", "pre-rout", "guard", "eval", "44/44", "43/44", "19/20", "first token", "per question", "latency", "streaming", "sse", "case study", "case-study", "live demo", "dental", "hotel", "fictional", "private source", "source code", "zero token", "fallback", "tokens"], weight: 9,
+        speak() { return `Agent Receptionist is a tool-calling LLM agent I built for appointment-based businesses, as an engineering exercise in making an agent predictable. It runs on Groq with gpt-oss-120b and uses RAG with cited sources.\n\nPolicy pre-routing handles emergencies, opening hours, and handoff to a human by rules, at zero tokens. A per-sentence guard checks every sentence: entity allowlist, hours, and required facts. A deterministic booking engine is the fallback, and replies stream over SSE.\n\nMeasured: deterministic eval 44/44, live Groq eval 43/44 (one eval-regex miss), live 20-question test 19/20. About 0.8 s to first token and about $0.0002 per question in one live check.\n\nLive demos (fictional businesses):\nDental: https://agent-receptionist.vercel.app/dashboard?biz=dental\nHotel: https://agent-receptionist.vercel.app/dashboard?biz=hotel\nCase study: https://osamamalik.me/portfolio-agent/case-study.html\n\nThe source is private, available on request: ${ME.email}`; } },
+      { id: "location", tags: ["where", "location", "city", "pakistan", "islamabad", "remote", "timezone"], weight: 4,
+        speak() { return `I am based in ${ME.city}, Pakistan, and work remote-friendly with distributed teams. Current role: AI Agent Engineer at Onlinx Solutions. Timezone: PKT, UTC+5.`; } }
+    ];
+
+    function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+    function score(q, item) {
+      let s = 0;
+      for (const tag of item.tags) if (q.includes(tag)) s += tag.length * (item.weight || 1);
+      return s;
+    }
+    function detectOwnsClaim(q) {
+      return /\b(build|built|create|created|own|founded|made)\b/.test(q) &&
+        /\b(livekit|pipecat|genkit|swarm|framework)\b/.test(q);
+    }
+    function clean(text) {
+      return String(text).replace(/__/g, "").replace(/\s+\n/g, "\n").trim();
+    }
+    function compose(question) {
+      const q = question.toLowerCase().trim();
+      if (!q) return clean("Ask about AI agents, Agent Receptionist, voice, RAG, Darwin AI, LiveKit, Pipecat, or how to engage me.");
+      const ranked = KB.map((item) => ({ item, s: score(q, item) })).filter((x) => x.s > 0).sort((a, b) => b.s - a.s);
+      if (!ranked.length) {
+        return clean(`I do not have that detail in my profile, so I will not invent it.\n\nI can discuss AI agent services, Darwin AI, LiveKit and Pipecat work, Angular delivery, or engagement.\n${ME.contactLine()}`);
+      }
+      const top = ranked.slice(0, 2).filter((x, i, arr) => i === 0 || x.s >= arr[0].s * 0.45);
+      let text = "";
+      if (detectOwnsClaim(q) && (q.includes("livekit") || q.includes("pipecat") || q.includes("genkit") || q.includes("swarm"))) {
+        text += "Correction: I contributed to those projects. I did not invent or own the frameworks.\n\n";
+      }
+      text += top.map(({ item }) => item.speak()).join("\n\n");
+      const isContactish = top.some((t) => ["hire", "price", "contact"].includes(t.item.id));
+      if (!isContactish && ranked[0].s > 6 && !top.some((t) => ["ai-agents", "services", "voice", "rag"].includes(t.item.id))) {
+        text += "\n\nIf this is for an engagement, I can outline an AI agent architecture after a short brief.";
+      }
+      return clean(text);
+    }
+
+    const log = document.getElementById("log");
+    const form = document.getElementById("form");
+    const input = document.getElementById("q");
+    const shell = document.getElementById("chatShell");
+    let busy = false;
+
+    function add(role, text) {
+      const el = document.createElement("div");
+      el.className = "msg " + role;
+      el.textContent = text;
+      log.appendChild(el);
+      log.scrollTop = log.scrollHeight;
+      return el;
+    }
+    function typing() {
+      const el = document.createElement("div");
+      el.className = "msg bot typing";
+      el.innerHTML = "<i></i><i></i><i></i>";
+      log.appendChild(el);
+      log.scrollTop = log.scrollHeight;
+      return el;
+    }
+    async function ask(text) {
+      const q = text.trim();
+      if (!q || busy) return;
+      busy = true;
+      add("me", q);
+      const tip = typing();
+      const answer = compose(q);
+      await new Promise((r) => setTimeout(r, Math.min(500, 180 + answer.length * 2)));
+      tip.remove();
+      add("bot", answer);
+      busy = false;
+    }
+
+    ["Tell me about Agent Receptionist", "What AI agents do you build?", "Tell me about Jivi AI", "Tell me about Darwin AI", "How do I hire you?"].forEach((label) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = label;
+      b.addEventListener("click", () => ask(label));
+      document.getElementById("chips").appendChild(b);
+    });
+
+    form.addEventListener("submit", (e) => { e.preventDefault(); ask(input.value); input.value = ""; });
+    document.getElementById("focusChat").addEventListener("click", () => {
+      input.focus();
+      shell.scrollIntoView({ behavior: "auto", block: "center" });
+    });
+    add("bot", clean(`I am ${ME.name}. Ask about AI agents: Agent Receptionist, Jivi medical agents, Darwin AI, voice, RAG, LiveKit, Pipecat, or how to engage me.`));
+
+    /* —— Console effects (cells, clock, spotlight, reveal) —— */
+    (function () {
+      document.querySelectorAll(".cells").forEach(function (el) {
+        var n = +el.dataset.n, x = +el.dataset.x || 0, line = el.classList.contains("line");
+        if (line) return;
+        for (var i = 0; i < n; i++) {
+          var s = document.createElement("span");
+          s.style.setProperty("--i", i);
+          if (x && i >= n - x) s.className = "x";
+          el.appendChild(s);
+        }
+      });
+      var c = document.getElementById("clock");
+      function tick() { try { c.textContent = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false, timeZone: "Asia/Karachi" }).format(new Date()) + " PKT"; } catch (e) {} }
+      tick(); setInterval(tick, 1000);
+      var spot = document.getElementById("spot");
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        addEventListener("pointermove", function (e) { spot.style.setProperty("--mx", e.clientX + "px"); spot.style.setProperty("--my", (e.clientY + scrollY) + "px"); }, { passive: true });
+      }
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); if (e.target.id === "term") e.target.classList.add("run"); io.unobserve(e.target); } }); }, { threshold: 0.12 });
+      document.querySelectorAll(".rv").forEach(function (el) { io.observe(el); });
+      var t = document.getElementById("term"); if (t) io.observe(t);
+    })();
+  </script>
+</body>
+</html>

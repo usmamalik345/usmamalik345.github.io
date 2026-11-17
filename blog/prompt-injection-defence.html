@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prompt Injection Defence Layers I Use in BleedStop</title>
+<meta name="description" content="The prompt injection layers Osama Malik put in BleedStop: a phrase list, an optional DeBERTa classifier, fail open or closed, and the held out numbers.">
+<link rel="canonical" href="https://osamamalik.me/blog/prompt-injection-defence.html">
+<meta name="theme-color" content="#0b0d12">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Osama Malik">
+<meta property="og:title" content="Prompt Injection Defence Layers I Use in BleedStop">
+<meta property="og:description" content="The prompt injection layers Osama Malik put in BleedStop: a phrase list, an optional DeBERTa classifier, fail open or closed, and the held out numbers.">
+<meta property="og:url" content="https://osamamalik.me/blog/prompt-injection-defence.html">
+<meta property="og:image" content="https://osamamalik.me/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Prompt Injection Defence Layers I Use in BleedStop">
+<meta name="twitter:description" content="The prompt injection layers Osama Malik put in BleedStop: a phrase list, an optional DeBERTa classifier, fail open or closed, and the held out numbers.">
+<meta name="twitter:image" content="https://osamamalik.me/assets/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%235eead4%27/%3E%3Ctext x=%2716%27 y=%2722%27 font-size=%2716%27 font-weight=%27700%27 text-anchor=%27middle%27 fill=%27%2304141a%27 font-family=%27Arial%27%3EOM%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://osamamalik.me/blog/prompt-injection-defence.html#article",
+      "headline": "Prompt Injection Defence Layers I Use in BleedStop",
+      "description": "The prompt injection layers Osama Malik put in BleedStop: a phrase list, an optional DeBERTa classifier, fail open or closed, and the held out numbers.",
+      "url": "https://osamamalik.me/blog/prompt-injection-defence.html",
+      "mainEntityOfPage": "https://osamamalik.me/blog/prompt-injection-defence.html",
+      "datePublished": "2026-11-17",
+      "dateModified": "2026-11-17",
+      "author": { "@id": "https://osamamalik.me/#person" },
+      "about": { "@id": "https://osamamalik.me/bleedstop.html#code" },
+      "image": "https://osamamalik.me/assets/og.png"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://osamamalik.me/blog/prompt-injection-defence.html#breadcrumbs",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://osamamalik.me/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://osamamalik.me/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Prompt injection defence", "item": "https://osamamalik.me/blog/prompt-injection-defence.html" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="/"><span class="logo" aria-hidden="true">OM</span>Osama Malik</a>
+<nav aria-label="Main"><ul>
+<li><a href="/#about">About</a></li>
+<li><a href="/#skills">Skills</a></li>
+<li><a href="/#experience">Experience</a></li>
+<li><a href="/#work">Work</a></li>
+<li><a href="/open-source.html">Open source</a></li>
+<li><a href="/blog/" aria-current="page">Blog</a></li>
+<li><a href="/hire/">Hire</a></li>
+<li><a href="/#contact">Contact</a></li>
+</ul></nav>
+</div></header>
+<main id="main">
+<section class="hero">
+<div class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/blog/">Blog</a> / Prompt injection</div>
+<p class="lead">Prompt injection defence in BleedStop is a stack of checks in front of the model, not one classifier score. The default check is a phrase list. A DeBERTa classifier is a second stage I turn on, and on my held out set it caught 77.5% of injections at a 5% false positive rate.</p>
+<p class="post-meta"><time datetime="2026-11-17">17 Nov 2026</time> · Osama Malik</p>
+<h1>The layers I put in front of agents</h1>
+<p class="muted">Everything in this post is from <a href="/bleedstop.html">the BleedStop case study</a> or from the public repo, <a href="https://github.com/usmamalik345/bleedstop" rel="noopener">usmamalik345/bleedstop</a>, especially the README and <code>classifier/server.py</code>. The spend guard around these checks is in the <a href="/blog/bleedstop-cost-and-security-guard.html">BleedStop deep dive</a>.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>What runs if I change nothing</h2>
+<p>The phrase list is the default detector. The README says the ONNX sidecar runs only when <code>BLEEDSTOP_DETECTOR</code> is <code>classifier</code> or <code>both</code>. Until that flag is set, the live demo's server check is the phrase list. The model that runs in the browser on the demo page is a demo only. It does not protect the API.</p>
+<p>On the phrase list, the honest held out number is weak. The README's agent guard row calls the held out set 22.5%, with 0% false positives, and calls that the honest number. A later note in the same README, phrase list only, cutoff 0.6, normaliser off, is the same rate as a fraction: 9 of 40 on the held out set (N=80, false positive rate 0 of 40). Dev, which the regex was tuned on, is 53 of 55 (N=112, benign 57, false positive rate 0 of 57), which is the 96.4% in the summary table. Lowering the cutoff to 0.3 did not raise dev recall and raised the dev false positive rate to 1 of 57, so the cutoff stayed at 0.6. Turning normalisation on did not raise dev recall. <code>BLEEDSTOP_NORMALIZE</code> stays off.</p>
+<p>That is why I do not lead with 96.4%. That figure is the set the phrase list was tuned on.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>The second stage, when I turn it on</h2>
+<p><code>classifier/server.py</code> serves <code>protectai/deberta-v3-base-prompt-injection-v2</code> with FastAPI. With <code>CLASSIFIER_URL</code> set, <code>/agent/precheck</code> and the MCP gateway run the regex first, then the classifier. There is also a small ONNX sidecar under <code>services/classifier/</code>, on CPU, the same 8 bit model the browser demo can load. The case study describes that browser build as a DeBERTa classifier quantized to 8 bit.</p>
+<p>Mode <code>both</code> runs the phrase list first and sends only text the phrase list allowed on to <code>POST /classify</code>. The timeout is <code>BLEEDSTOP_CLASSIFIER_TIMEOUT_MS</code>, default 800. If the sidecar is down or slow, <code>BLEEDSTOP_CLASSIFIER_FAILMODE=open</code> is the default: keep the phrase list verdict, log a warning, and increment <code>bleedstop_classifier_errors_total</code>. <code>closed</code> turns that outage into a block. That is safer against injection, and it also means a dead sidecar stops those calls.</p>
+<p>The README's comparison, which is the table I trust for this post, is:</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Set</th><th>Phrase list recall / false positive rate</th><th>Classifier recall / false positive rate</th><th>Two stage recall / false positive rate</th></tr></thead>
+<tbody>
+<tr><td>deepset/prompt-injections, all 662</td><td>4.2% / 0%</td><td>41.4% / 1.0%</td><td>41.4% / 1.0%</td></tr>
+<tr><td>BleedStop held out, 80</td><td>22.5% / 0%</td><td>77.5% / 5.0%</td><td>80.0% / 5.0%</td></tr>
+<tr><td>BleedStop dev (phrase list tuned on it), 112</td><td>96.4% / 0%</td><td>83.6% / 7.0%</td><td>96.4% / 7.0%</td></tr>
+</tbody></table></div>
+<p>The 77.5% at a 5% false positive rate on the case study is this classifier row, held out, N=80. It is not the phrase list. Two stage recall on that set is 80.0% at the same 5.0% false positive rate, slightly higher than the classifier alone.</p>
+<p>Latency in the README, on 4 CPU threads: phrase list p50 about 9 microseconds; classifier p50 about 46 to 49 ms, p99 55 to 132 ms. The README's caveats, which I share: deepset includes German rows and the model is English only; training overlap with public sets cannot be ruled out; the PINT row in the report is the public 8 row example file, not a PINT score; Llama Prompt Guard 2 is gated and I did not evaluate it.</p>
+<p>The browser build is the same DeBERTa v2 model in the visitor's browser with onnxruntime-web, an 8 bit weight only build (256 MB, served from GitHub Pages, loaded only on click). Against the fp32 ONNX it gave identical labels on the held out, dev and deepset test sets. Single threaded inference was p50 245 ms in headless Chrome on the build box. That check is still a demo. Server side enforcement on the live demo remains the phrase list until <code>BLEEDSTOP_DETECTOR</code> is set. The README says free Docker hosting for the sidecar was not available, because Hugging Face Docker Spaces need a PRO plan, which is why the demo can run the model in the browser instead.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>The decision is still not the model</h2>
+<p>A detector score does not spend money. <code>POST /decide</code> still returns ALLOW, LIMIT, CHALLENGE or DENY from the rules, and Redis still enforces the budget. The golden set on the case study is a different measurement from the injection table: 12,140 labeled requests, precision 100%, benign false positive rate 0.0%, recall 48.0%. The golden set and the rules share an author, so I do not call that a field result.</p>
+<p>On the MCP path, the README says every <code>tools/call</code> goes through, in order: a definition pin (trust on first use, sha256 over name, description, inputSchema and annotations), a tool description poisoning scan, a per tenant Cedar policy in <code>config/mcp-policy.cedar</code>, the agent injection guard on the arguments, then the normal budget decision. Tool results are scanned for indirect injection. <code>MCP_GATEWAY_MODE=shadow</code> logs without blocking. The threat mapping is in <code>docs/THREAT-MODEL.md</code>.</p>
+<p>For <code>npm run evals:mcp</code>, 70 hand written tool definitions, the README reports poisoning scan precision 100%, recall 80% (20 of 25), false positive rate 0% (0 of 45). Rug pull detection caught 180 of 180 mutations, with 0 false alarms on 45 unchanged lists. Added latency per <code>tools/call</code> over HTTP, n=2000, was p50 2.21 ms, p95 2.84 ms, p99 3.89 ms. The misses are the 5 of 25 poisonings the README calls subtle and polite, with no trigger phrase. I wrote that eval set, so I treat the recall as optimistic. The README says the same.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>What I will not claim</h2>
+<ul class="clean">
+<li>I will not quote 96.4% as held out performance. That is the dev set the phrase list was tuned on.</li>
+<li>I will not quote 77.5% as the phrase list. That is the classifier, on the held out set of 80, at a 5% false positive rate.</li>
+<li>I will not say the browser model protects the API. It does not.</li>
+<li>I will not say the server classifier is on in the public demo. It is off until <code>BLEEDSTOP_DETECTOR</code> is set.</li>
+<li>Fail open means a dead sidecar keeps the phrase list verdict. If you need a dead sidecar to block, that is the closed mode, and it will also block when the sidecar is simply down.</li>
+</ul>
+<div class="cta">
+<a class="btn primary" href="https://github.com/usmamalik345/bleedstop" rel="noopener">BleedStop repo</a>
+<a class="btn" href="/bleedstop.html">Case study</a>
+<a class="btn" href="/blog/bleedstop-cost-and-security-guard.html">Cost guard deep dive</a>
+<a class="btn" href="/hire/">Hire me</a>
+</div>
+<aside class="card author-box">
+<h2>About the author</h2>
+<p>Osama Malik (also written Usama Malik) is an AI agent engineer at Onlinx Solutions. This note is first hand from BleedStop. <a href="/">Home</a> · <a href="/open-source.html">Open source</a> · <a href="/portfolio-agent/case-study.html">Agent Receptionist</a> · <a href="/hire/">Hire</a>.</p>
+</aside>
+</div>
+</section>
+</main>
+<footer><div class="wrap">
+<div>Osama Malik. AI agent engineer and full stack developer. Remote.</div>
+<div><a href="/blog/">Blog</a> · <a href="/hire/">Hire</a> · <a href="mailto:usmamalik346@gmail.com">usmamalik346@gmail.com</a> · <a href="https://github.com/usmamalik345" rel="me noopener">GitHub</a> · <a href="https://www.linkedin.com/in/osamamalik346" rel="me noopener">LinkedIn</a></div>
+</div></footer>
+</body>
+</html>

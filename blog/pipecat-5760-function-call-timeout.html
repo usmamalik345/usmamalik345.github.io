@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pipecat PR 5760: Function Call Timeouts Kept Armed</title>
+<meta name="description" content="How Osama Malik fixed Pipecat function call timeouts in merged PR 5760. Intermediate results no longer cancel timeout_secs. Only a final result does.">
+<link rel="canonical" href="https://osamamalik.me/blog/pipecat-5760-function-call-timeout.html">
+<meta name="theme-color" content="#0b0d12">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Osama Malik">
+<meta property="og:title" content="Pipecat PR 5760: Function Call Timeouts Kept Armed">
+<meta property="og:description" content="How Osama Malik fixed Pipecat function call timeouts in merged PR 5760. Intermediate results no longer cancel timeout_secs. Only a final result does.">
+<meta property="og:url" content="https://osamamalik.me/blog/pipecat-5760-function-call-timeout.html">
+<meta property="og:image" content="https://osamamalik.me/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pipecat PR 5760: Function Call Timeouts Kept Armed">
+<meta name="twitter:description" content="How Osama Malik fixed Pipecat function call timeouts in merged PR 5760. Intermediate results no longer cancel timeout_secs. Only a final result does.">
+<meta name="twitter:image" content="https://osamamalik.me/assets/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%235eead4%27/%3E%3Ctext x=%2716%27 y=%2722%27 font-size=%2716%27 font-weight=%27700%27 text-anchor=%27middle%27 fill=%27%2304141a%27 font-family=%27Arial%27%3EOM%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://osamamalik.me/blog/pipecat-5760-function-call-timeout.html#article",
+      "headline": "Pipecat PR 5760: Function Call Timeouts Kept Armed",
+      "description": "How Osama Malik fixed Pipecat function call timeouts in merged PR 5760. Intermediate results no longer cancel timeout_secs. Only a final result does.",
+      "url": "https://osamamalik.me/blog/pipecat-5760-function-call-timeout.html",
+      "mainEntityOfPage": "https://osamamalik.me/blog/pipecat-5760-function-call-timeout.html",
+      "datePublished": "2026-11-17",
+      "dateModified": "2026-11-17",
+      "author": { "@id": "https://osamamalik.me/#person" },
+      "image": "https://osamamalik.me/assets/og.png"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://osamamalik.me/blog/pipecat-5760-function-call-timeout.html#breadcrumbs",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://osamamalik.me/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://osamamalik.me/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Pipecat PR 5760", "item": "https://osamamalik.me/blog/pipecat-5760-function-call-timeout.html" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="/"><span class="logo" aria-hidden="true">OM</span>Osama Malik</a>
+<nav aria-label="Main"><ul>
+<li><a href="/#about">About</a></li>
+<li><a href="/#skills">Skills</a></li>
+<li><a href="/#experience">Experience</a></li>
+<li><a href="/#work">Work</a></li>
+<li><a href="/open-source.html">Open source</a></li>
+<li><a href="/blog/" aria-current="page">Blog</a></li>
+<li><a href="/hire/">Hire</a></li>
+<li><a href="/#contact">Contact</a></li>
+</ul></nav>
+</div></header>
+<main id="main">
+<section class="hero">
+<div class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/blog/">Blog</a> / Pipecat #5760</div>
+<p class="lead">Pipecat pull request 5760 keeps a function call timeout armed across intermediate results. I wrote it, and it was merged on 15 Sep 2026. Only a final result clears the deadline.</p>
+<p class="post-meta"><time datetime="2026-11-17">17 Nov 2026</time> · Osama Malik</p>
+<h1>Fixing function call timeouts in Pipecat</h1>
+<p class="muted">The pull request is <a href="https://github.com/pipecat-ai/pipecat/pull/5760" rel="noopener">pipecat-ai/pipecat #5760</a>. Its title is <code>fix(llm): keep function-call timeout armed across intermediate results</code>. It closes issue <a href="https://github.com/pipecat-ai/pipecat/issues/5481" rel="noopener">#5481</a>. I did not start Pipecat. This is one fix in the framework.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>What was broken</h2>
+<p>Pipecat can limit how long a function call is allowed to run. That limit is the per tool <code>timeout_secs</code>, or the global <code>function_call_timeout_secs</code> when the tool does not set its own. When the handler reports a result, the service runs <code>function_call_result_callback</code>.</p>
+<p>Before this change, that callback cancelled the timeout task for every result, including a result marked <code>FunctionCallResultProperties(is_final=False)</code>. An intermediate update is how a tool reports progress while it is still working. Cancelling the timeout there meant a progress report disarmed the deadline. A tool could say "working", then hang, and the timeout would not fire.</p>
+<p>The changelog line that landed with the pull request says the same thing: an async tool that reported progress no longer cancels its own deadline, and only a final result clears it.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>What I changed</h2>
+<p>The cancel moved inside the <code>is_final</code> branch in <code>src/pipecat/services/llm_service.py</code>. A final result still marks the call settled and still cancels the timeout task if it is running. An intermediate result leaves the task armed. The deadline is not restarted either. It still covers the handler's whole execution, measured from when the call started.</p>
+<p>I updated the docs on <code>register_function</code> and <code>register_direct_function</code> so they say this. A call that runs past the deadline is still cancelled: the handler is thrown <code>asyncio.CancelledError</code>, the call is settled as cancelled, and inference runs so the model can report that it did not complete.</p>
+<p>The pull request says an earlier attempt, <a href="https://github.com/pipecat-ai/pipecat/pull/5491" rel="noopener">#5491</a>, was closed without review, and that 5760 reopens that approach against current main. I am taking that from the pull request text.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>What the tests check</h2>
+<p>The new coverage is in <code>tests/test_llm_service.py</code>, class <code>TestFunctionCallTimeout</code>. The pull request's test plan is <code>uv run pytest tests/test_llm_service.py::TestFunctionCallTimeout</code>. I am describing the tests that are in the merged diff. I have not rerun them for this post.</p>
+<h3>An intermediate update must not disarm the deadline</h3>
+<p><code>test_intermediate_result_does_not_disarm_the_deadline</code> registers a tool that first calls the result callback with "working" and <code>is_final=False</code>, then sleeps long enough to pass <code>timeout_secs</code>. The assertions in the diff are:</p>
+<ul class="clean">
+<li>The tool's later side effect does not run.</li>
+<li>The handler observes <code>CancelledError</code> for that call.</li>
+<li>The frames are <code>FunctionCallsStartedFrame</code>, <code>FunctionCallInProgressFrame</code>, a <code>FunctionCallResultFrame</code> whose properties are not final, then <code>FunctionCallCancelFrame</code>.</li>
+<li>The cancel frame has <code>run_llm</code> set.</li>
+</ul>
+<h3>A hanging tool with no update still times out</h3>
+<p><code>test_a_hanging_async_tool_times_out_without_any_update</code> is the control. The tool only sleeps, then would return a final result. It never gets there. The frames are the started frame, the in progress frame, and the cancel frame. There is no result frame, because nothing was reported.</p>
+<p>The diff also adds <code>changelog/5760.fixed.md</code>. GitHub records 3 files changed on the pull request.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>What I am not claiming</h2>
+<ul class="clean">
+<li>I am not a Pipecat maintainer. The pull request was merged on 15 Sep 2026. The merge is on the pull request page.</li>
+<li>I am not describing review comments I did not quote here. The behavior above is the merged diff and the pull request body.</li>
+<li>This does not change LiveKit. My LiveKit Agents pull request, <a href="https://github.com/livekit/agents/pull/7186" rel="noopener">#7186</a>, is a different timeout, on <code>EndCallTool</code>, and it is still open. See the <a href="/open-source.html">open source page</a>.</li>
+</ul>
+<p>The same page has the merged Genkit and Strands pull requests, which are not about this timeout.</p>
+<div class="cta">
+<a class="btn primary" href="https://github.com/pipecat-ai/pipecat/pull/5760" rel="noopener">Pull request 5760</a>
+<a class="btn" href="/open-source.html">All four pull requests</a>
+<a class="btn" href="/portfolio-agent/case-study.html">Agent Receptionist</a>
+</div>
+<aside class="card author-box">
+<h2>About the author</h2>
+<p>Osama Malik (also written Usama Malik) is an AI agent engineer at Onlinx Solutions. This note is first hand from pull request 5760. <a href="/">Home</a> · <a href="/hire/">Hire</a> · <a href="/blog/">Blog</a> · <a href="/bleedstop.html">BleedStop</a>.</p>
+</aside>
+</div>
+</section>
+</main>
+<footer><div class="wrap">
+<div>Osama Malik. AI agent engineer and full stack developer. Remote.</div>
+<div><a href="/blog/">Blog</a> · <a href="/hire/">Hire</a> · <a href="mailto:usmamalik346@gmail.com">usmamalik346@gmail.com</a> · <a href="https://github.com/usmamalik345" rel="me noopener">GitHub</a> · <a href="https://www.linkedin.com/in/osamamalik346" rel="me noopener">LinkedIn</a></div>
+</div></footer>
+</body>
+</html>

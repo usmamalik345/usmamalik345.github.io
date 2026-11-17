@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BleedStop: How I Built an LLM Cost and Security Guard</title>
+<meta name="description" content="How Osama Malik built BleedStop, a cost and security guard for LLM agents. POST /decide returns ALLOW, LIMIT, CHALLENGE or DENY, with the measurements from the repo.">
+<link rel="canonical" href="https://osamamalik.me/blog/bleedstop-cost-and-security-guard.html">
+<meta name="theme-color" content="#0b0d12">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Osama Malik">
+<meta property="og:title" content="BleedStop: How I Built an LLM Cost and Security Guard">
+<meta property="og:description" content="How Osama Malik built BleedStop, a cost and security guard for LLM agents. POST /decide returns ALLOW, LIMIT, CHALLENGE or DENY, with the measurements from the repo.">
+<meta property="og:url" content="https://osamamalik.me/blog/bleedstop-cost-and-security-guard.html">
+<meta property="og:image" content="https://osamamalik.me/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BleedStop: How I Built an LLM Cost and Security Guard">
+<meta name="twitter:description" content="How Osama Malik built BleedStop, a cost and security guard for LLM agents. POST /decide returns ALLOW, LIMIT, CHALLENGE or DENY, with the measurements from the repo.">
+<meta name="twitter:image" content="https://osamamalik.me/assets/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%235eead4%27/%3E%3Ctext x=%2716%27 y=%2722%27 font-size=%2716%27 font-weight=%27700%27 text-anchor=%27middle%27 fill=%27%2304141a%27 font-family=%27Arial%27%3EOM%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://osamamalik.me/blog/bleedstop-cost-and-security-guard.html#article",
+      "headline": "BleedStop: How I Built an LLM Cost and Security Guard",
+      "description": "How Osama Malik built BleedStop, a cost and security guard for LLM agents. POST /decide returns ALLOW, LIMIT, CHALLENGE or DENY, with the measurements from the repo.",
+      "url": "https://osamamalik.me/blog/bleedstop-cost-and-security-guard.html",
+      "mainEntityOfPage": "https://osamamalik.me/blog/bleedstop-cost-and-security-guard.html",
+      "datePublished": "2026-11-17",
+      "dateModified": "2026-11-17",
+      "author": { "@id": "https://osamamalik.me/#person" },
+      "about": { "@id": "https://osamamalik.me/bleedstop.html#code" },
+      "image": "https://osamamalik.me/assets/og.png"
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "@id": "https://osamamalik.me/bleedstop.html#code",
+      "name": "BleedStop",
+      "codeRepository": "https://github.com/usmamalik345/bleedstop",
+      "programmingLanguage": ["JavaScript", "Python"],
+      "author": { "@id": "https://osamamalik.me/#person" },
+      "url": "https://osamamalik.me/bleedstop.html"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://osamamalik.me/blog/bleedstop-cost-and-security-guard.html#breadcrumbs",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://osamamalik.me/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://osamamalik.me/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "BleedStop", "item": "https://osamamalik.me/blog/bleedstop-cost-and-security-guard.html" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="/"><span class="logo" aria-hidden="true">OM</span>Osama Malik</a>
+<nav aria-label="Main"><ul>
+<li><a href="/#about">About</a></li>
+<li><a href="/#skills">Skills</a></li>
+<li><a href="/#experience">Experience</a></li>
+<li><a href="/#work">Work</a></li>
+<li><a href="/open-source.html">Open source</a></li>
+<li><a href="/blog/" aria-current="page">Blog</a></li>
+<li><a href="/hire/">Hire</a></li>
+<li><a href="/#contact">Contact</a></li>
+</ul></nav>
+</div></header>
+<main id="main">
+<section class="hero">
+<div class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/blog/">Blog</a> / BleedStop</div>
+<p class="lead">BleedStop is a cost and security guard I built for LLM, SMS and payment APIs. An app calls <code>POST /decide</code> before it spends, and BleedStop answers ALLOW, LIMIT, CHALLENGE or DENY from deterministic per tenant rules.</p>
+<p class="post-meta"><time datetime="2026-11-17">17 Nov 2026</time> · Osama Malik</p>
+<h1>How I built BleedStop</h1>
+<p class="muted">This is the longer note behind the <a href="/bleedstop.html">case study</a>. The code is in <a href="https://github.com/usmamalik345/bleedstop" rel="noopener">usmamalik345/bleedstop</a>. The stack on the case study is Node.js, Python, Postgres, Redis and Kubernetes. The numbers below are the ones I measured, or the ones the repository README already publishes. I am not adding a customer, a production cluster, or a savings figure that those pages do not state.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>Why the decision sits in front of the spend</h2>
+<p>Once an agent can call tools and paid APIs, one prompt injection or one runaway loop can leak data or burn a budget. I mapped that to OWASP LLM10, Unbounded Consumption. BleedStop is the control plane in front of the spend. Rules are set per tenant. Budgets are enforced atomically across instances through Redis.</p>
+<p>The hot path is deterministic. The repository README says agents only explain, and they are not the thing that denies a call. That is the design I want: a hanging model, or a poisoned prompt, should not be what decides whether money moves.</p>
+<p>A call looks like this. The app, or the Node SDK Express middleware, asks <code>POST /decide</code>. BleedStop checks the request, including the phrase list and, when I turn it on, the classifier described in the <a href="/blog/prompt-injection-defence.html">prompt injection post</a>. It checks the budget. It writes the decision. The caller gets ALLOW, LIMIT, CHALLENGE or DENY.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>Budgets, the audit log, and the deploy</h2>
+<p>Redis holds the budget so several instances share one ceiling. On the case study, a correctness test of 2,000 concurrent calls against a $5 ceiling on 3 instances overspent by $0.000. The same shape behind a load balancer did 6,291 decisions per second, with p99 at 31.9 ms.</p>
+<p>Every decision is written to a Postgres audit table. A trigger blocks UPDATE and DELETE, so a decision can be reviewed later and cannot be edited in place.</p>
+<p>The Docker Compose stack is 3 API replicas, Redis, Postgres and nginx. The Helm chart adds readiness and liveness probes, a PodDisruptionBudget, an HPA and graceful drain. Around that I have Prometheus metrics, Grafana dashboards, alert rules, GitHub Actions CI, a Node SDK, a Python SDK, multi tenant YAML policy, and OpenTelemetry.</p>
+<p>There is also an OpenAI compatible proxy in the repo. <code>POST /v1/chat/completions</code> reserves budget for the prompt plus a capped output. The README says DENY comes back as HTTP 429 and CHALLENGE as HTTP 403, in an OpenAI error shape, and LIMIT downgrades to the small model. The output cap is the smallest of the requested cap, <code>OPENAI_PROXY_MAX_OUTPUT_TOKENS</code> (1024), and the remaining budget. The README says that cap is enforced mid stream even if the upstream ignores <code>max_tokens</code>, and that reservations are committed with actual usage.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>What I measured</h2>
+<p>All of the case study numbers were measured by me on one shared 8 vCPU Linux machine. The load generator, the load balancer and the services share that hardware, so I treat the absolute rates as a lower bound for a real cluster. Raw results are in the repository.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Test</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>Docker Compose stack (3 API replicas, Redis, Postgres, nginx), one 8 vCPU machine</td><td>5,433 decisions per second, p99 36.2 ms, 0 failed requests out of 60,000</td></tr>
+<tr><td>3 instances behind a load balancer with Redis atomic budgets</td><td>6,291 decisions per second, p99 31.9 ms, $0.000 overspend against a $5 ceiling</td></tr>
+<tr><td>Kubernetes rolling restart of 6 pods under load</td><td>0 failed requests out of 287,403. The README also records p99 33.2 ms for this run.</td></tr>
+<tr><td>Postgres stopped for about 7 seconds under load</td><td>86,071 requests, 0 failed, 0 ledger rows dropped</td></tr>
+<tr><td>Golden set of 12,140 labeled requests</td><td>Precision 100%, benign false positive rate 0.0%, recall 48.0%</td></tr>
+<tr><td>Capped request against a live model API</td><td>64 output tokens instead of 2,618 (97.6% fewer)</td></tr>
+</tbody></table></div>
+<p>The README gives more detail on that capped request, and I am using it because it is the same comparison. It was a small run on Groq's free tier, model <code>openai/gpt-oss-20b</code>, a streaming request for 1500 words, with a 64 token cap. Groq honoured the rewritten <code>max_tokens</code>, so BleedStop's own mid stream cut was not what stopped it. The README's reconciled cost at the policy rate fell from $0.0271 to $0.00151 per request. The actual bill was $0, because the tier was free. Over 20 pairs of calls that did not stream, direct p50 was 245.8 ms and the path through BleedStop was 234.2 ms. The README says the proxy overhead was not measurable over internet noise at that size.</p>
+<p>The overhead estimate the README does stand behind is the mock upstream: <code>npm run bench:openai</code>, n=1000 calls that do not stream, added latency p50 1.53 ms and p99 1.86 ms. A separate mock flood in that same section, 40 requests for 20,000 words against an upstream that ignores <code>max_tokens</code>, cut 40 of 40 streams. At the README's policy rate of $0.01 per 1,000 tokens, with tokens approximated as characters divided by 4, that is $10.70 unprotected and $0.41 through the proxy. I am not calling that a customer saving. It is a mock.</p>
+<p>The README's attack suite row, which I did not put on the case study, says a 400,000 character token flood was 100% blocked, a shared device farm 97%, a retry storm 94%, and normal users 0% blocked. The summary row does not give the sample size, so I am not inventing one. The file it points at is <code>results/</code> in the repo.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>The public demo is not that measurement</h2>
+<p>The live demo is <a href="https://bleedstop-demo.vercel.app" rel="noopener">bleedstop-demo.vercel.app</a>. The README is explicit: it runs on Vercel Hobby functions, in memory, with no Redis and no Postgres. State is per function instance. Budgets, velocity windows and rate limits can reset on a cold start or when another instance handles the next call. The $5 cluster ceiling is not reliably enforced there. The measured numbers above come from the Compose and Kubernetes stack with Redis.</p>
+<p>The README documents a demo key, <code>demo-public-key</code>, tenant <code>demo</code>, and this call. It says 500 estimated tokens come back ALLOW, and 400,000 estimated tokens come back DENY, against an unpaid token cap of 32,000.</p>
+<pre>curl -s -X POST https://bleedstop-demo.vercel.app/decide \
+  -H "Content-Type: application/json" -H "X-API-Key: demo-public-key" \
+  -d '{"actorId":"demo-user-1","action":"llm.call","paid":false,"estimatedTokens":500,"signals":{"deviceFingerprint":"fp-demo-1"}}'</pre>
+<p>There is a project site at <a href="https://usmamalik345.github.io/bleedstop/" rel="noopener">usmamalik345.github.io/bleedstop</a>. The browser classifier on the demo does not protect the API. I cover that in the <a href="/blog/prompt-injection-defence.html">defence post</a>.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>Bugs that showed up under load</h2>
+<p>Running the stack found problems unit tests did not. The case study says I found and fixed eight, and kept the evidence in the repository. Four of them are:</p>
+<ul class="clean">
+<li>Pods crash looping after loading 1.09 million rows at boot. Hydration is now skipped when Redis is authoritative, and otherwise capped to the top 50,000 rows by spend.</li>
+<li>A Postgres writer that hung for good when the database went down. Connect and query timeouts fixed it.</li>
+<li>Unhandled connection errors that crashed replicas when Postgres was stopped.</li>
+<li>State kept per process, which split abuse signals across replicas behind a round robin load balancer. It now lives in Redis, and results match a single instance.</li>
+</ul>
+<p>I am not naming the other four here, because the case study does not name them and I am not going to reconstruct them from memory.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>What I will not claim</h2>
+<ul class="clean">
+<li>The golden set and the rules share an author, so the accuracy numbers are not field results. Recall on that set is 48.0%. Precision is 100%, with no benign false positives.</li>
+<li>The case study lists these as not measured there: NetworkPolicy enforcement, multi node or cloud clusters, Postgres high availability, and real provider latency or pricing as a benchmark. The Groq run above is one small free tier check in the README, not that missing benchmark.</li>
+<li>The Vercel demo is not the cluster that produced 5,433 decisions per second or the rolling restart result.</li>
+<li>I do not have a production customer figure for money saved. Where the README prints a dollar amount, it is a policy rate or a local sample, and I have said which.</li>
+</ul>
+<div class="cta">
+<a class="btn primary" href="https://github.com/usmamalik345/bleedstop" rel="noopener">Source and results</a>
+<a class="btn" href="/bleedstop.html">Case study</a>
+<a class="btn" href="/blog/prompt-injection-defence.html">Prompt injection layers</a>
+<a class="btn" href="/hire/">Hire me</a>
+</div>
+<aside class="card author-box">
+<h2>About the author</h2>
+<p>Osama Malik (also written Usama Malik) is an AI agent engineer at Onlinx Solutions. This note is first hand from BleedStop. <a href="/">Home</a> · <a href="/open-source.html">Open source</a> · <a href="/portfolio-agent/case-study.html">Agent Receptionist</a> · <a href="/hire/">Hire</a>.</p>
+</aside>
+</div>
+</section>
+</main>
+<footer><div class="wrap">
+<div>Osama Malik. AI agent engineer and full stack developer. Remote.</div>
+<div><a href="/blog/">Blog</a> · <a href="/hire/">Hire</a> · <a href="mailto:usmamalik346@gmail.com">usmamalik346@gmail.com</a> · <a href="https://github.com/usmamalik345" rel="me noopener">GitHub</a> · <a href="https://www.linkedin.com/in/osamamalik346" rel="me noopener">LinkedIn</a></div>
+</div></footer>
+</body>
+</html>

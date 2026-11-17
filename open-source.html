@@ -3,25 +3,50 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Open Source | Pipecat, Genkit, Strands, LiveKit | Osama Malik</title>
-<meta name="description" content="Open source by Osama Malik: merged fixes in Pipecat, Genkit, and the Strands Agents harness SDK, plus an open LiveKit Agents pull request still under review.">
+<title>Open Source by Osama Malik | Pipecat, Genkit, Strands</title>
+<meta name="description" content="Open source fixes by Osama Malik (Usama Malik): merged pull requests in Pipecat, Genkit and Strands Agents, plus LiveKit Agents #7186, which is still open.">
 <link rel="canonical" href="https://osamamalik.me/open-source.html">
 <meta name="theme-color" content="#0b0d12">
 <meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Osama Malik">
-<meta property="og:title" content="Open Source | Pipecat, Genkit, Strands, LiveKit | Osama Malik">
-<meta property="og:description" content="Open source by Osama Malik: merged fixes in Pipecat, Genkit, and the Strands Agents harness SDK, plus an open LiveKit Agents pull request still under review.">
+<meta property="og:title" content="Open Source by Osama Malik | Pipecat, Genkit, Strands">
+<meta property="og:description" content="Open source fixes by Osama Malik (Usama Malik): merged pull requests in Pipecat, Genkit and Strands Agents, plus LiveKit Agents #7186, which is still open.">
 <meta property="og:url" content="https://osamamalik.me/open-source.html">
 <meta property="og:image" content="https://osamamalik.me/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Open Source | Pipecat, Genkit, Strands, LiveKit | Osama Malik">
-<meta name="twitter:description" content="Open source by Osama Malik: merged fixes in Pipecat, Genkit, and the Strands Agents harness SDK, plus an open LiveKit Agents pull request still under review.">
+<meta name="twitter:title" content="Open Source by Osama Malik | Pipecat, Genkit, Strands">
+<meta name="twitter:description" content="Open source fixes by Osama Malik (Usama Malik): merged pull requests in Pipecat, Genkit and Strands Agents, plus LiveKit Agents #7186, which is still open.">
 <meta name="twitter:image" content="https://osamamalik.me/assets/og.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%235eead4%27/%3E%3Ctext x=%2716%27 y=%2722%27 font-size=%2716%27 font-weight=%27700%27 text-anchor=%27middle%27 fill=%27%2304141a%27 font-family=%27Arial%27%3EOM%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://osamamalik.me/open-source.html#webpage",
+      "url": "https://osamamalik.me/open-source.html",
+      "name": "Open Source by Osama Malik | Pipecat, Genkit, Strands",
+      "description": "Open source fixes by Osama Malik (Usama Malik): merged pull requests in Pipecat, Genkit and Strands Agents, plus LiveKit Agents #7186, which is still open.",
+      "dateModified": "2026-11-17",
+      "about": { "@id": "https://osamamalik.me/#person" },
+      "isPartOf": { "@id": "https://osamamalik.me/#profilepage" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://osamamalik.me/open-source.html#breadcrumbs",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://osamamalik.me/" },
+        { "@type": "ListItem", "position": 2, "name": "Open source", "item": "https://osamamalik.me/open-source.html" }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -32,7 +57,9 @@
 <li><a href="/#skills">Skills</a></li>
 <li><a href="/#experience">Experience</a></li>
 <li><a href="/#work">Work</a></li>
-<li><a href="/open-source.html">Open source</a></li>
+<li><a href="/open-source.html" aria-current="page">Open source</a></li>
+<li><a href="/blog/">Blog</a></li>
+<li><a href="/hire/">Hire</a></li>
 <li><a href="/#contact">Contact</a></li>
 </ul></nav>
 </div></header>
@@ -40,48 +67,75 @@
 <section class="hero">
 <div class="wrap">
 <div class="crumbs"><a href="/">Home</a> / Open source</div>
+<p class="lead">This page is the open source record of Osama Malik (also written Usama Malik), an AI agent engineer. It covers three merged pull requests, in Pipecat, Genkit and the Strands Agents harness SDK, and one LiveKit Agents pull request that is still open.</p>
 <span class="eyebrow">Open source</span>
 <h1>Fixes in the frameworks agents run on</h1>
-<p class="lead">Three merged pull requests and one open pull request. I did not start these projects. These are the fixes I shipped.</p>
+<p class="muted">I did not start these projects. Each heading below is one pull request: what was broken, what the change does, and the link. Longer notes on Pipecat #5760 are in <a href="/blog/pipecat-5760-function-call-timeout.html">the blog post</a>.</p>
 </div>
 </section>
 
 <section>
 <div class="wrap">
-<h2>Merged</h2>
-<div class="grid">
-<article class="card"><span class="status merged">Merged</span>
-<h3>Pipecat #5760: keep function call timeouts armed</h3>
-<p class="muted"><a href="https://github.com/pipecat-ai/pipecat" rel="noopener">Pipecat</a> is a framework for realtime voice agents. Tool call timeouts were being cancelled by intermediate results. The fix keeps the function call timeout armed across intermediate results, and I added tests.</p>
-<a href="https://github.com/pipecat-ai/pipecat/pull/5760" rel="noopener">github.com/pipecat-ai/pipecat/pull/5760</a></article>
-<article class="card"><span class="status merged">Merged</span>
-<h3>Genkit #6346: accept base64 embeddings from OpenAI</h3>
-<p class="muted"><a href="https://github.com/genkit-ai/genkit" rel="noopener">Genkit</a> is a framework for building AI applications. With the OpenAI plugin, requesting the base64 encoding format caused embedding validation to fail. The fix decodes base64 embeddings so retrieval works.</p>
-<a href="https://github.com/genkit-ai/genkit/pull/6346" rel="noopener">github.com/genkit-ai/genkit/pull/6346</a></article>
-<article class="card"><span class="status merged">Merged</span>
-<h3>Strands Agents harness SDK #4313: JSON safe AgentResult</h3>
-<p class="muted"><a href="https://github.com/strands-agents/harness-sdk" rel="noopener">Strands Agents</a> is an agent SDK. When Bedrock returned raw bytes, AgentResult.to_dict could not be turned into JSON. It now serializes cleanly.</p>
-<a href="https://github.com/strands-agents/harness-sdk/pull/4313" rel="noopener">github.com/strands-agents/harness-sdk/pull/4313</a></article>
-</div>
+<span class="status merged">Merged</span>
+<h2>Pipecat #5760: function call timeouts were cancelled by progress updates</h2>
+<p class="lead"><a href="https://github.com/pipecat-ai/pipecat" rel="noopener">Pipecat</a> is a framework for realtime voice agents. Pull request <a href="https://github.com/pipecat-ai/pipecat/pull/5760" rel="noopener">#5760</a> keeps a function call timeout armed when a tool reports an intermediate result. It was merged on 15 Sep 2026.</p>
+<h3>What was broken</h3>
+<p>An intermediate result, <code>FunctionCallResultProperties</code> with <code>is_final=False</code>, cancelled both the per tool <code>timeout_secs</code> and the global <code>function_call_timeout_secs</code>. A tool that reported progress disarmed its own deadline. If that tool then hung, the timeout no longer fired. The pull request closes issue <a href="https://github.com/pipecat-ai/pipecat/issues/5481" rel="noopener">#5481</a>. It also says an earlier attempt, <a href="https://github.com/pipecat-ai/pipecat/pull/5491" rel="noopener">#5491</a>, was closed without review, and that this change reopens that approach on current main.</p>
+<h3>What changed</h3>
+<p>Only a final result clears the deadline. The deadline covers the handler's whole execution. A progress update does not clear it and does not restart it. The docs on <code>register_function</code> and <code>register_direct_function</code> say this explicitly. The code is in <code>src/pipecat/services/llm_service.py</code>, with tests in <code>tests/test_llm_service.py</code> and a changelog note in <code>changelog/5760.fixed.md</code>. The new test checks that an intermediate update does not disarm the deadline. A control test checks that a hanging async tool with no update still times out.</p>
+<p><a href="https://github.com/pipecat-ai/pipecat/pull/5760" rel="noopener">github.com/pipecat-ai/pipecat/pull/5760</a></p>
+<p><a href="/blog/pipecat-5760-function-call-timeout.html">Read the Pipecat #5760 story</a></p>
 </div>
 </section>
 
 <section>
 <div class="wrap">
-<h2>Open, under review</h2>
-<div class="grid">
-<article class="card"><span class="status open">Open</span>
-<h3>LiveKit Agents #7186: bound the EndCallTool wait</h3>
-<p class="muted"><a href="https://github.com/livekit/agents" rel="noopener">LiveKit Agents</a> is a framework for realtime voice agents. This pull request bounds the wait for tool reply audio in EndCallTool, so a voice session does not hang on teardown when that reply times out. It is still open and has not been merged.</p>
-<a href="https://github.com/livekit/agents/pull/7186" rel="noopener">github.com/livekit/agents/pull/7186</a></article>
+<span class="status merged">Merged</span>
+<h2>Genkit #6346: base64 embeddings from the OpenAI plugin failed validation</h2>
+<p class="lead"><a href="https://github.com/genkit-ai/genkit" rel="noopener">Genkit</a> is a framework for building AI applications. Pull request <a href="https://github.com/genkit-ai/genkit/pull/6346" rel="noopener">#6346</a> is on <code>genkit-ai/genkit</code>, in the Python OpenAI plugin. It was merged on 23 Sep 2026. It fixes issue <a href="https://github.com/genkit-ai/genkit/issues/6317" rel="noopener">#6317</a>.</p>
+<h3>What was broken</h3>
+<p>The embedder forwarded <code>encodingFormat: 'base64'</code> to <code>embeddings.create()</code>. The pull request says that passing <code>base64</code> explicitly is what turns off the SDK's own decoding. The SDK still sends <code>encoding_format=base64</code> when the parameter is omitted, and it decodes the response to floats only in that case. With the parameter forwarded, embedding validation failed. The pull request's repro used a mock transport, not a live provider. Before the change, that repro failed with <code>1 validation error for Embedding</code>.</p>
+<h3>What changed</h3>
+<p>The embedder no longer forwards <code>base64</code>. <code>float</code> is still forwarded, because that is a different request. In the same mock repro, the transport returned the vector 0.1, negative 0.25, 0.5 as a base64 32 bit float, and the decoded result was <code>[0.10000000149011612, -0.25, 0.5]</code>. The change is in <code>py/packages/genkit-openai/src/genkit_openai/openai_plugin.py</code>, with tests in <code>py/packages/genkit-openai/tests/openai_plugin_test.py</code>. One test checks that a base64 request omits the parameter. Another checks that a float request still sends <code>encoding_format='float'</code>.</p>
+<p><a href="https://github.com/genkit-ai/genkit/pull/6346" rel="noopener">github.com/genkit-ai/genkit/pull/6346</a></p>
 </div>
-<div class="cta"><a class="btn" href="https://github.com/usmamalik345" rel="me noopener">More on GitHub</a><a class="btn primary" href="/#contact">Contact me</a></div>
+</section>
+
+<section>
+<div class="wrap">
+<span class="status merged">Merged</span>
+<h2>Strands Agents harness SDK #4313: AgentResult.to_dict raised TypeError on bytes</h2>
+<p class="lead"><a href="https://github.com/strands-agents/harness-sdk" rel="noopener">Strands Agents</a> publishes the harness SDK. Pull request <a href="https://github.com/strands-agents/harness-sdk/pull/4313" rel="noopener">#4313</a> makes <code>AgentResult.to_dict()</code> safe for <code>json.dumps</code> when a message contains raw bytes. It was merged on 14 Sep 2026. It fixes issue <a href="https://github.com/strands-agents/harness-sdk/issues/4167" rel="noopener">#4167</a>.</p>
+<h3>What was broken</h3>
+<p><code>AgentResult.to_dict()</code> promised a dictionary that JSON can serialize, but it passed <code>message</code> through unchanged. The pull request says Bedrock Converse can put raw bytes in message content, for example <code>reasoningContent.redactedContent</code>. <code>json.dumps(result.to_dict())</code> then raised <code>TypeError</code>. The pull request also says downstream runtimes that fall back to <code>str(obj)</code> then broke consumers.</p>
+<h3>What changed</h3>
+<p><code>to_dict</code> now passes <code>message</code> through <code>encode_bytes_values</code>, the same helper session persistence uses. <code>from_dict</code> passes it through <code>decode_bytes_values</code>, so a round trip restores the original bytes. The code is in <code>strands-py/src/strands/agent/agent_result.py</code>. A regression test in <code>strands-py/tests/strands/agent/test_agent_result.py</code> puts bytes in <code>redactedContent</code>, serializes with <code>json.dumps</code>, and checks that <code>from_dict</code> restores those bytes. The pull request reports that this test file passed 30 tests, including that regression. I am reporting the pull request's own test note, not a run I repeated here.</p>
+<p><a href="https://github.com/strands-agents/harness-sdk/pull/4313" rel="noopener">github.com/strands-agents/harness-sdk/pull/4313</a></p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<span class="status open">Open</span>
+<h2>LiveKit Agents #7186: the EndCallTool wait is still open, not merged</h2>
+<p class="lead"><a href="https://github.com/livekit/agents" rel="noopener">LiveKit Agents</a> is a framework for realtime voice agents. Pull request <a href="https://github.com/livekit/agents/pull/7186" rel="noopener">#7186</a> is open. It has not been merged. I checked the pull request on 17 Nov 2026 and it was still open.</p>
+<h3>What the pull request says is broken</h3>
+<p><code>_delayed_session_shutdown</code> waits for <code>speech_created</code> with <code>asyncio.wait_for</code> and a timeout of 5.0 seconds, then awaits the speech handle with no timeout. The pull request says that if that handle never completes, the <code>finally</code> block never runs, <code>ctx.session.shutdown()</code> is skipped, and room cleanup including <code>delete_room</code> never happens. It says SIP can stay up. It frames the change as the timeout asymmetry only, and says it is not a fix for Gemini instruction following. It references issue <a href="https://github.com/livekit/agents/issues/5096" rel="noopener">#5096</a>.</p>
+<h3>What the pull request changes</h3>
+<p>The speech handle await is wrapped in the same <code>TOOL_REPLY_TIMEOUT</code>. The existing warning and shutdown path stay. The pull request names the test <code>test_delayed_session_shutdown_times_out_when_speech_handle_hangs</code> and says that test hangs on main and passes with the change. It also says the tests cover <code>speech_created</code> never firing, and a handle that completes normally. The pull request was opened on 9 Sep 2026. Until it is merged, this is an open proposal, not a change in LiveKit Agents.</p>
+<p><a href="https://github.com/livekit/agents/pull/7186" rel="noopener">github.com/livekit/agents/pull/7186</a></p>
+<div class="cta">
+<a class="btn" href="https://github.com/usmamalik345" rel="me noopener">More on GitHub</a>
+<a class="btn" href="/blog/">Blog</a>
+<a class="btn" href="/bleedstop.html">BleedStop case study</a>
+<a class="btn primary" href="/hire/">Hire me</a>
+</div>
 </div>
 </section>
 </main>
 <footer><div class="wrap">
 <div>Osama Malik. AI agent engineer and full stack developer. Remote.</div>
-<div><a href="mailto:usmamalik346@gmail.com">usmamalik346@gmail.com</a> · <a href="https://github.com/usmamalik345" rel="me noopener">GitHub</a> · <a href="https://www.linkedin.com/in/osamamalik346" rel="me noopener">LinkedIn</a></div>
+<div><a href="/blog/">Blog</a> · <a href="/hire/">Hire</a> · <a href="mailto:usmamalik346@gmail.com">usmamalik346@gmail.com</a> · <a href="https://github.com/usmamalik345" rel="me noopener">GitHub</a> · <a href="https://www.linkedin.com/in/osamamalik346" rel="me noopener">LinkedIn</a></div>
 </div></footer>
 </body>
 </html>

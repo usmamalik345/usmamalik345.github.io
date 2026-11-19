@@ -3,23 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Prompt Injection Defence Layers I Use in BleedStop</title>
-<meta name="description" content="The prompt injection layers Osama Malik put in BleedStop: a phrase list, an optional DeBERTa classifier, fail open or closed, and the held out numbers.">
+<title>Prompt Injection Defense Layers for AI Agents</title>
+<meta name="description" content="Prompt injection defense and prevention in BleedStop by Osama Malik: a phrase list, an optional DeBERTa classifier, fail open or closed, held out numbers.">
 <link rel="canonical" href="https://osamamalik.me/blog/prompt-injection-defence.html">
 <meta name="theme-color" content="#0b0d12">
 <meta name="color-scheme" content="dark">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Osama Malik">
-<meta property="og:title" content="Prompt Injection Defence Layers I Use in BleedStop">
-<meta property="og:description" content="The prompt injection layers Osama Malik put in BleedStop: a phrase list, an optional DeBERTa classifier, fail open or closed, and the held out numbers.">
+<meta property="og:title" content="Prompt Injection Defense Layers for AI Agents">
+<meta property="og:description" content="Prompt injection defense and prevention in BleedStop by Osama Malik: a phrase list, an optional DeBERTa classifier, fail open or closed, held out numbers.">
 <meta property="og:url" content="https://osamamalik.me/blog/prompt-injection-defence.html">
 <meta property="og:image" content="https://osamamalik.me/assets/osama-malik-ai-agent-engineer.png">
 <meta property="og:image:alt" content="Osama Malik, AI Agent Engineer">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Prompt Injection Defence Layers I Use in BleedStop">
-<meta name="twitter:description" content="The prompt injection layers Osama Malik put in BleedStop: a phrase list, an optional DeBERTa classifier, fail open or closed, and the held out numbers.">
+<meta name="twitter:title" content="Prompt Injection Defense Layers for AI Agents">
+<meta name="twitter:description" content="Prompt injection defense and prevention in BleedStop by Osama Malik: a phrase list, an optional DeBERTa classifier, fail open or closed, held out numbers.">
 <meta name="twitter:image" content="https://osamamalik.me/assets/osama-malik-ai-agent-engineer.png">
 <meta name="twitter:image:alt" content="Osama Malik, AI Agent Engineer">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%235eead4%27/%3E%3Ctext x=%2716%27 y=%2722%27 font-size=%2716%27 font-weight=%27700%27 text-anchor=%27middle%27 fill=%27%2304141a%27 font-family=%27Arial%27%3EOM%3C/text%3E%3C/svg%3E">
@@ -31,12 +31,12 @@
     {
       "@type": "Article",
       "@id": "https://osamamalik.me/blog/prompt-injection-defence.html#article",
-      "headline": "Prompt Injection Defence Layers I Use in BleedStop",
-      "description": "The prompt injection layers Osama Malik put in BleedStop: a phrase list, an optional DeBERTa classifier, fail open or closed, and the held out numbers.",
+      "headline": "Prompt Injection Defense Layers for AI Agents",
+      "description": "Prompt injection defense and prevention in BleedStop by Osama Malik: a phrase list, an optional DeBERTa classifier, fail open or closed, held out numbers.",
       "url": "https://osamamalik.me/blog/prompt-injection-defence.html",
       "mainEntityOfPage": "https://osamamalik.me/blog/prompt-injection-defence.html",
       "datePublished": "2026-11-17T12:00:00+05:00",
-      "dateModified": "2026-11-17T12:00:00+05:00",
+      "dateModified": "2026-11-19T12:00:00+05:00",
       "author": { "@id": "https://osamamalik.me/#person" },
       "about": { "@id": "https://osamamalik.me/bleedstop.html#code" },
       "image": "https://osamamalik.me/assets/osama-malik-ai-agent-engineer.png"
@@ -75,7 +75,7 @@
 <div class="crumbs"><a href="/">Home</a> / <a href="/blog/">Blog</a> / Prompt injection</div>
 <p class="lead">Prompt injection defence in BleedStop is a stack of checks in front of the model, not one classifier score. The default check is a phrase list. A DeBERTa classifier is a second stage I turn on, and on my held out set it caught 77.5% of injections at a 5% false positive rate.</p>
 <p class="post-meta"><time datetime="2026-11-17">17 Nov 2026</time> · <a href="https://osamamalik.me/">Osama Malik, AI Agent Engineer</a></p>
-<h1>The layers I put in front of agents</h1>
+<h1>The prompt injection defense layers I put in front of agents</h1>
 <p class="muted">Everything in this post is from <a href="/bleedstop.html">the BleedStop case study</a> or from the public repo, <a href="https://github.com/usmamalik345/bleedstop" rel="noopener">usmamalik345/bleedstop</a>, especially the README and <code>classifier/server.py</code>. The spend guard around these checks is in the <a href="/blog/bleedstop-cost-and-security-guard.html">BleedStop deep dive</a>.</p>
 </div>
 </section>
@@ -133,6 +133,7 @@
 <a class="btn" href="/blog/bleedstop-cost-and-security-guard.html">Cost guard deep dive</a>
 <a class="btn" href="/hire/">Hire me</a>
 </div>
+<p><b>Need help securing a chatbot or RAG system?</b> See <a href="/hire/ai-chatbot-developer/">hire an AI chatbot developer</a> or <a href="/hire/rag-developer/">hire a RAG developer</a>, or email me for a quote.</p>
 <aside class="card author-box">
 <h2>About the author</h2>
 <p>Osama Malik (also written Usama Malik) is an AI agent engineer at Onlinx Solutions. This note is first hand from BleedStop. <a href="/">Home</a> · <a href="/open-source.html">Open source</a> · <a href="/portfolio-agent/case-study.html">Agent Receptionist</a> · <a href="/hire/">Hire</a>.</p>

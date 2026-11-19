@@ -154,6 +154,8 @@
 <li>Built a spend guard in front of LLM APIs that caps tokens and budget per request. A capped request returned 64 output tokens instead of 2,618.</li>
 <li>Packaged it as a Docker Compose stack and wrote a Helm chart for Kubernetes. A rolling restart of 6 pods had 0 failed requests out of 287,403.</li>
 <li>Built a voice agent on Pipecat and LiveKit that handles several calls at the same time, and ran apps on AWS with load balancers, CloudFront, IAM and cost management.</li>
+<li>Built and maintain the backend of a production point of sale and inventory platform in ASP.NET Core (.NET 8), C#, MySQL and Dapper, covering orders, payments, stock audits, roles and permissions and JWT auth, with background workers for imports, PDF invoices and reservation expiry, and real time sync over SignalR.</li>
+<li>Built the Angular 19 frontend of the same platform (Nx monorepo, PrimeNG, Highcharts dashboards, barcode scanning) and its AWS integrations (S3 for documents, Textract for document OCR), shipped as Docker containers.</li>
 </ul>
 </article>
 <article class="card">

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -27,7 +27,9 @@
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -90,211 +92,545 @@
   }
 }
 </script>
+<script>
+(function(){
+  try {
+    var t = localStorage.getItem('om-theme');
+    if (t !== 'light' && t !== 'dark') {
+      t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+    var m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.setAttribute('content', t === 'light' ? '#f6f7f9' : '#0b0d12');
+  } catch (e) {}
+})();
+</script>
+<style>
+:root {
+  --bg: #0b0d12;
+  --bg-elev: #14171f;
+  --text: #e8ebf0;
+  --muted: #8b93a7;
+  --teal: #5eead4;
+  --teal-dim: rgba(94,234,212,.12);
+  --line: #1c2230;
+  --header: rgba(11,13,18,.9);
+  --btn-text: #5eead4;
+  --shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+[data-theme="light"] {
+  --bg: #f6f7f9;
+  --bg-elev: #ffffff;
+  --text: #12141a;
+  --muted: #5c6370;
+  --teal: #0d7a6f;
+  --teal-dim: rgba(13,122,111,.1);
+  --line: #dfe3ea;
+  --header: rgba(246,247,249,.92);
+  --btn-text: #0d7a6f;
+  --shadow: 0 8px 24px rgba(18,20,26,.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+html, body { background: var(--bg); color: var(--text); }
+body {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--teal); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+.skip { position: absolute; left: 12px; top: -48px; background: var(--teal); color: var(--bg); padding: 8px 12px; z-index: 100; }
+.skip:focus { top: 12px; }
+
+#intro {
+  position: fixed; inset: 0; z-index: 80; background: var(--bg);
+  display: grid; place-items: center;
+  transition: opacity .35s ease, visibility .35s ease;
+}
+#intro.is-done { opacity: 0; visibility: hidden; pointer-events: none; }
+#intro .mark { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+#intro img { width: 56px; height: 56px; border-radius: 12px; }
+#intro p { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; }
+#intro button {
+  margin-top: 8px; background: none; border: 0; color: var(--muted);
+  font: 12px/1 "IBM Plex Mono", monospace; cursor: pointer; text-decoration: underline; text-underline-offset: 3px;
+}
+
+header.site {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  background: var(--header);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  transform: translateY(0);
+  transition: transform .28s ease;
+}
+header.site.is-hidden { transform: translateY(-100%); }
+.navwrap {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  max-width: 1180px; margin: 0 auto; padding: 14px 32px;
+}
+.brand { display: flex; align-items: center; gap: 10px; color: var(--text); font-weight: 500; }
+.brand:hover { text-decoration: none; color: var(--teal); }
+.brand img { width: 32px; height: 32px; border-radius: 8px; display: block; }
+nav.desk { display: flex; align-items: center; gap: 26px; margin-left: auto; }
+nav.desk a { font-size: 14px; font-weight: 500; color: var(--text); }
+nav.desk a:hover, nav.desk a.is-active { color: var(--teal); text-decoration: none; }
+.tools { display: flex; align-items: center; gap: 4px; }
+.icon-btn {
+  width: 36px; height: 36px; display: grid; place-items: center;
+  background: none; border: 0; cursor: pointer; color: var(--text); border-radius: 6px;
+}
+.icon-btn:hover { color: var(--teal); }
+#theme-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+#menu-btn { display: none; }
+
+.drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; width: min(78vw, 360px);
+  background: var(--bg-elev); z-index: 60;
+  transform: translateX(100%);
+  transition: transform .28s ease;
+  padding: 88px 32px 32px;
+  border-left: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: 22px;
+}
+.drawer.is-open { transform: translateX(0); }
+.drawer a { font-size: 22px; font-weight: 500; color: var(--text); }
+.drawer a:hover, .drawer a.is-active { color: var(--teal); text-decoration: none; }
+.backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 55;
+  opacity: 0; visibility: hidden; transition: opacity .28s ease, visibility .28s ease;
+}
+.backdrop.is-open { opacity: 1; visibility: visible; }
+body.menu-open { overflow: hidden; }
+
+main { padding-top: 68px; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 64px 32px 40px; }
+section { scroll-margin-top: 88px; }
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+  gap: 48px 56px;
+  align-items: start;
+}
+h1 { font-size: clamp(34px, 5vw, 56px); font-weight: 600; letter-spacing: -.03em; line-height: 1.12; }
+h1 em { font-style: normal; color: var(--teal); }
+.lead { color: var(--muted); max-width: 38em; font-size: 17px; }
+.lead + .lead { margin-top: 12px; }
+.cta { margin-top: 28px; display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+.btn {
+  display: inline-block; border: 1px solid var(--teal); color: var(--btn-text);
+  padding: 12px 22px; font-size: 14px; font-weight: 500;
+  border-radius: 4px; background: transparent; cursor: pointer;
+}
+.btn:hover { background: var(--teal-dim); text-decoration: none; }
+
+.decision {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--teal);
+  padding: 18px 18px 16px;
+}
+.decision .dh {
+  font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 12px;
+}
+.verdicts { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.verdicts li {
+  font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 500; letter-spacing: .04em;
+  border: 1px solid var(--line); padding: 4px 8px; color: var(--text);
+}
+.decision .blurb { color: var(--muted); font-size: 14px; margin-bottom: 14px; }
+.decision dl { display: grid; gap: 10px; }
+.decision dt { font-family: "IBM Plex Mono", monospace; font-size: 16px; font-weight: 500; color: var(--teal); }
+.decision dd { color: var(--muted); font-size: 13px; }
+
+.label {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 10px;
+}
+.label::before { content: ""; width: 18px; height: 2px; background: var(--teal); display: block; }
+h2 { font-size: 28px; font-weight: 600; letter-spacing: -.02em; margin: 0 0 12px; }
+.about p { color: var(--muted); max-width: 66ch; }
+.about p + p { margin-top: 14px; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 8px; }
+.filters button {
+  font-size: 13px; font-weight: 500;
+  border: 1px solid var(--line); background: transparent; color: var(--muted);
+  padding: 6px 12px; border-radius: 4px; cursor: pointer;
+}
+.filters button[aria-pressed="true"], .filters button:hover {
+  color: var(--teal); border-color: var(--teal); background: var(--teal-dim);
+}
+
+.item {
+  padding: 22px 16px; border-top: 1px solid var(--line);
+  margin: 0 -16px; border-radius: 4px;
+  transition: background .2s ease, transform .2s ease;
+}
+.item:last-child { border-bottom: 1px solid var(--line); }
+.item:hover, .item:focus-within { background: var(--teal-dim); transform: translateX(4px); }
+.item h3 { font-size: 22px; font-weight: 600; margin-bottom: 6px; }
+.item p { color: var(--muted); }
+.item .links { margin-top: 8px; font-size: 13px; display: flex; gap: 16px; flex-wrap: wrap; }
+.item.is-hidden { display: none; }
+
+.contact-list { list-style: none; margin-top: 16px; display: grid; gap: 8px; }
+.contact-list li { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.contact-list .lbl { color: var(--muted); min-width: 72px; font-size: 14px; }
+.copy {
+  font-size: 11px; border: 1px solid var(--line); background: transparent; color: var(--muted);
+  padding: 3px 8px; border-radius: 4px; cursor: pointer;
+}
+.copy:hover { color: var(--teal); border-color: var(--teal); }
+.note { margin-top: 28px; color: var(--muted); font-size: 13px; }
+
+site-footer, .site-footer {
+  border-top: 1px solid var(--line);
+  max-width: 1180px; margin: 0 auto; padding: 22px 32px 36px;
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  color: var(--muted); font-size: 14px;
+}
+.site-footer nav { display: flex; gap: 16px; flex-wrap: wrap; }
+.site-footer a { color: var(--text); }
+.site-footer a:hover { color: var(--teal); }
+
+#toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(16px);
+  background: var(--bg-elev); color: var(--text); border: 1px solid var(--teal);
+  padding: 10px 16px; border-radius: 6px; font-size: 14px;
+  opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease;
+  z-index: 70; box-shadow: var(--shadow);
+}
+#toast.is-on { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.is-in { opacity: 1; transform: none; }
+
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+  nav.desk { display: none; }
+  #menu-btn { display: grid; }
+  .wrap { padding: 48px 20px 32px; }
+  .navwrap { padding: 12px 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+  header.site { transition: none; }
+}
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="site"><div class="wrap">
-<a class="brand" href="/"><img src="/favicon.svg" alt="" width="30" height="30" style="display:block;border-radius:8px">Osama Malik</a>
-<nav aria-label="Main"><ul>
-<li><a href="/#about">About</a></li>
-<li><a href="/#skills">Skills</a></li>
-<li><a href="/#experience">Experience</a></li>
-<li><a href="/#work">Work</a></li>
-<li><a href="/open-source.html">Open source</a></li>
-<li><a href="/blog/">Blog</a></li>
-<li><a href="/hire/">Hire</a></li>
-<li><a href="/#contact">Contact</a></li>
-</ul></nav>
-</div></header>
+
+<div id="intro" role="dialog" aria-label="Loading">
+  <div class="mark">
+    <img src="favicon.svg" alt="">
+    <p>Osama Malik</p>
+    <button type="button" id="skip-intro">Skip</button>
+  </div>
+</div>
+
+<header class="site" id="site-header">
+  <div class="navwrap">
+    <a class="brand" href="#top"><img src="favicon.svg" alt="">Osama Malik</a>
+    <nav class="desk" aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="/blog/">Writing</a>
+      <a href="/hire/">Hire</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="tools">
+      <button type="button" class="icon-btn" id="theme-btn" aria-label="Switch to light theme" title="Theme">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button type="button" class="icon-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="backdrop" id="backdrop" hidden></div>
+<nav class="drawer" id="drawer" aria-label="Mobile">
+  <a href="#work">Work</a>
+  <a href="/blog/">Writing</a>
+  <a href="/hire/">Hire</a>
+  <a href="#contact">Contact</a>
+</nav>
+
 <main id="main">
-<section class="hero">
-<div class="wrap">
-<p class="lead">Osama Malik (also written Usama Malik) is an AI agent engineer at Onlinx Solutions and a freelance AI agent developer for hire. He builds voice agents, RAG and LLM cost and security guards, and works remotely with teams in the US, UK, Europe, Australia and the Gulf.</p>
-<span class="badge"><span class="dot" aria-hidden="true"></span>Open to full time remote roles and contracts</span>
-<h1>Osama Malik, <span class="grad">AI Agent Engineer</span></h1>
-<p class="sub">AI agent engineer, full stack developer, DevOps and cloud</p>
-<p class="lead">I build the parts that keep production AI agents safe, affordable and online: spend limits, prompt injection defence, audit trails, Kubernetes deployments, CI/CD and load tested infrastructure on AWS and Docker. I also build the full stack product around them, from Angular and React frontends to Node.js backends.</p>
-<div class="cta">
-<a class="btn primary" href="mailto:usmamalik346@gmail.com">Email me</a>
-<a class="btn" href="/bleedstop.html">Read the BleedStop case study</a>
-<a class="btn" href="https://github.com/usmamalik345" rel="me noopener">GitHub</a>
-</div>
-</div>
+<section class="wrap hero" id="top">
+  <div class="hero-grid">
+    <div>
+      <h1 class="reveal">Osama Malik, <em>AI Agent Engineer</em></h1>
+      <p class="lead reveal">I build the parts that keep production AI agents safe, affordable and online: spend limits, prompt injection defence, audit trails, Kubernetes deployments, CI/CD and load tested infrastructure on AWS and Docker. I also build the full stack product around them, from Angular and React frontends to Node.js backends.</p>
+      <p class="lead reveal">I am an AI agent engineer at Onlinx Solutions, and I work remotely with teams in the US, UK, Europe, Australia and the Gulf. Open to full time remote roles and contracts.</p>
+      <div class="cta reveal">
+        <a class="btn" href="mailto:usmamalik346@gmail.com">Email me</a>
+        <a href="/bleedstop.html">BleedStop case study</a>
+      </div>
+    </div>
+    <aside class="decision reveal" aria-label="BleedStop agent decision panel">
+      <p class="dh">Agent decision · BleedStop</p>
+      <ul class="verdicts">
+        <li>ALLOW</li>
+        <li>LIMIT</li>
+        <li>CHALLENGE</li>
+        <li>DENY</li>
+      </ul>
+      <p class="blurb">A control plane in front of LLM, SMS and payment APIs. Apps ask before they spend, and get a deterministic rule back.</p>
+      <dl>
+        <div><dt>5,433/s</dt><dd>decisions per second, p99 36.2 ms, 0 failed of 60,000</dd></div>
+        <div><dt>97.6%</dt><dd>fewer output tokens on a capped request (64 instead of 2,618)</dd></div>
+        <div><dt>0 of 287,403</dt><dd>requests failed during a 6 pod Kubernetes rolling restart</dd></div>
+      </dl>
+    </aside>
+  </div>
 </section>
 
-<section id="about">
-<div class="wrap">
-<span class="eyebrow">About</span>
-<h2>Agents that survive production, and the full stack around them</h2>
-<p class="lead">I am a full stack developer who has built web products since 2022 with Angular, React, Node.js and Python. Since 2024 my focus has been AI agents, including voice and RAG, and the security, cost and infrastructure around them. I run apps on AWS and ship them with Docker and CI/CD.</p>
-<p class="muted">My strongest work is where an agent meets the real world: what happens when a tool call hangs, a prompt carries an attack, a bill spikes or a database goes down. I measure those cases, fix what breaks and publish the numbers, including the weak ones. I have 3+ years of experience, including .NET production experience on a POS backend. I am based in PKT (UTC+5) and work remotely.</p>
-</div>
+<section class="wrap about" id="about">
+  <p class="label reveal">About</p>
+  <h2 class="reveal">Agents that survive production, and the full stack around them</h2>
+  <p class="reveal">I am a full stack developer who has built web products since 2022 with Angular, React, Node.js and Python. Since 2024 my focus has been AI agents, including voice and RAG, and the security, cost and infrastructure around them. I run apps on AWS and ship them with Docker and CI/CD.</p>
+  <p class="reveal">My strongest work is where an agent meets the real world: what happens when a tool call hangs, a prompt carries an attack, a bill spikes or a database goes down. I measure those cases, fix what breaks and publish the numbers, including the weak ones. I have 3+ years of experience, including .NET production experience on a POS backend. I am based in PKT (UTC+5) and work remotely.</p>
 </section>
 
-<section id="skills">
-<div class="wrap">
-<span class="eyebrow">Skills</span>
-<h2>What I work with</h2>
-<dl class="skills">
-<dt>AI agents</dt><dd>LLM agents, RAG, embeddings, vector search, voice agents with Pipecat and LiveKit, LangChain, Ollama</dd>
-<dt>Security</dt><dd>Prompt injection detection (DeBERTa classifier), per request token and budget caps, append only audit logging, AWS IAM and security groups</dd>
-<dt>DevOps and cloud</dt><dd>AWS (EC2, Auto Scaling, ELB, CloudFront, RDS, S3, Lambda, API Gateway, IAM, security groups, Bedrock, SageMaker), CI/CD with GitHub Actions, Docker and Docker Compose, Kubernetes, Helm, Nginx</dd>
-<dt>Observability</dt><dd>Prometheus metrics, Grafana dashboards, alert rules</dd>
-<dt>Data</dt><dd>PostgreSQL, Redis, MySQL, MongoDB, SQL</dd>
-<dt>Full stack</dt><dd>Angular (RxJS, NGXS, Angular Material), React, Tailwind CSS, Node.js and Express, REST APIs, WebSockets, RabbitMQ, .NET microservices, MySQL, MongoDB, Docker and Nginx</dd>
-<dt>Languages</dt><dd>TypeScript, JavaScript, Python, SQL</dd>
-</dl>
-</div>
+<section class="wrap" id="work">
+  <p class="label reveal">Work</p>
+  <h2 class="reveal">Selected work</h2>
+  <div class="filters reveal" role="tablist" aria-label="Filter work">
+    <button type="button" role="tab" aria-pressed="true" data-filter="all">All</button>
+    <button type="button" role="tab" aria-pressed="false" data-filter="agents">Agents</button>
+    <button type="button" role="tab" aria-pressed="false" data-filter="infra">Infra</button>
+    <button type="button" role="tab" aria-pressed="false" data-filter="opensource">Open source</button>
+  </div>
+
+  <article class="item reveal" data-cat="agents infra">
+    <h3>BleedStop</h3>
+    <p>A control plane that sits in front of LLM, SMS and payment APIs. Apps ask before they spend, and get back ALLOW, LIMIT, CHALLENGE or DENY from deterministic rules. 5,433 decisions per second, p99 36.2 ms. 97.6% fewer output tokens on a capped request (64 instead of 2,618). 0 of 287,403 requests failed during a 6 pod Kubernetes rolling restart. Packaged as a Docker Compose stack, with a Helm chart for Kubernetes.</p>
+    <div class="links">
+      <a href="/bleedstop.html">Case study</a>
+      <a href="/blog/bleedstop-cost-and-security-guard.html">How I built it</a>
+      <a href="/blog/prompt-injection-defence.html">Prompt injection defence</a>
+      <a href="https://github.com/usmamalik345/bleedstop" rel="noopener">Source</a>
+      <a href="https://bleedstop-demo.vercel.app" rel="noopener">Live demo</a>
+    </div>
+  </article>
+  <article class="item reveal" data-cat="agents">
+    <h3>Agent Receptionist</h3>
+    <p>An LLM agent for appointment businesses with cited RAG answers, rule-based handling of emergencies and opening hours at zero tokens, and a per-sentence guard. Deterministic eval 44/44, live Groq eval 43/44, live 20-question test 19/20, on fictional hotel and dental businesses. Source is private; available on request.</p>
+    <div class="links">
+      <a href="/portfolio-agent/case-study.html">Case study</a>
+      <a href="https://agent-receptionist.vercel.app/dashboard?biz=hotel" rel="noopener">Live demo: hotel</a>
+      <a href="https://agent-receptionist.vercel.app/dashboard?biz=dental" rel="noopener">Live demo: dental</a>
+    </div>
+  </article>
+  <article class="item reveal" data-cat="agents">
+    <h3>Voice agents on Pipecat and LiveKit</h3>
+    <p>Built a voice agent that handles several calls at the same time, works out what the caller needs and passes the details to staff on WhatsApp.</p>
+  </article>
+  <article class="item reveal" data-cat="agents">
+    <h3>RAG retrieval and agent pipelines</h3>
+    <p>Built retrieval with embeddings and vector search, plus an agent pipeline that turns a website URL into a finished video: site scan, script, Remotion templates, stock media and export.</p>
+  </article>
+  <article class="item reveal" data-cat="infra">
+    <h3>AWS</h3>
+    <p>Run apps on AWS with EC2 behind load balancers, CloudFront, tightened security groups and IAM, and cost management. Earlier work deployed to EC2, Auto Scaling, RDS, S3, Lambda and API Gateway.</p>
+  </article>
+  <article class="item reveal" data-cat="infra">
+    <h3>Docker and CI/CD</h3>
+    <p>Packaged BleedStop as a Docker Compose stack with 3 API replicas, Redis, Postgres and nginx. Set up GitHub Actions CI for it, and shipped services to AWS with Docker and CI/CD.</p>
+  </article>
+  <article class="item reveal" data-cat="infra">
+    <h3>Kubernetes and Helm</h3>
+    <p>Wrote a Helm chart with readiness and liveness probes, a PodDisruptionBudget, HPA and graceful drain. A rolling restart of 6 pods had 0 failed requests out of 287,403.</p>
+  </article>
+  <article class="item reveal" data-cat="opensource">
+    <h3>Pipecat #5760</h3>
+    <p>Function call timeouts are no longer cancelled by intermediate results. Added tests. Merged.</p>
+    <div class="links"><a href="https://github.com/pipecat-ai/pipecat/pull/5760" rel="noopener">View pull request</a><a href="/blog/pipecat-5760-function-call-timeout.html">The blog</a></div>
+  </article>
+  <article class="item reveal" data-cat="opensource">
+    <h3>Genkit #6346</h3>
+    <p>OpenAI embeddings returned as base64 no longer fail validation. Merged.</p>
+    <div class="links"><a href="https://github.com/genkit-ai/genkit/pull/6346" rel="noopener">View pull request</a></div>
+  </article>
+  <article class="item reveal" data-cat="opensource">
+    <h3>Strands harness SDK #4313</h3>
+    <p>AgentResult.to_dict now serializes to JSON when Bedrock returns raw bytes. Merged.</p>
+    <div class="links"><a href="https://github.com/strands-agents/harness-sdk/pull/4313" rel="noopener">View pull request</a></div>
+  </article>
+  <article class="item reveal" data-cat="opensource">
+    <h3>LiveKit #7186</h3>
+    <p>Still open. Details are on the <a href="/open-source.html">open source page</a>.</p>
+    <div class="links"><a href="/open-source.html">What was broken, what changed</a></div>
+  </article>
 </section>
 
-<section id="experience">
-<div class="wrap">
-<span class="eyebrow">Experience</span>
-<h2>Where I have worked</h2>
-<div class="grid">
-<article class="card">
-<h3>AI Agent Engineer, Onlinx Solutions</h3>
-<p class="muted small">Jul 2024 to Present</p>
-<ul class="clean">
-<li>Built a spend guard in front of LLM APIs that caps tokens and budget per request. A capped request returned 64 output tokens instead of 2,618.</li>
-<li>Packaged it as a Docker Compose stack and wrote a Helm chart for Kubernetes. A rolling restart of 6 pods had 0 failed requests out of 287,403.</li>
-<li>Built a voice agent on Pipecat and LiveKit that handles several calls at the same time, and ran apps on AWS with load balancers, CloudFront, IAM and cost management.</li>
-<li>Built and maintain the backend of a production point of sale and inventory platform in ASP.NET Core (.NET 8), C#, MySQL and Dapper, covering orders, payments, stock audits, roles and permissions and JWT auth, with background workers for imports, PDF invoices and reservation expiry, and real time sync over SignalR.</li>
-<li>Built the Angular 19 frontend of the same platform (Nx monorepo, PrimeNG, Highcharts dashboards, barcode scanning) and its AWS integrations (S3 for documents, Textract for document OCR), shipped as Docker containers.</li>
-</ul>
-</article>
-<article class="card">
-<h3>Full Stack Engineer, IT Pixelz</h3>
-<p class="muted small">Mar 2023 to Jun 2024</p>
-<ul class="clean">
-<li>Built booking flows for a doctor booking platform serving about 50 doctors across 20 clinics, using React, Node.js, Express and MongoDB.</li>
-<li>Built Angular 17 features for an enterprise task management app and cut the main bundle from 6 MB to 2 MB.</li>
-<li>Shipped Node.js and .NET microservices on Redis, MySQL and MongoDB, deployed to AWS with Docker and CI/CD.</li>
-</ul>
-</article>
-<article class="card">
-<h3>Angular Developer (part time), Zepto Systems Limited</h3>
-<p class="muted small">Jan 2022 to Feb 2023</p>
-<ul class="clean">
-<li>Built the frontend of an IT staffing comparison platform, later also backend and CMS work.</li>
-<li>Built a shared design system and component library with Angular Material and Bootstrap.</li>
-<li>Improved load times with lazy loading, code splitting and fewer API calls.</li>
-</ul>
-</article>
-</div>
-</div>
-</section>
-
-<section id="work">
-<div class="wrap">
-<span class="eyebrow">Selected work</span>
-<h2>BleedStop: runtime cost and security guard for AI agents</h2>
-<p class="lead">A control plane that sits in front of LLM, SMS and payment APIs. Apps ask before they spend, and get back ALLOW, LIMIT, CHALLENGE or DENY from deterministic rules.</p>
-<div class="stats" role="list">
-<div class="stat" role="listitem"><b>5,433/s</b><span>decisions per second, p99 36.2 ms, 0 failed of 60,000 (Compose stack, one 8 vCPU machine)</span></div>
-<div class="stat" role="listitem"><b>0 of 287,403</b><span>requests failed during a 6 pod Kubernetes rolling restart</span></div>
-<div class="stat" role="listitem"><b>97.6%</b><span>fewer output tokens on a capped request (64 instead of 2,618)</span></div>
-<div class="stat" role="listitem"><b>77.5%</b><span>of held out injections caught at a 5% false positive rate</span></div>
-</div>
-<div class="cta" style="margin-top:0"><a class="btn primary" href="/bleedstop.html">Full case study</a><a class="btn" href="/blog/bleedstop-cost-and-security-guard.html">How I built it</a><a class="btn" href="/blog/prompt-injection-defence.html">Prompt injection defence</a><a class="btn" href="https://github.com/usmamalik345/bleedstop" rel="noopener">Source code</a><a class="btn" href="https://bleedstop-demo.vercel.app" rel="noopener">Live demo</a></div>
-
-<h3 style="margin-top:38px">Agent Receptionist: a tool-calling agent I can measure</h3>
-<p class="muted">An LLM agent for appointment businesses with cited RAG answers, rule-based handling of emergencies and opening hours at zero tokens, and a per-sentence guard. Deterministic eval 44/44, live Groq eval 43/44, live 20-question test 19/20, on fictional hotel and dental businesses. Source is private; available on request.</p>
-<figure class="vidbox">
-<video controls preload="metadata" playsinline poster="assets/agent-receptionist-demo-poster.jpg" aria-label="Voiceover walkthrough of the Agent Receptionist: case study, live demo and a second business on the same engine">
-<source src="assets/agent-receptionist-demo.mp4" type="video/mp4">
-<img src="assets/agent-receptionist-demo-poster.jpg" alt="Agent Receptionist title card for the case study walkthrough" width="1280" height="720">
-Your browser cannot play this video. <a href="assets/agent-receptionist-demo.mp4">Download the MP4</a>.
-</video>
-<figcaption class="muted small">73 second walkthrough with voiceover: case study, live demo and the same engine on a second business.</figcaption>
-</figure>
-<div class="cta" style="margin-top:0"><a class="btn primary" href="/portfolio-agent/case-study.html">Case study</a><a class="btn" href="https://agent-receptionist.vercel.app/dashboard?biz=hotel" rel="noopener">Live demo: hotel</a><a class="btn" href="https://agent-receptionist.vercel.app/dashboard?biz=dental" rel="noopener">Live demo: dental</a></div>
-
-<div class="grid g2" style="margin-top:34px">
-<article class="card">
-<h3>Voice agents on Pipecat and LiveKit</h3>
-<p class="muted">Built a voice agent that handles several calls at the same time, works out what the caller needs and passes the details to staff on WhatsApp.</p>
-</article>
-<article class="card">
-<h3>RAG retrieval and agent pipelines</h3>
-<p class="muted">Built retrieval with embeddings and vector search, plus an agent pipeline that turns a website URL into a finished video: site scan, script, Remotion templates, stock media and export.</p>
-</article>
-</div>
-
-<h3 style="margin-top:38px">DevOps and cloud work</h3>
-<div class="grid g3" style="margin-top:14px">
-<article class="card"><h3>AWS</h3><p class="muted small">Run apps on AWS with EC2 behind load balancers, CloudFront, tightened security groups and IAM, and cost management. Earlier work deployed to EC2, Auto Scaling, RDS, S3, Lambda and API Gateway.</p></article>
-<article class="card"><h3>Docker and CI/CD</h3><p class="muted small">Packaged BleedStop as a Docker Compose stack with 3 API replicas, Redis, Postgres and nginx. Set up GitHub Actions CI for it, and shipped services to AWS with Docker and CI/CD.</p></article>
-<article class="card"><h3>Kubernetes and Helm</h3><p class="muted small">Wrote a Helm chart with readiness and liveness probes, a PodDisruptionBudget, HPA and graceful drain. A rolling restart of 6 pods had 0 failed requests out of 287,403.</p></article>
-</div>
-
-<h3 style="margin-top:38px">Full stack work</h3>
-<div class="grid g3" style="margin-top:14px">
-<article class="card"><h3>Doctor booking platform</h3><p class="muted small">Built the booking flows with React, Node.js, Express and MongoDB for about 50 doctors across 20 clinics. Included Gemini assisted booking, live updates over WebSockets, reminders and JWT auth.</p></article>
-<article class="card"><h3>Enterprise task management app</h3><p class="muted small">Built Angular 17 features with RxJS, NGXS and Reactive Forms. Cut the main bundle from 6 MB to 2 MB with lazy loading and Tailwind.</p></article>
-<article class="card"><h3>Microservices and dashboards</h3><p class="muted small">Shipped Node.js and .NET microservices on Redis, MySQL and MongoDB, deployed to AWS with Docker and CI/CD. Built dashboards and reporting views in a CRM used to manage hundreds of client accounts.</p></article>
-</div>
-</div>
-</section>
-
-<section id="open-source">
-<div class="wrap">
-<span class="eyebrow">Open source</span>
-<h2>Fixes in the frameworks agents run on</h2>
-<div class="grid g3">
-<article class="card"><span class="status merged">Merged</span><h3>Pipecat #5760</h3><p class="muted small">Function call timeouts are no longer cancelled by intermediate results. Added tests.</p><a href="https://github.com/pipecat-ai/pipecat/pull/5760" rel="noopener">View pull request</a></article>
-<article class="card"><span class="status merged">Merged</span><h3>Genkit #6346</h3><p class="muted small">OpenAI embeddings returned as base64 no longer fail validation.</p><a href="https://github.com/genkit-ai/genkit/pull/6346" rel="noopener">View pull request</a></article>
-<article class="card"><span class="status merged">Merged</span><h3>Strands harness SDK #4313</h3><p class="muted small">AgentResult.to_dict now serializes to JSON when Bedrock returns raw bytes.</p><a href="https://github.com/strands-agents/harness-sdk/pull/4313" rel="noopener">View pull request</a></article>
-</div>
-<p style="margin-top:22px"><a href="/open-source.html">What was broken, what changed, and the pull request link</a>, including LiveKit #7186, which is still open. The Pipecat fix is written up in <a href="/blog/pipecat-5760-function-call-timeout.html">the blog</a>.</p>
-</div>
-</section>
-<section id="writing">
-<div class="wrap">
-<span class="eyebrow">Blog</span>
-<h2>Notes from the work</h2>
-<p class="lead">First hand posts, using the public repo and the merged pull requests. The hub is <a href="/blog/">the blog</a>.</p>
-<div class="grid g3">
-<article class="card"><h3><a href="/blog/bleedstop-cost-and-security-guard.html">BleedStop deep dive</a></h3><p class="muted small">How the cost and security guard decides ALLOW, LIMIT, CHALLENGE or DENY, and which numbers I will stand behind.</p></article>
-<article class="card"><h3><a href="/blog/pipecat-5760-function-call-timeout.html">Pipecat #5760</a></h3><p class="muted small">Intermediate function call results were cancelling the timeout. The merged fix leaves the deadline armed.</p></article>
-<article class="card"><h3><a href="/blog/prompt-injection-defence.html">Prompt injection defence</a></h3><p class="muted small">Phrase list, optional DeBERTa classifier, and the held out rates, including the weak ones.</p></article>
-</div>
-</div>
-</section>
-<section id="services">
-<div class="wrap">
-<span class="eyebrow">Hire me</span>
-<h2>Services</h2>
-<p class="lead">Remote for teams in the US, UK, Europe, Australia and the Gulf. Pricing: contact for quote. The main page is <a href="/hire/">hire an AI agent developer</a>.</p>
-<div class="grid g3">
-<article class="card"><h3><a href="/hire/langgraph-developer/">LangGraph developer</a></h3><p class="muted small">Agents with LangGraph and LangChain, with guards and evals.</p></article>
-<article class="card"><h3><a href="/hire/voice-ai-developer/">Voice AI developer</a></h3><p class="muted small">Voice agents on Pipecat and LiveKit.</p></article>
-<article class="card"><h3><a href="/hire/rag-developer/">RAG developer</a></h3><p class="muted small">Retrieval over your own data, with cited answers.</p></article>
-<article class="card"><h3><a href="/hire/ai-chatbot-developer/">AI chatbot developer</a></h3><p class="muted small">Chatbots for customers and teams, with cost caps.</p></article>
-<article class="card"><h3><a href="/hire/dotnet-developer/">.NET developer</a></h3><p class="muted small">C#, .NET and ASP.NET Core backends.</p></article>
-<article class="card"><h3><a href="/hire/full-stack-developer/">Full stack developer</a></h3><p class="muted small">Python, Node.js, Angular, React and AWS.</p></article>
-</div>
-</div>
-</section>
-<section id="contact">
-<div class="wrap">
-<span class="eyebrow">Contact</span>
-<h2>Let us talk about your agents or your product</h2>
-<p class="lead">I am open to full time remote roles and contracts. If you are putting AI agents into production, or need a full stack engineer who cares about security, cost and reliability, send me a note. What I take on, the stack, and PKT overlap with US, UK, EU, Australian and Gulf hours are on the <a href="/hire/">hire page</a>.</p>
-<ul class="contact-list">
-<li><span>Email</span><a href="mailto:usmamalik346@gmail.com">usmamalik346@gmail.com</a></li>
-<li><span>Email</span><a href="mailto:usmamalik344@gmail.com">usmamalik344@gmail.com</a></li>
-<li><span>LinkedIn</span><a href="https://www.linkedin.com/in/osamamalik346" rel="me noopener">linkedin.com/in/osamamalik346</a></li>
-<li><span>GitHub</span><a href="https://github.com/usmamalik345" rel="me noopener">github.com/usmamalik345</a></li>
-<li><span>X</span><a href="https://x.com/Osa_ma346" rel="me noopener">x.com/Osa_ma346</a></li>
-</ul>
-<div class="cta"><a class="btn primary" href="mailto:usmamalik346@gmail.com?subject=Hello%20Osama">Email me</a></div>
-</div>
+<section class="wrap" id="contact">
+  <p class="label reveal">Contact</p>
+  <h2 class="reveal">Let us talk about your agents or your product</h2>
+  <p class="lead reveal">I am open to full time remote roles and contracts. If you are putting AI agents into production, or need a full stack engineer who cares about security, cost and reliability, send me a note. What I take on, the stack, and PKT overlap with US, UK, EU, Australian and Gulf hours are on the <a href="/hire/">hire page</a>.</p>
+  <ul class="contact-list reveal">
+    <li><span class="lbl">Email</span><a href="mailto:usmamalik346@gmail.com">usmamalik346@gmail.com</a>
+      <button type="button" class="copy" data-copy="usmamalik346@gmail.com">Copy</button></li>
+    <li><span class="lbl">Email</span><a href="mailto:usmamalik344@gmail.com">usmamalik344@gmail.com</a>
+      <button type="button" class="copy" data-copy="usmamalik344@gmail.com">Copy</button></li>
+    <li><span class="lbl">LinkedIn</span><a href="https://www.linkedin.com/in/osamamalik346" rel="me noopener">linkedin.com/in/osamamalik346</a></li>
+    <li><span class="lbl">GitHub</span><a href="https://github.com/usmamalik345" rel="me noopener">github.com/usmamalik345</a></li>
+    <li><span class="lbl">X</span><a href="https://x.com/Osa_ma346" rel="me noopener">x.com/Osa_ma346</a></li>
+  </ul>
+  <p class="note">Osama Malik. AI agent engineer and full stack developer. Remote, PKT (UTC+5).</p>
 </section>
 </main>
-<footer><div class="wrap">
-<div>Osama Malik. AI agent engineer and full stack developer. Remote.</div>
-<div><a href="/blog/">Blog</a> · <a href="/hire/">Hire</a> · <a href="mailto:usmamalik346@gmail.com">usmamalik346@gmail.com</a> · <a href="https://github.com/usmamalik345" rel="me noopener">GitHub</a> · <a href="https://www.linkedin.com/in/osamamalik346" rel="me noopener">LinkedIn</a> · <a href="https://x.com/Osa_ma346" rel="me noopener">X</a></div>
-</div></footer>
+
+<footer class="site-footer">
+  <div>Osama Malik. Remote.</div>
+  <nav aria-label="Profiles">
+    <a href="/blog/">Writing</a>
+    <a href="/hire/">Hire</a>
+    <a href="mailto:usmamalik346@gmail.com">Email</a>
+    <a href="https://github.com/usmamalik345" rel="me noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/osamamalik346" rel="me noopener">LinkedIn</a>
+    <a href="https://x.com/Osa_ma346" rel="me noopener">X</a>
+  </nav>
+</footer>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var header = document.getElementById('site-header');
+  var intro = document.getElementById('intro');
+  var toast = document.getElementById('toast');
+  var drawer = document.getElementById('drawer');
+  var backdrop = document.getElementById('backdrop');
+  var menuBtn = document.getElementById('menu-btn');
+  var themeBtn = document.getElementById('theme-btn');
+
+  function closeIntro(){
+    if (!intro || intro.classList.contains('is-done')) return;
+    intro.classList.add('is-done');
+    intro.setAttribute('aria-hidden', 'true');
+  }
+  if (reduce) closeIntro();
+  else setTimeout(closeIntro, 800);
+  var skip = document.getElementById('skip-intro');
+  if (skip) skip.addEventListener('click', closeIntro);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') closeIntro(); }, { once: true });
+  intro && intro.addEventListener('click', closeIntro);
+
+  function theme(){ return document.documentElement.getAttribute('data-theme') || 'dark'; }
+  function setTheme(next){
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('om-theme', next); } catch(e){}
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', next === 'light' ? '#f6f7f9' : '#0b0d12');
+    if (themeBtn) themeBtn.setAttribute('aria-label', next === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
+  }
+  if (themeBtn) themeBtn.addEventListener('click', function(){ setTheme(theme() === 'dark' ? 'light' : 'dark'); });
+  setTheme(theme());
+
+  var lastY = 0, ticking = false;
+  window.addEventListener('scroll', function(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var y = window.scrollY || 0;
+      if (y > lastY && y > 80) header.classList.add('is-hidden');
+      else header.classList.remove('is-hidden');
+      lastY = y;
+      ticking = false;
+    });
+  }, { passive: true });
+
+  function setMenu(open){
+    drawer.classList.toggle('is-open', open);
+    backdrop.classList.toggle('is-open', open);
+    backdrop.hidden = !open;
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menuBtn.innerHTML = open
+      ? '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 4l12 12M16 4L4 16"/></svg>'
+      : '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14"/></svg>';
+    document.body.classList.toggle('menu-open', open);
+  }
+  menuBtn.addEventListener('click', function(){ setMenu(!drawer.classList.contains('is-open')); });
+  backdrop.addEventListener('click', function(){ setMenu(false); });
+  drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') setMenu(false); });
+
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('nav.desk a[href^="#"], .drawer a[href^="#"]'));
+  var sections = ['work','contact'].map(function(id){ return document.getElementById(id); }).filter(Boolean);
+  if ('IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        navLinks.forEach(function(a){
+          a.classList.toggle('is-active', a.getAttribute('href') === '#' + en.target.id);
+        });
+      });
+    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+    sections.forEach(function(s){ spy.observe(s); });
+  }
+
+  var reveals = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) {
+    reveals.forEach(function(el){ el.classList.add('is-in'); });
+  } else {
+    var ro = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) { en.target.classList.add('is-in'); ro.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(function(el){ ro.observe(el); });
+  }
+
+  var tabs = document.querySelectorAll('.filters button');
+  var items = document.querySelectorAll('#work .item');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      var f = tab.getAttribute('data-filter');
+      tabs.forEach(function(t){ t.setAttribute('aria-pressed', t === tab ? 'true' : 'false'); });
+      items.forEach(function(it){
+        var cat = it.getAttribute('data-cat') || '';
+        it.classList.toggle('is-hidden', !(f === 'all' || cat.split(/\s+/).indexOf(f) !== -1));
+      });
+    });
+  });
+
+  var toastTimer;
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add('is-on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('is-on'); }, 1800);
+  }
+  function fallback(v, ok){
+    var ta = document.createElement('textarea');
+    ta.value = v; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); ok(); } catch(e) { showToast(v); }
+    document.body.removeChild(ta);
+  }
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var v = btn.getAttribute('data-copy') || '';
+      function ok(){ showToast('Copied ' + v); }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(v).then(ok).catch(function(){ fallback(v, ok); });
+      } else fallback(v, ok);
+    });
+  });
+})();
+</script>
 </body>
 </html>

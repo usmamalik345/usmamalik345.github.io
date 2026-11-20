@@ -1,0 +1,30 @@
+# Osama Malik (Usama Malik), AI Agent Engineer
+
+> Osama Malik (also written Usama Malik) is an AI agent engineer at Onlinx Solutions in Islamabad, Pakistan, and a freelance AI agent developer. He builds voice agents, RAG systems, tool calling agents, and LLM cost and security guards, and works remotely with teams in the US, UK, Europe, Australia and the Gulf. Contact: usmamalik346@gmail.com
+
+## About
+- [Home](https://osamamalik.me/): who Osama Malik is, his experience, skills and selected work
+- [Hire Osama Malik](https://osamamalik.me/hire/): services and how to work with him
+- [Open source](https://osamamalik.me/open-source.html): merged pull requests in Pipecat, Genkit and Strands Agents
+
+## Projects and case studies
+- [BleedStop, LLM cost guard](https://osamamalik.me/bleedstop.html): cost abuse control for LLM, SMS and payment APIs with Redis budgets and measured results
+- [Agent Receptionist case study](https://osamamalik.me/portfolio-agent/case-study.html): tool calling AI agent for appointment businesses, with cited RAG, policy routing and evals
+
+## Blog
+- [BleedStop: how I built an LLM cost and security guard](https://osamamalik.me/blog/bleedstop-cost-and-security-guard.html)
+- [Fixing function call timeouts in Pipecat (PR 5760)](https://osamamalik.me/blog/pipecat-5760-function-call-timeout.html)
+- [Prompt injection defense layers for AI agents](https://osamamalik.me/blog/prompt-injection-defence.html)
+
+## Services
+- [Voice AI developer, Pipecat and LiveKit](https://osamamalik.me/hire/voice-ai-developer/)
+- [RAG developer and consultant](https://osamamalik.me/hire/rag-developer/)
+- [LangGraph developer](https://osamamalik.me/hire/langgraph-developer/)
+- [AI chatbot developer](https://osamamalik.me/hire/ai-chatbot-developer/)
+- [Full stack AI developer, Python and Node](https://osamamalik.me/hire/full-stack-developer/)
+- [.NET and ASP.NET Core developer](https://osamamalik.me/hire/dotnet-developer/)
+
+## Profiles
+- [GitHub](https://github.com/usmamalik345)
+- [LinkedIn](https://www.linkedin.com/in/osamamalik346)
+- [X](https://x.com/Osa_ma346)

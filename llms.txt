@@ -18,6 +18,12 @@
 - [Fixing function call timeouts in Pipecat (PR 5760)](https://osamamalik.me/blog/pipecat-5760-function-call-timeout.html)
 - [Prompt injection defense layers for AI agents](https://osamamalik.me/blog/prompt-injection-defence.html)
 
+
+## Regions
+- [Hire an AI agent engineer in the US](https://osamamalik.me/hire/ai-agent-engineer-usa/): remote work with US startups from Islamabad, including PKT overlap with Eastern and Pacific hours
+- [Hire an AI agent engineer in the UK](https://osamamalik.me/hire/ai-agent-engineer-uk/): large overlap with GMT and BST, and GDPR-aware data handling as a practice
+- [Hire an AI agent engineer in the UAE and Saudi Arabia](https://osamamalik.me/hire/ai-agent-engineer-uae-saudi/): PKT is one or two hours ahead of the Gulf, so the working day almost fully overlaps
+
 ## Services
 - [Voice AI developer, Pipecat and LiveKit](https://osamamalik.me/hire/voice-ai-developer/)
 - [RAG developer and consultant](https://osamamalik.me/hire/rag-developer/)

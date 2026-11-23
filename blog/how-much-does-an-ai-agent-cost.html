@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How Much Does an AI Agent Cost to Build and Run? Real Numbers from BleedStop</title>
+<meta name="description" content="What an AI agent costs, from BleedStop measurements by Osama Malik in Pakistan: token caps, a $5 budget test, and what those numbers cannot tell you.">
+<link rel="canonical" href="https://osamamalik.me/blog/how-much-does-an-ai-agent-cost.html">
+<meta name="theme-color" content="#0b0d12">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Osama Malik">
+<meta property="og:title" content="How Much Does an AI Agent Cost to Build and Run? Real Numbers from BleedStop">
+<meta property="og:description" content="What an AI agent costs, from BleedStop measurements by Osama Malik in Pakistan: token caps, a $5 budget test, and what those numbers cannot tell you.">
+<meta property="og:url" content="https://osamamalik.me/blog/how-much-does-an-ai-agent-cost.html">
+<meta property="og:image" content="https://osamamalik.me/assets/osama-malik-ai-agent-engineer.png">
+<meta property="og:image:alt" content="Osama Malik, AI Agent Engineer">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How Much Does an AI Agent Cost to Build and Run? Real Numbers from BleedStop">
+<meta name="twitter:description" content="What an AI agent costs, from BleedStop measurements by Osama Malik in Pakistan: token caps, a $5 budget test, and what those numbers cannot tell you.">
+<meta name="twitter:image" content="https://osamamalik.me/assets/osama-malik-ai-agent-engineer.png">
+<meta name="twitter:image:alt" content="Osama Malik, AI Agent Engineer">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://osamamalik.me/blog/how-much-does-an-ai-agent-cost.html#article",
+      "headline": "How Much Does an AI Agent Cost to Build and Run? Real Numbers from BleedStop",
+      "description": "What an AI agent costs, from BleedStop measurements by Osama Malik in Pakistan: token caps, a $5 budget test, and what those numbers cannot tell you.",
+      "url": "https://osamamalik.me/blog/how-much-does-an-ai-agent-cost.html",
+      "mainEntityOfPage": "https://osamamalik.me/blog/how-much-does-an-ai-agent-cost.html",
+      "datePublished": "2026-11-23T12:00:00+05:00",
+      "dateModified": "2026-11-23T12:00:00+05:00",
+      "author": {
+        "@type": "Person",
+        "@id": "https://osamamalik.me/#person",
+        "name": "Osama Malik"
+      },
+      "image": "https://osamamalik.me/assets/osama-malik-ai-agent-engineer.png"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://osamamalik.me/blog/how-much-does-an-ai-agent-cost.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do you have a published price to build or run an AI agent?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. I do not publish rates, because scope changes the work a lot. Email usmamalik346@gmail.com with what the agent must do, and I will send a quote. There is no build price or monthly run cost on this site."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are the BleedStop numbers from a production customer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The case study numbers were measured by me on one shared 8 vCPU Linux machine, and some further figures are already in the public repository README. I do not have a production customer figure for money saved. The public Vercel demo is not the cluster that produced the measured rates."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does the 97.6% figure actually measure?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In a test against a live model API, a capped request returned 64 output tokens instead of 2,618, which is 97.6% fewer. The README's extra detail on that comparison is a small Groq free tier run. The actual bill was $0, because the tier was free. It is a cap test, not a monthly bill."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can a US, UK or Australian company hire you from Pakistan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. I work remotely from Islamabad, Pakistan, in Pakistan Time, PKT, which is UTC+5 and does not use daylight saving. UK mornings fall inside my working day. A US East Coast morning is evening for me. For Australia, the overlap is an Australian afternoon and my morning. I am open to contracts and to full time remote roles. The overlap table is on the hire page."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where can I read the raw measurements?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The BleedStop case study and the BleedStop build post have the measured results. Raw results are in the public repository usmamalik345/bleedstop. The Agent Receptionist case study has the single live public-URL cost check, and it states the limits of that check."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://osamamalik.me/blog/how-much-does-an-ai-agent-cost.html#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://osamamalik.me/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://osamamalik.me/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "AI agent cost",
+          "item": "https://osamamalik.me/blog/how-much-does-an-ai-agent-cost.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="/"><img src="/favicon.svg" alt="" width="30" height="30" style="display:block;border-radius:8px">Osama Malik</a>
+<nav aria-label="Main"><ul>
+<li><a href="/#about">About</a></li>
+<li><a href="/#skills">Skills</a></li>
+<li><a href="/#experience">Experience</a></li>
+<li><a href="/#work">Work</a></li>
+<li><a href="/open-source.html">Open source</a></li>
+<li><a href="/blog/" aria-current="page">Blog</a></li>
+<li><a href="/hire/">Hire</a></li>
+<li><a href="/#contact">Contact</a></li>
+</ul></nav>
+</div></header>
+<main id="main">
+<section class="hero">
+<div class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/blog/">Blog</a> / AI agent cost</div>
+<p class="lead">People ask what it costs to build and run an AI agent. I do not have a customer invoice, and I do not publish a rate. What I do have are measurements from BleedStop, a cost and security guard I built in Islamabad, Pakistan, plus one live cost check from the Agent Receptionist case study. This note is about those numbers, and about the claims I will not stretch.</p>
+<p class="post-meta"><time datetime="2026-11-23">23 Nov 2026</time> · <a href="https://osamamalik.me/">Osama Malik, AI Agent Engineer</a></p>
+<h1>How much does an AI agent cost to build and run? Real numbers from BleedStop</h1>
+<p class="muted">I am Osama Malik, an AI agent engineer at Onlinx Solutions in Islamabad. Every figure below is already on the <a href="/bleedstop.html">BleedStop case study</a>, in the <a href="/blog/bleedstop-cost-and-security-guard.html">BleedStop build post</a>, in the public repository README, or on the <a href="/portfolio-agent/case-study.html">Agent Receptionist case study</a>. I am not adding a production bill or a savings figure those pages do not state. For a quote, see the <a href="/hire/">hire page</a>.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>What cost means once an agent can spend</h2>
+<p>An AI agent is not only a model call. Once it can use tools, send SMS, or hit a payment API, cost has several parts: the tokens the model uses, the paid APIs those tools call, and what happens if a prompt injection or a runaway loop keeps calling them. I mapped that last risk to OWASP LLM10, Unbounded Consumption, when I built <a href="/bleedstop.html">BleedStop</a>.</p>
+<p>BleedStop sits in front of the spend. An application calls <code>POST /decide</code> before it pays for a call, and gets back ALLOW, LIMIT, CHALLENGE or DENY from deterministic rules set per tenant. Redis holds the budget so several instances share one ceiling. A limit that lives only in a prompt is not a limit. A limit that lives in one process will split if you put more than one instance behind a load balancer. Those are the failure modes I was trying to close. If you are hiring someone to build an agent, I would start with that question. I wrote that up as a <a href="/blog/hire-ai-agent-developer-pakistan.html">checklist for hiring an AI agent developer from Pakistan</a>.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>A token cap I actually measured</h2>
+<p>On the case study, a spend guard caps tokens and budget per request. In a test against a live model API, a capped request returned 64 output tokens instead of 2,618, which is 97.6% fewer.</p>
+<p>The <a href="/blog/bleedstop-cost-and-security-guard.html">build post</a> gives the README's extra detail on that same comparison. It was a small run on Groq's free tier, model <code>openai/gpt-oss-20b</code>, a streaming request for 1500 words, with a 64 token cap. Groq honoured the rewritten <code>max_tokens</code>, so BleedStop's own mid stream cut was not what stopped it. The README's reconciled cost at the policy rate fell from $0.0271 to $0.00151 per request. The actual bill was $0, because the tier was free. That is a cap test, not a monthly bill. It does not tell you what your production model, prompt, or traffic would cost.</p>
+<p>The README also publishes a mock, and I will keep the label. A mock flood of 40 requests for 20,000 words, against an upstream that ignores <code>max_tokens</code>, cut 40 of 40 streams. At the README's policy rate of $0.01 per 1,000 tokens, with tokens approximated as characters divided by 4, that is $10.70 unprotected and $0.41 through the proxy. I am not calling that a customer saving. It is a mock. The case study lists real provider latency or pricing as not measured.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>A $5 ceiling that several instances share</h2>
+<p>On the case study, a correctness test of 2,000 concurrent calls against a $5 ceiling on 3 instances overspent by $0.000. The same ceiling held behind a load balancer, with $0.000 overspend. That is about enforcement, not about the price of an agent. It does not say a real product should set its cap at $5, and it is not money saved for a customer. I do not have a production customer figure for money saved. Where the README prints a dollar amount, it is a policy rate or a local sample, and I have said which.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>What it costs to run the guard itself</h2>
+<p>I cannot give you a cloud invoice for running BleedStop. I can give you the rates I measured on one shared 8 vCPU Linux machine, where the load generator, the load balancer and the services all share the same hardware. I treat those rates as a lower bound for a real cluster. Raw results are in <a href="https://github.com/usmamalik345/bleedstop" rel="noopener">usmamalik345/bleedstop</a>.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Test</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>Docker Compose stack (3 API replicas, Redis, Postgres, nginx), one 8 vCPU machine</td><td>5,433 decisions per second, p99 36.2 ms, 0 failed requests out of 60,000</td></tr>
+<tr><td>3 instances behind a load balancer with Redis atomic budgets</td><td>6,291 decisions per second, p99 31.9 ms, $0.000 overspend against a $5 ceiling</td></tr>
+<tr><td>Kubernetes rolling restart of 6 pods under load</td><td>0 failed requests out of 287,403</td></tr>
+<tr><td>Postgres stopped for about 7 seconds under load</td><td>86,071 requests, 0 failed, 0 ledger rows dropped</td></tr>
+<tr><td>Capped request against a live model API</td><td>64 output tokens instead of 2,618 (97.6% fewer)</td></tr>
+</tbody></table></div>
+<p>The public demo at <a href="https://bleedstop-demo.vercel.app" rel="noopener">bleedstop-demo.vercel.app</a> is not that cluster. The README is explicit: it runs on Vercel Hobby functions, in memory, with no Redis and no Postgres. The $5 cluster ceiling is not reliably enforced there. The measured rates come from the Compose and Kubernetes stack with Redis. The overhead estimate the README does stand behind is the mock upstream: <code>npm run bench:openai</code>, n=1000 calls that do not stream, added latency p50 1.53 ms and p99 1.86 ms.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>One live question on Agent Receptionist</h2>
+<p><a href="/portfolio-agent/case-study.html">Agent Receptionist</a> is a different project: a tool calling agent for appointment businesses, with cited RAG, policy routing and evals. The two demo businesses, a hotel and a dental practice, are fictional. The source is private and available on request.</p>
+<p>On that case study, emergencies, opening hours and human handoff are routed by policy at zero tokens, so those turns never reach the model. One live public-URL check was 563 prompt tokens and 251 completion tokens, about $0.0002, with first token around 840 ms. The case study is clear: the latency and cost figures come from a handful of runs and one live check, and the suites show the engine behaves as designed, not how it would perform on a real business's traffic. I am not turning that single check into a cost per month.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>What I will not claim</h2>
+<ul class="clean">
+<li>I do not publish rates, because scope changes the work a lot. There is no figure on this site for what it costs, in dollars, to build an AI agent.</li>
+<li>I do not have a production customer figure for money saved.</li>
+<li>Real provider latency or pricing was not measured as a benchmark on the BleedStop case study. The Groq run is one small free tier check in the README, not that missing benchmark.</li>
+<li>The Vercel demo is not the cluster that produced 5,433 decisions per second or the rolling restart result.</li>
+<li>The golden set and the rules share an author, so BleedStop's accuracy numbers are not field results. Recall on that set of 12,140 labeled requests is 48.0%. Precision is 100%, with no benign false positives.</li>
+</ul>
+<p>If a page or a README already prints a dollar amount, I have quoted it as a policy rate, a mock, or a local sample. If a fact is not on those live pages, I have left it out.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>For US, UK and Australian companies hiring from Pakistan</h2>
+<p>I work remotely from Islamabad, Pakistan, in Pakistan Time, PKT, which is UTC+5 and does not use daylight saving. I work with teams in the US, UK, Europe, Australia and the Gulf, and I am open to contracts and to full time remote roles.</p>
+<p>Timezone overlap is often the first practical question. The full table is on the <a href="/hire/#timezone">hire page timezone section</a>, and I wrote a <a href="/blog/hire-ai-agent-developer-pakistan.html">hiring checklist</a> for teams that want an AI agent developer from Pakistan. In short: a 9:00 UK morning is 13:00 PKT in summer (BST, UTC+1) and 14:00 PKT in winter (GMT, UTC+0), so UK mornings fall inside my working day. A 9:00 US East Coast morning is 18:00 PKT in summer (EDT, UTC-4) and 19:00 PKT in winter (EST, UTC-5), which is evening for me. 9:00 PDT is 21:00 PKT and 9:00 PST is 22:00 PKT. For Australia, 9:00 PKT is 14:00 AEST or 15:00 AEDT in Sydney, so the overlap is an Australian afternoon and my morning.</p>
+<p>If you are hiring from the US, the UK or Australia, the cost question should not stop at a day rate. I would also ask where the ceiling lives, what happens when it is hit, how the agent is evaluated, and how prompt injection is stopped before it can reach a tool or a paid API. The defence layers I use in BleedStop are in the <a href="/blog/prompt-injection-defence.html">prompt injection post</a>. The job-specific pages are <a href="/hire/voice-ai-developer/">voice AI</a>, <a href="/hire/rag-developer/">RAG</a>, <a href="/hire/langgraph-developer/">LangGraph</a>, <a href="/hire/ai-chatbot-developer/">AI chatbots</a>, <a href="/hire/full-stack-developer/">full stack</a> and <a href="/hire/dotnet-developer/">.NET</a>.</p>
+<p>I do not publish rates. Email me at <a href="mailto:usmamalik346@gmail.com">usmamalik346@gmail.com</a> with what the agent must do, and I will send a quote.</p>
+</div>
+</section>
+
+<section id="faq">
+<div class="wrap">
+<h2>Questions</h2>
+<h3>Do you have a published price to build or run an AI agent?</h3>
+<p>No. I do not publish rates, because scope changes the work a lot. Email <a href="mailto:usmamalik346@gmail.com">usmamalik346@gmail.com</a> with what the agent must do, and I will send a quote. There is no build price or monthly run cost on this site.</p>
+<h3>Are the BleedStop numbers from a production customer?</h3>
+<p>No. The case study numbers were measured by me on one shared 8 vCPU Linux machine, and some further figures are already in the public repository README. I do not have a production customer figure for money saved. The public Vercel demo is not the cluster that produced the measured rates.</p>
+<h3>What does the 97.6% figure actually measure?</h3>
+<p>In a test against a live model API, a capped request returned 64 output tokens instead of 2,618, which is 97.6% fewer. The README's extra detail on that comparison is a small Groq free tier run. The actual bill was $0, because the tier was free. It is a cap test, not a monthly bill.</p>
+<h3>Can a US, UK or Australian company hire you from Pakistan?</h3>
+<p>Yes. I work remotely from Islamabad, Pakistan, in Pakistan Time, PKT, which is UTC+5 and does not use daylight saving. UK mornings fall inside my working day. A US East Coast morning is evening for me. For Australia, the overlap is an Australian afternoon and my morning. I am open to contracts and to full time remote roles. The overlap table is on the <a href="/hire/#timezone">hire page</a>.</p>
+<h3>Where can I read the raw measurements?</h3>
+<p>The <a href="/bleedstop.html">BleedStop case study</a> and the <a href="/blog/bleedstop-cost-and-security-guard.html">BleedStop build post</a> have the measured results. Raw results are in the public repository <a href="https://github.com/usmamalik345/bleedstop" rel="noopener">usmamalik345/bleedstop</a>. The <a href="/portfolio-agent/case-study.html">Agent Receptionist case study</a> has the single live public-URL cost check, and it states the limits of that check.</p>
+<div class="cta">
+<a class="btn primary" href="/hire/">Hire me</a>
+<a class="btn" href="/bleedstop.html">BleedStop case study</a>
+<a class="btn" href="/portfolio-agent/case-study.html">Agent Receptionist</a>
+<a class="btn" href="/blog/hire-ai-agent-developer-pakistan.html">Hiring from Pakistan</a>
+</div>
+<aside class="card author-box">
+<h2>About the author</h2>
+<p>Osama Malik (also written Usama Malik) is an AI agent engineer at Onlinx Solutions in Islamabad. This note uses measurements already published on this site. <a href="/">Home</a> · <a href="/blog/">Blog</a> · <a href="/hire/">Hire</a>.</p>
+</aside>
+</div>
+</section>
+</main>
+<footer><div class="wrap">
+<div>Osama Malik. AI agent engineer and full stack developer. Remote.</div>
+<div><a href="/blog/">Blog</a> · <a href="/hire/">Hire</a> · <a href="mailto:usmamalik346@gmail.com">usmamalik346@gmail.com</a> · <a href="https://github.com/usmamalik345" rel="me noopener">GitHub</a> · <a href="https://www.linkedin.com/in/osamamalik346" rel="me noopener">LinkedIn</a> · <a href="https://x.com/Osa_ma346" rel="me noopener">X</a></div>
+</div></footer>
+</body>
+</html>

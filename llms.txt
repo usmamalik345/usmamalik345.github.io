@@ -12,6 +12,7 @@
 - [Agent Receptionist case study](https://osamamalik.me/portfolio-agent/case-study.html): tool calling AI agent for appointment businesses, with cited RAG, policy routing and evals
 
 ## Blog
+- [How much does an AI agent cost to build and run? Real numbers from BleedStop](https://osamamalik.me/blog/how-much-does-an-ai-agent-cost.html)
 - [Hiring an AI agent developer from Pakistan: what to check](https://osamamalik.me/blog/hire-ai-agent-developer-pakistan.html)
 - [BleedStop: how I built an LLM cost and security guard](https://osamamalik.me/blog/bleedstop-cost-and-security-guard.html)
 - [Fixing function call timeouts in Pipecat (PR 5760)](https://osamamalik.me/blog/pipecat-5760-function-call-timeout.html)

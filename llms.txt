@@ -23,6 +23,9 @@
 - [Hire an AI agent engineer in the US](https://osamamalik.me/hire/ai-agent-engineer-usa/): remote work with US startups from Islamabad, including PKT overlap with Eastern and Pacific hours
 - [Hire an AI agent engineer in the UK](https://osamamalik.me/hire/ai-agent-engineer-uk/): large overlap with GMT and BST, and GDPR-aware data handling as a practice
 - [Hire an AI agent engineer in the UAE and Saudi Arabia](https://osamamalik.me/hire/ai-agent-engineer-uae-saudi/): PKT is one or two hours ahead of the Gulf, so the working day almost fully overlaps
+- [Hire an AI agent engineer in Europe](https://osamamalik.me/hire/ai-agent-engineer-europe/): PKT is three or four hours ahead of CET and CEST, so most of the European afternoon overlaps
+- [Hire an AI agent engineer in Germany](https://osamamalik.me/hire/ai-agent-engineer-germany/): DACH teams in Germany, Austria and Switzerland, with process-driven delivery
+- [Hire an AI agent engineer in the Netherlands](https://osamamalik.me/hire/ai-agent-engineer-netherlands/): Dutch and Benelux startups, with English-first collaboration
 
 ## Services
 - [Voice AI developer, Pipecat and LiveKit](https://osamamalik.me/hire/voice-ai-developer/)

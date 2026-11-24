@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pipecat Function Call Timeout Fix (PR 5760) | Osama Malik</title>
+<meta name="description" content="Osama Malik, AI Agent Engineer, fixed Pipecat: function call timeouts stay armed across intermediate results. Only a final result clears the deadline. Merged PR 5760, with tests.">
+<link rel="canonical" href="https://osamamalik.me/projects/pipecat-5760-function-call-timeout/">
+<meta name="theme-color" content="#0b0d12">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Osama Malik">
+<meta property="og:title" content="Pipecat Function Call Timeout Fix (PR 5760) | Osama Malik">
+<meta property="og:description" content="Osama Malik, AI Agent Engineer, fixed Pipecat: function call timeouts stay armed across intermediate results. Only a final result clears the deadline. Merged PR 5760, with tests.">
+<meta property="og:url" content="https://osamamalik.me/projects/pipecat-5760-function-call-timeout/">
+<meta property="og:image" content="https://osamamalik.me/assets/osama-malik-ai-agent-engineer.png">
+<meta property="og:image:alt" content="Osama Malik, AI Agent Engineer">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pipecat Function Call Timeout Fix (PR 5760) | Osama Malik">
+<meta name="twitter:description" content="Osama Malik, AI Agent Engineer, fixed Pipecat: function call timeouts stay armed across intermediate results. Only a final result clears the deadline. Merged PR 5760, with tests.">
+<meta name="twitter:image" content="https://osamamalik.me/assets/osama-malik-ai-agent-engineer.png">
+<meta name="twitter:image:alt" content="Osama Malik, AI Agent Engineer">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["CreativeWork", "TechArticle"],
+      "@id": "https://osamamalik.me/projects/pipecat-5760-function-call-timeout/#article",
+      "headline": "Pipecat Function Call Timeout Fix (PR 5760) | Osama Malik",
+      "description": "Osama Malik, AI Agent Engineer, fixed Pipecat: function call timeouts stay armed across intermediate results. Only a final result clears the deadline. Merged PR 5760, with tests.",
+      "url": "https://osamamalik.me/projects/pipecat-5760-function-call-timeout/",
+      "mainEntityOfPage": "https://osamamalik.me/projects/pipecat-5760-function-call-timeout/",
+      "datePublished": "2026-11-25T12:00:00+05:00",
+      "dateModified": "2026-11-25T12:00:00+05:00",
+      "author": {
+        "@type": "Person",
+        "@id": "https://osamamalik.me/#person",
+        "name": "Osama Malik",
+        "url": "https://osamamalik.me/",
+        "jobTitle": "AI Agent Engineer"
+      },
+      "image": "https://osamamalik.me/assets/osama-malik-ai-agent-engineer.png",
+      "about": { "@id": "https://osamamalik.me/projects/pipecat-5760-function-call-timeout/#software" },
+      "isBasedOn": "https://github.com/pipecat-ai/pipecat/pull/5760"
+    },
+    {
+      "@type": ["SoftwareSourceCode", "SoftwareApplication"],
+      "@id": "https://osamamalik.me/projects/pipecat-5760-function-call-timeout/#software",
+      "name": "pipecat-ai/pipecat pull request 5760",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Cross-platform",
+      "programmingLanguage": "Python",
+      "codeRepository": "https://github.com/pipecat-ai/pipecat",
+      "url": "https://github.com/pipecat-ai/pipecat/pull/5760",
+      "description": "A merged Pipecat fix that keeps a function call timeout armed when a tool reports an intermediate result. Only a final result clears the deadline.",
+      "author": { "@id": "https://osamamalik.me/#person" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://osamamalik.me/projects/pipecat-5760-function-call-timeout/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What did Pipecat pull request 5760 fix?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An intermediate function call result, marked is_final=False, used to cancel the tool timeout. A tool that reported progress could then hang with no deadline. After the fix, only a final result clears the timeout. A progress update does not clear it and does not restart it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When was the pull request merged?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It was merged on 15 September 2026. It closes issue 5481. I wrote it. I am not a Pipecat maintainer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is this different from your LiveKit pull request?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "LiveKit Agents pull request 7186 is a different timeout, on EndCallTool. It is still open and has not been merged. This page is only about the merged Pipecat change."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you build voice agents professionally?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. I build voice agents on Pipecat and LiveKit. See the voice AI developer hire page, or email me for a quote. I do not publish rates."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://osamamalik.me/projects/pipecat-5760-function-call-timeout/#breadcrumbs",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://osamamalik.me/" },
+        { "@type": "ListItem", "position": 2, "name": "Open source", "item": "https://osamamalik.me/open-source.html" },
+        { "@type": "ListItem", "position": 3, "name": "Pipecat #5760", "item": "https://osamamalik.me/projects/pipecat-5760-function-call-timeout/" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="/"><img src="/favicon.svg" alt="" width="30" height="30" style="display:block;border-radius:8px">Osama Malik</a>
+<nav aria-label="Main"><ul>
+<li><a href="/#about">About</a></li>
+<li><a href="/#skills">Skills</a></li>
+<li><a href="/#experience">Experience</a></li>
+<li><a href="/#work">Work</a></li>
+<li><a href="/open-source.html" aria-current="page">Open source</a></li>
+<li><a href="/blog/">Blog</a></li>
+<li><a href="/hire/">Hire</a></li>
+<li><a href="/#contact">Contact</a></li>
+</ul></nav>
+</div></header>
+<main id="main">
+<section class="hero">
+<div class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/open-source.html">Open source</a> / Pipecat #5760</div>
+<span class="status merged">Merged</span>
+<p class="lead">Pipecat pull request 5760 keeps a function call timeout armed when a tool reports an intermediate result. I wrote it, and it was merged on 15 Sep 2026. Only a final result clears the deadline.</p>
+<p class="post-meta"><time datetime="2026-11-25">25 Nov 2026</time> · <a href="https://osamamalik.me/">Osama Malik, AI Agent Engineer</a></p>
+<h1>Fixing function call timeouts in Pipecat</h1>
+<p class="muted">The pull request is <a href="https://github.com/pipecat-ai/pipecat/pull/5760" rel="noopener">pipecat-ai/pipecat #5760</a>, titled <code>fix(llm): keep function-call timeout armed across intermediate results</code>. It closes issue <a href="https://github.com/pipecat-ai/pipecat/issues/5481" rel="noopener">#5481</a>. A shorter blog note is also on <a href="/blog/pipecat-5760-function-call-timeout.html">the blog</a>.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>The problem</h2>
+<p>Pipecat is a framework for realtime voice agents. A tool the agent calls can be given a time limit: the per tool <code>timeout_secs</code>, or the global <code>function_call_timeout_secs</code> when the tool does not set its own. When the handler reports a result, the service runs <code>function_call_result_callback</code>.</p>
+<p>Before this change, that callback cancelled the timeout task for every result, including a result marked <code>FunctionCallResultProperties(is_final=False)</code>. An intermediate update is how a tool reports progress while it is still working. Cancelling the timeout there meant a progress report disarmed the deadline. A tool could say "working", then hang, and the timeout would not fire.</p>
+<p>That is a bad failure mode in a voice agent. A hanging tool with no deadline leaves the caller waiting, and the framework no longer has the cutoff it thought it had. The changelog line that landed with the pull request says the same thing: an async tool that reported progress no longer cancels its own deadline, and only a final result clears it.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>The fix</h2>
+<p>The cancel moved inside the <code>is_final</code> branch in <code>src/pipecat/services/llm_service.py</code>. A final result still marks the call settled and still cancels the timeout task if it is running. An intermediate result leaves the task armed. The deadline is not restarted either. It still covers the handler's whole execution, measured from when the call started.</p>
+<p>I updated the docs on <code>register_function</code> and <code>register_direct_function</code> so they say this. A call that runs past the deadline is still cancelled: the handler is thrown <code>asyncio.CancelledError</code>, the call is settled as cancelled, and inference runs so the model can report that it did not complete.</p>
+<p>The pull request says an earlier attempt, <a href="https://github.com/pipecat-ai/pipecat/pull/5491" rel="noopener">#5491</a>, was closed without review, and that 5760 reopens that approach against current main. I am taking that from the pull request text. The diff also adds <code>changelog/5760.fixed.md</code>. GitHub records 3 files changed on the pull request.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>How it was tested</h2>
+<p>The new coverage is in <code>tests/test_llm_service.py</code>, class <code>TestFunctionCallTimeout</code>. The pull request's test plan is <code>uv run pytest tests/test_llm_service.py::TestFunctionCallTimeout</code>. I am describing the tests that are in the merged diff. I have not rerun them for this page.</p>
+<h3>An intermediate update must not disarm the deadline</h3>
+<p><code>test_intermediate_result_does_not_disarm_the_deadline</code> registers a tool that first calls the result callback with "working" and <code>is_final=False</code>, then sleeps long enough to pass <code>timeout_secs</code>. The assertions in the diff are:</p>
+<ul class="clean">
+<li>The tool's later side effect does not run.</li>
+<li>The handler observes <code>CancelledError</code> for that call.</li>
+<li>The frames are <code>FunctionCallsStartedFrame</code>, <code>FunctionCallInProgressFrame</code>, a <code>FunctionCallResultFrame</code> whose properties are not final, then <code>FunctionCallCancelFrame</code>.</li>
+<li>The cancel frame has <code>run_llm</code> set.</li>
+</ul>
+<h3>A hanging tool with no update still times out</h3>
+<p><code>test_a_hanging_async_tool_times_out_without_any_update</code> is the control. The tool only sleeps, then would return a final result. It never gets there. The frames are the started frame, the in progress frame, and the cancel frame. There is no result frame, because nothing was reported.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>What this shows if you are hiring an AI agent engineer</h2>
+<ul class="clean">
+<li>I work on the timeout path of a voice-agent framework, not only on prompts. A tool that reports progress and then hangs is a production failure, not an edge case you can ignore.</li>
+<li>The fix is small and explicit: only a final result clears the deadline. The deadline is not reset by a progress update.</li>
+<li>The tests cover both sides of the contract: a progress update must not disarm the timeout, and a tool that never reports still times out.</li>
+<li>If you need a voice agent built, see <a href="/hire/voice-ai-developer/">hire a voice AI developer</a> or <a href="/hire/">all services</a>.</li>
+</ul>
+<p>I did not start Pipecat and I am not a maintainer. This is one merged fix. The other merged fixes are on the <a href="/open-source.html">open source page</a>, including <a href="/projects/genkit-openai-base64-embeddings/">Genkit #6346</a> and <a href="/projects/strands-agentresult-json-bytes/">Strands #4313</a>. My LiveKit Agents pull request, <a href="https://github.com/livekit/agents/pull/7186" rel="noopener">#7186</a>, is a different timeout, on <code>EndCallTool</code>, and it is still open.</p>
+<div class="cta">
+<a class="btn primary" href="https://github.com/pipecat-ai/pipecat/pull/5760" rel="noopener">Pull request 5760</a>
+<a class="btn" href="/blog/pipecat-5760-function-call-timeout.html">Blog post</a>
+<a class="btn" href="/open-source.html">All open source work</a>
+<a class="btn" href="/hire/voice-ai-developer/">Voice AI developer</a>
+</div>
+<p>Working with a team abroad? See <a href="/hire/ai-agent-engineer-usa/">United States</a>, <a href="/hire/ai-agent-engineer-uk/">United Kingdom</a>, <a href="/hire/ai-agent-engineer-australia/">Australia</a>, <a href="/hire/ai-agent-engineer-europe/">Europe</a> or <a href="/hire/ai-agent-engineer-uae-saudi/">UAE and Saudi Arabia</a>.</p>
+</div>
+</section>
+
+<section id="faq">
+<div class="wrap">
+<h2>Questions about this fix</h2>
+<div class="grid g2">
+<article class="card"><h3>What did Pipecat pull request 5760 fix?</h3><p class="muted">An intermediate function call result, marked <code>is_final=False</code>, used to cancel the tool timeout. After the fix, only a final result clears the deadline. A progress update does not clear it and does not restart it.</p></article>
+<article class="card"><h3>When was the pull request merged?</h3><p class="muted">It was merged on 15 September 2026. It closes issue <a href="https://github.com/pipecat-ai/pipecat/issues/5481" rel="noopener">#5481</a>. I wrote it. I am not a Pipecat maintainer.</p></article>
+<article class="card"><h3>How is this different from your LiveKit pull request?</h3><p class="muted"><a href="https://github.com/livekit/agents/pull/7186" rel="noopener">LiveKit Agents #7186</a> is a different timeout, on <code>EndCallTool</code>. It is still open and has not been merged. This page is only about the merged Pipecat change.</p></article>
+<article class="card"><h3>Do you build voice agents professionally?</h3><p class="muted">Yes. I build voice agents on Pipecat and LiveKit. See <a href="/hire/voice-ai-developer/">hire a voice AI developer</a>, or email me for a quote. I do not publish rates.</p></article>
+</div>
+<aside class="card author-box">
+<h2>About the author</h2>
+<p>Osama Malik (also written Usama Malik) is an AI agent engineer at Onlinx Solutions in Islamabad, Pakistan. This page is first hand from Pipecat pull request 5760, its diff and issue #5481. <a href="/">Home</a> · <a href="/hire/">Hire</a> · <a href="/blog/">Blog</a> · <a href="/blog/pipecat-5760-function-call-timeout.html">Blog post</a>.</p>
+</aside>
+</div>
+</section>
+</main>
+<footer><div class="wrap">
+<div>Osama Malik. AI agent engineer and full stack developer. Remote.</div>
+<div><a href="/blog/">Blog</a> · <a href="/hire/">Hire</a> · <a href="mailto:usmamalik346@gmail.com">usmamalik346@gmail.com</a> · <a href="https://github.com/usmamalik345" rel="me noopener">GitHub</a> · <a href="https://www.linkedin.com/in/osamamalik346" rel="me noopener">LinkedIn</a> · <a href="https://x.com/Osa_ma346" rel="me noopener">X</a></div>
+</div></footer>
+</body>
+</html>

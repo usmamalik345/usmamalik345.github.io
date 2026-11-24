@@ -36,7 +36,7 @@
       "url": "https://osamamalik.me/open-source.html",
       "name": "Open Source by Osama Malik | Pipecat, Genkit, Strands",
       "description": "Open source fixes by Osama Malik (Usama Malik): merged pull requests in Pipecat, Genkit and Strands Agents, plus LiveKit Agents #7186, which is still open.",
-      "dateModified": "2026-11-24T12:00:00+05:00",
+      "dateModified": "2026-11-25T12:00:00+05:00",
       "about": { "@id": "https://osamamalik.me/#person" },
       "isPartOf": { "@id": "https://osamamalik.me/#profilepage" }
     },
@@ -75,7 +75,7 @@
 <span class="eyebrow">Open source</span>
 <h1>Fixes in the frameworks agents run on</h1>
 <p class="post-meta">By <a href="https://osamamalik.me/">Osama Malik, AI Agent Engineer</a></p>
-<p class="muted">I did not start these projects. Each heading below is one pull request: what was broken, what the change does, and the link. Longer notes are in <a href="/blog/pipecat-5760-function-call-timeout.html">the Pipecat #5760 blog post</a> and the write-ups for <a href="/projects/genkit-openai-base64-embeddings/">Genkit #6346</a> and <a href="/projects/strands-agentresult-json-bytes/">Strands #4313</a>.</p>
+<p class="muted">I did not start these projects. Each heading below is one pull request: what was broken, what the change does, and the link. Longer notes are in the write-ups for <a href="/projects/pipecat-5760-function-call-timeout/">Pipecat #5760</a>, <a href="/projects/genkit-openai-base64-embeddings/">Genkit #6346</a> and <a href="/projects/strands-agentresult-json-bytes/">Strands #4313</a>, and in <a href="/blog/pipecat-5760-function-call-timeout.html">the Pipecat #5760 blog post</a>.</p>
 </div>
 </section>
 
@@ -89,7 +89,7 @@
 <h3>What changed</h3>
 <p>Only a final result clears the deadline. The deadline covers the handler's whole execution. A progress update does not clear it and does not restart it. The docs on <code>register_function</code> and <code>register_direct_function</code> say this explicitly. The code is in <code>src/pipecat/services/llm_service.py</code>, with tests in <code>tests/test_llm_service.py</code> and a changelog note in <code>changelog/5760.fixed.md</code>. The new test checks that an intermediate update does not disarm the deadline. A control test checks that a hanging async tool with no update still times out.</p>
 <p><a href="https://github.com/pipecat-ai/pipecat/pull/5760" rel="noopener">github.com/pipecat-ai/pipecat/pull/5760</a></p>
-<p><a href="/blog/pipecat-5760-function-call-timeout.html">Read the Pipecat #5760 story</a></p>
+<p><a href="/projects/pipecat-5760-function-call-timeout/">Read the Pipecat #5760 write-up</a> · <a href="/blog/pipecat-5760-function-call-timeout.html">Blog post</a></p>
 </div>
 </section>
 

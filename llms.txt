@@ -12,6 +12,9 @@
 - [Agent Receptionist case study](https://osamamalik.me/portfolio-agent/case-study.html): tool calling AI agent for appointment businesses, with cited RAG, policy routing and evals
 - [Genkit #6346 write-up](https://osamamalik.me/projects/genkit-openai-base64-embeddings/): merged fix so the Genkit Python OpenAI embedder no longer fails validation when encodingFormat is base64
 - [Strands Agents #4313 write-up](https://osamamalik.me/projects/strands-agentresult-json-bytes/): merged fix so AgentResult.to_dict serializes to JSON when a Bedrock message contains raw bytes
+- [Pipecat #5760 write-up](https://osamamalik.me/projects/pipecat-5760-function-call-timeout/): merged fix so function call timeouts stay armed across intermediate results
+- [POS and inventory platform](https://osamamalik.me/projects/pos-inventory-platform/): production point of sale work at Onlinx Solutions, ASP.NET Core and Angular 19
+- [Doctor booking platform](https://osamamalik.me/projects/doctor-booking-platform/): booking flows built at IT Pixelz for about 50 doctors across 20 clinics
 
 ## Blog
 - [How much does an AI agent cost to build and run? Real numbers from BleedStop](https://osamamalik.me/blog/how-much-does-an-ai-agent-cost.html)
@@ -24,6 +27,7 @@
 ## Regions
 - [Hire an AI agent engineer in the US](https://osamamalik.me/hire/ai-agent-engineer-usa/): remote work with US startups from Islamabad, including PKT overlap with Eastern and Pacific hours
 - [Hire an AI agent engineer in the UK](https://osamamalik.me/hire/ai-agent-engineer-uk/): large overlap with GMT and BST, and GDPR-aware data handling as a practice
+- [Hire an AI agent engineer in Australia](https://osamamalik.me/hire/ai-agent-engineer-australia/): the overlap is your afternoon and my morning; 9:00 PKT is 14:00 AEST or 15:00 AEDT in Sydney
 - [Hire an AI agent engineer in the UAE and Saudi Arabia](https://osamamalik.me/hire/ai-agent-engineer-uae-saudi/): PKT is one or two hours ahead of the Gulf, so the working day almost fully overlaps
 - [Hire an AI agent engineer in Europe](https://osamamalik.me/hire/ai-agent-engineer-europe/): PKT is three or four hours ahead of CET and CEST, so most of the European afternoon overlaps
 - [Hire an AI agent engineer in Germany](https://osamamalik.me/hire/ai-agent-engineer-germany/): DACH teams in Germany, Austria and Switzerland, with process-driven delivery

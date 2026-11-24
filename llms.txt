@@ -10,6 +10,8 @@
 ## Projects and case studies
 - [BleedStop, LLM cost guard](https://osamamalik.me/bleedstop.html): cost abuse control for LLM, SMS and payment APIs with Redis budgets and measured results
 - [Agent Receptionist case study](https://osamamalik.me/portfolio-agent/case-study.html): tool calling AI agent for appointment businesses, with cited RAG, policy routing and evals
+- [Genkit #6346 write-up](https://osamamalik.me/projects/genkit-openai-base64-embeddings/): merged fix so the Genkit Python OpenAI embedder no longer fails validation when encodingFormat is base64
+- [Strands Agents #4313 write-up](https://osamamalik.me/projects/strands-agentresult-json-bytes/): merged fix so AgentResult.to_dict serializes to JSON when a Bedrock message contains raw bytes
 
 ## Blog
 - [How much does an AI agent cost to build and run? Real numbers from BleedStop](https://osamamalik.me/blog/how-much-does-an-ai-agent-cost.html)

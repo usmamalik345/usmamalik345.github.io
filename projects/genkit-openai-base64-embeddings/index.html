@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Genkit OpenAI Base64 Embeddings Fix (PR 6346) | Osama Malik</title>
+<meta name="description" content="Osama Malik, AI Agent Engineer, fixed Genkit&#x27;s Python OpenAI embedder: encodingFormat base64 no longer fails validation. Merged PR 6346, root cause and tests.">
+<link rel="canonical" href="https://osamamalik.me/projects/genkit-openai-base64-embeddings/">
+<meta name="theme-color" content="#0b0d12">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Osama Malik">
+<meta property="og:title" content="Genkit OpenAI Base64 Embeddings Fix (PR 6346) | Osama Malik">
+<meta property="og:description" content="Osama Malik, AI Agent Engineer, fixed Genkit&#x27;s Python OpenAI embedder: encodingFormat base64 no longer fails validation. Merged PR 6346, root cause and tests.">
+<meta property="og:url" content="https://osamamalik.me/projects/genkit-openai-base64-embeddings/">
+<meta property="og:image" content="https://osamamalik.me/assets/osama-malik-ai-agent-engineer.png">
+<meta property="og:image:alt" content="Osama Malik, AI Agent Engineer">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Genkit OpenAI Base64 Embeddings Fix (PR 6346) | Osama Malik">
+<meta name="twitter:description" content="Osama Malik, AI Agent Engineer, fixed Genkit&#x27;s Python OpenAI embedder: encodingFormat base64 no longer fails validation. Merged PR 6346, root cause and tests.">
+<meta name="twitter:image" content="https://osamamalik.me/assets/osama-malik-ai-agent-engineer.png">
+<meta name="twitter:image:alt" content="Osama Malik, AI Agent Engineer">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://osamamalik.me/projects/genkit-openai-base64-embeddings/#article",
+      "headline": "Genkit OpenAI Base64 Embeddings Fix (PR 6346) | Osama Malik",
+      "description": "Osama Malik, AI Agent Engineer, fixed Genkit's Python OpenAI embedder: encodingFormat base64 no longer fails validation. Merged PR 6346, root cause and tests.",
+      "url": "https://osamamalik.me/projects/genkit-openai-base64-embeddings/",
+      "mainEntityOfPage": "https://osamamalik.me/projects/genkit-openai-base64-embeddings/",
+      "datePublished": "2026-11-24T12:00:00+05:00",
+      "dateModified": "2026-11-24T12:00:00+05:00",
+      "author": {
+        "@type": "Person",
+        "@id": "https://osamamalik.me/#person",
+        "name": "Osama Malik",
+        "url": "https://osamamalik.me/",
+        "jobTitle": "AI Agent Engineer"
+      },
+      "image": "https://osamamalik.me/assets/osama-malik-ai-agent-engineer.png",
+      "about": {
+        "@type": "SoftwareSourceCode",
+        "name": "genkit-ai/genkit pull request 6346",
+        "url": "https://github.com/genkit-ai/genkit/pull/6346",
+        "codeRepository": "https://github.com/genkit-ai/genkit",
+        "programmingLanguage": "Python"
+      },
+      "isBasedOn": "https://github.com/genkit-ai/genkit/pull/6346"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://osamamalik.me/projects/genkit-openai-base64-embeddings/#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://osamamalik.me/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Open source",
+          "item": "https://osamamalik.me/open-source.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Genkit #6346",
+          "item": "https://osamamalik.me/projects/genkit-openai-base64-embeddings/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="/"><img src="/favicon.svg" alt="" width="30" height="30" style="display:block;border-radius:8px">Osama Malik</a>
+<nav aria-label="Main"><ul>
+<li><a href="/#about">About</a></li>
+<li><a href="/#skills">Skills</a></li>
+<li><a href="/#experience">Experience</a></li>
+<li><a href="/#work">Work</a></li>
+<li><a href="/open-source.html" aria-current="page">Open source</a></li>
+<li><a href="/blog/">Blog</a></li>
+<li><a href="/hire/">Hire</a></li>
+<li><a href="/#contact">Contact</a></li>
+</ul></nav>
+</div></header>
+<main id="main">
+<section class="hero">
+<div class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/open-source.html">Open source</a> / Genkit #6346</div>
+<span class="status merged">Merged</span>
+<p class="lead">Genkit pull request 6346 stops the Python OpenAI plugin from failing when an embedder is asked for <code>encodingFormat: 'base64'</code>. I wrote it, and it was merged on 23 Sep 2026.</p>
+<p class="post-meta"><time datetime="2026-11-24">24 Nov 2026</time> · <a href="https://osamamalik.me/">Osama Malik, AI Agent Engineer</a></p>
+<h1>Fixing base64 embeddings in Genkit&#x27;s OpenAI plugin</h1>
+<p class="muted">The pull request is <a href="https://github.com/genkit-ai/genkit/pull/6346" rel="noopener">genkit-ai/genkit #6346</a>, titled <code>fix(py/plugins/openai): encodingFormat 'base64' no longer fails embedding validation</code>. It fixes issue <a href="https://github.com/genkit-ai/genkit/issues/6317" rel="noopener">#6317</a>.</p>
+</div>
+</section>
+<section>
+<div class="wrap">
+<h2>The problem</h2>
+<p>Genkit's Python OpenAI plugin lets you pass <code>encodingFormat</code> to an embedder. Issue <a href="https://github.com/genkit-ai/genkit/issues/6317" rel="noopener">#6317</a> reported that this call failed:</p>
+<pre><code>await ai.embed(
+    embedder='openai/text-embedding-3-small',
+    content='hi',
+    options={'encodingFormat': 'base64'},
+)</code></pre>
+<p>The error was a pydantic validation failure, <code>1 validation error for Embedding</code>. Embeddings are the input to retrieval in a RAG system, so a broken option here breaks the step before search.</p>
+</div>
+</section>
+<section>
+<div class="wrap">
+<h2>Root cause</h2>
+<p>The embedder passed <code>encodingFormat</code> straight through to <code>embeddings.create()</code> in the OpenAI Python SDK. The issue explains what the SDK does with it. When <code>encoding_format</code> is omitted, the SDK still requests base64 on the wire and decodes the response to a list of floats itself. When <code>encoding_format</code> is given explicitly, the SDK returns the response unmodified. Each <code>item.embedding</code> was then the raw base64 string, and <code>Embedding(embedding=item.embedding)</code> rejected it, because it expects a list of floats.</p>
+</div>
+</section>
+<section>
+<div class="wrap">
+<h2>The fix</h2>
+<p>My first version of the pull request added a decoder that turned the base64 string into 32 bit floats inside the plugin. In review, a maintainer pointed out that the SDK already does that decoding when the parameter is omitted, so mapping the user's <code>'base64'</code> to "omit" sends the same request on the wire with no decoder to maintain. I agreed and removed the decoder in commit <code>96248e4</code>, which the reviewer confirmed in the thread. The merged fix is the smaller change.</p>
+<p>The merged change is in <code>py/packages/genkit-openai/src/genkit_openai/openai_plugin.py</code>. <code>'base64'</code> is no longer forwarded. <code>'float'</code> is still forwarded, because it is a genuinely different request:</p>
+<pre><code>-                enc_val = request.options.get('encodingFormat')
+-                if enc_val in ('float', 'base64'):
+-                    encoding_format = cast(Literal['base64', 'float'], enc_val)
++                # 'base64' is deliberately not forwarded: the SDK sends base64 either
++                # way and only decodes the response when it was not asked explicitly.
++                if request.options.get('encodingFormat') == 'float':
++                    encoding_format = 'float'</code></pre>
+<p>The type annotation narrowed with it, from <code>Literal['base64', 'float'] | None</code> to <code>Literal['float'] | None</code>. GitHub records 2 files changed, 34 additions and 9 deletions.</p>
+</div>
+</section>
+<section>
+<div class="wrap">
+<h2>How it was tested and reviewed</h2>
+<p>Two tests were added in <code>py/packages/genkit-openai/tests/openai_plugin_test.py</code>:</p>
+<ul class="clean">
+<li><code>test_embedder_requesting_base64_omits_the_parameter</code> checks that a <code>base64</code> request calls <code>embeddings.create</code> with only <code>model</code> and <code>input</code>, and that the returned vector is the list of floats.</li>
+<li><code>test_embedder_forwards_float_encoding_format</code> checks that a <code>float</code> request still sends <code>encoding_format='float'</code>.</li>
+</ul>
+<p>The pull request also reran the repro from the issue through the real SDK against a mock transport that returns <code>[0.1, -0.25, 0.5]</code> as float32 base64. Before the change it failed with <code>1 validation error for Embedding</code>. After it, the result was <code>[0.10000000149011612, -0.25, 0.5]</code>. That is a mock transport, not a live OpenAI call.</p>
+<p>Review had several rounds. An automated reviewer commented on the first decoder version. A reviewer, who had also opened issue #6317, asked for <code>assert_awaited_once_with</code> in a test, because the original assertion failed the type check, and suggested dropping the decoder. After those changes another reviewer approved with "lgtm" and merged the pull request on 23 Sep 2026. I also signed the Google CLA so the CLA check passed.</p>
+</div>
+</section>
+<section>
+<div class="wrap">
+<h2>What this shows if you are hiring an AI agent engineer</h2>
+<ul class="clean">
+<li>I read the SDK underneath a framework, not only the framework. The bug was in how two libraries agreed on one parameter.</li>
+<li>I take review well. The reviewer's simpler approach was better than my decoder, so the merged fix is the smaller one.</li>
+<li>I test the contract both ways: the option that changed and the option that must not change.</li>
+<li>Embeddings are the base of RAG. If you need retrieval built or debugged, see <a href="/hire/rag-developer/">hire a RAG developer</a> and <a href="/hire/ai-chatbot-developer/">AI chatbot developer</a>.</li>
+</ul>
+<p>I did not start Genkit and I am not a maintainer. This is one merged fix. The other merged fixes are on the <a href="/open-source.html">open source page</a>, including <a href="/projects/strands-agentresult-json-bytes/">Strands #4313</a> and <a href="/blog/pipecat-5760-function-call-timeout.html">Pipecat #5760</a>.</p>
+<div class="cta">
+<a class="btn primary" href="https://github.com/genkit-ai/genkit/pull/6346" rel="noopener">Pull request 6346</a>
+<a class="btn" href="https://github.com/genkit-ai/genkit" rel="noopener">Genkit on GitHub</a>
+<a class="btn" href="/open-source.html">All open source work</a>
+<a class="btn" href="/hire/">Hire me</a>
+</div>
+<p>Working with a team abroad? See <a href="/hire/ai-agent-engineer-usa/">United States</a>, <a href="/hire/ai-agent-engineer-uk/">United Kingdom</a>, <a href="/hire/ai-agent-engineer-europe/">Europe</a> or <a href="/hire/ai-agent-engineer-uae-saudi/">UAE and Saudi Arabia</a>. More writing is on the <a href="/blog/">blog</a>.</p>
+<aside class="card author-box">
+<h2>About the author</h2>
+<p>Osama Malik (also written Usama Malik) is an AI agent engineer at Onlinx Solutions in Islamabad, Pakistan. This page is first hand from Genkit pull request 6346, its diff, issue #6317 and the review thread. <a href="/">Home</a> · <a href="/hire/">Hire</a> · <a href="/blog/">Blog</a> · <a href="/bleedstop.html">BleedStop</a> · <a href="/portfolio-agent/case-study.html">Agent Receptionist</a>.</p>
+</aside>
+</div>
+</section>
+
+</main>
+<footer><div class="wrap">
+<div>Osama Malik. AI agent engineer and full stack developer. Remote.</div>
+<div><a href="/blog/">Blog</a> · <a href="/hire/">Hire</a> · <a href="mailto:usmamalik346@gmail.com">usmamalik346@gmail.com</a> · <a href="https://github.com/usmamalik345" rel="me noopener">GitHub</a> · <a href="https://www.linkedin.com/in/osamamalik346" rel="me noopener">LinkedIn</a> · <a href="https://x.com/Osa_ma346" rel="me noopener">X</a></div>
+</div></footer>
+</body>
+</html>

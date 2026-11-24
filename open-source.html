@@ -36,7 +36,7 @@
       "url": "https://osamamalik.me/open-source.html",
       "name": "Open Source by Osama Malik | Pipecat, Genkit, Strands",
       "description": "Open source fixes by Osama Malik (Usama Malik): merged pull requests in Pipecat, Genkit and Strands Agents, plus LiveKit Agents #7186, which is still open.",
-      "dateModified": "2026-11-17T12:00:00+05:00",
+      "dateModified": "2026-11-24T12:00:00+05:00",
       "about": { "@id": "https://osamamalik.me/#person" },
       "isPartOf": { "@id": "https://osamamalik.me/#profilepage" }
     },
@@ -75,7 +75,7 @@
 <span class="eyebrow">Open source</span>
 <h1>Fixes in the frameworks agents run on</h1>
 <p class="post-meta">By <a href="https://osamamalik.me/">Osama Malik, AI Agent Engineer</a></p>
-<p class="muted">I did not start these projects. Each heading below is one pull request: what was broken, what the change does, and the link. Longer notes on Pipecat #5760 are in <a href="/blog/pipecat-5760-function-call-timeout.html">the blog post</a>.</p>
+<p class="muted">I did not start these projects. Each heading below is one pull request: what was broken, what the change does, and the link. Longer notes are in <a href="/blog/pipecat-5760-function-call-timeout.html">the Pipecat #5760 blog post</a> and the write-ups for <a href="/projects/genkit-openai-base64-embeddings/">Genkit #6346</a> and <a href="/projects/strands-agentresult-json-bytes/">Strands #4313</a>.</p>
 </div>
 </section>
 
@@ -103,6 +103,7 @@
 <h3>What changed</h3>
 <p>The embedder no longer forwards <code>base64</code>. <code>float</code> is still forwarded, because that is a different request. In the same mock repro, the transport returned the vector 0.1, negative 0.25, 0.5 as a base64 32 bit float, and the decoded result was <code>[0.10000000149011612, -0.25, 0.5]</code>. The change is in <code>py/packages/genkit-openai/src/genkit_openai/openai_plugin.py</code>, with tests in <code>py/packages/genkit-openai/tests/openai_plugin_test.py</code>. One test checks that a base64 request omits the parameter. Another checks that a float request still sends <code>encoding_format='float'</code>.</p>
 <p><a href="https://github.com/genkit-ai/genkit/pull/6346" rel="noopener">github.com/genkit-ai/genkit/pull/6346</a></p>
+<p><a href="/projects/genkit-openai-base64-embeddings/">Read the Genkit #6346 write-up</a></p>
 </div>
 </section>
 
@@ -116,6 +117,7 @@
 <h3>What changed</h3>
 <p><code>to_dict</code> now passes <code>message</code> through <code>encode_bytes_values</code>, the same helper session persistence uses. <code>from_dict</code> passes it through <code>decode_bytes_values</code>, so a round trip restores the original bytes. The code is in <code>strands-py/src/strands/agent/agent_result.py</code>. A regression test in <code>strands-py/tests/strands/agent/test_agent_result.py</code> puts bytes in <code>redactedContent</code>, serializes with <code>json.dumps</code>, and checks that <code>from_dict</code> restores those bytes. The pull request reports that this test file passed 30 tests, including that regression. I am reporting the pull request's own test note, not a run I repeated here.</p>
 <p><a href="https://github.com/strands-agents/harness-sdk/pull/4313" rel="noopener">github.com/strands-agents/harness-sdk/pull/4313</a></p>
+<p><a href="/projects/strands-agentresult-json-bytes/">Read the Strands #4313 write-up</a></p>
 </div>
 </section>
 

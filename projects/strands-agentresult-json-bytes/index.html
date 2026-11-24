@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Strands Agents AgentResult JSON Bytes Fix (PR 4313) | Osama Malik</title>
+<meta name="description" content="Osama Malik, AI Agent Engineer, fixed Strands Agents: AgentResult.to_dict now serializes to JSON when Bedrock returns raw bytes. Merged PR 4313 with tests.">
+<link rel="canonical" href="https://osamamalik.me/projects/strands-agentresult-json-bytes/">
+<meta name="theme-color" content="#0b0d12">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Osama Malik">
+<meta property="og:title" content="Strands Agents AgentResult JSON Bytes Fix (PR 4313) | Osama Malik">
+<meta property="og:description" content="Osama Malik, AI Agent Engineer, fixed Strands Agents: AgentResult.to_dict now serializes to JSON when Bedrock returns raw bytes. Merged PR 4313 with tests.">
+<meta property="og:url" content="https://osamamalik.me/projects/strands-agentresult-json-bytes/">
+<meta property="og:image" content="https://osamamalik.me/assets/osama-malik-ai-agent-engineer.png">
+<meta property="og:image:alt" content="Osama Malik, AI Agent Engineer">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Strands Agents AgentResult JSON Bytes Fix (PR 4313) | Osama Malik">
+<meta name="twitter:description" content="Osama Malik, AI Agent Engineer, fixed Strands Agents: AgentResult.to_dict now serializes to JSON when Bedrock returns raw bytes. Merged PR 4313 with tests.">
+<meta name="twitter:image" content="https://osamamalik.me/assets/osama-malik-ai-agent-engineer.png">
+<meta name="twitter:image:alt" content="Osama Malik, AI Agent Engineer">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://osamamalik.me/projects/strands-agentresult-json-bytes/#article",
+      "headline": "Strands Agents AgentResult JSON Bytes Fix (PR 4313) | Osama Malik",
+      "description": "Osama Malik, AI Agent Engineer, fixed Strands Agents: AgentResult.to_dict now serializes to JSON when Bedrock returns raw bytes. Merged PR 4313 with tests.",
+      "url": "https://osamamalik.me/projects/strands-agentresult-json-bytes/",
+      "mainEntityOfPage": "https://osamamalik.me/projects/strands-agentresult-json-bytes/",
+      "datePublished": "2026-11-24T12:00:00+05:00",
+      "dateModified": "2026-11-24T12:00:00+05:00",
+      "author": {
+        "@type": "Person",
+        "@id": "https://osamamalik.me/#person",
+        "name": "Osama Malik",
+        "url": "https://osamamalik.me/",
+        "jobTitle": "AI Agent Engineer"
+      },
+      "image": "https://osamamalik.me/assets/osama-malik-ai-agent-engineer.png",
+      "about": {
+        "@type": "SoftwareSourceCode",
+        "name": "strands-agents/harness-sdk pull request 4313",
+        "url": "https://github.com/strands-agents/harness-sdk/pull/4313",
+        "codeRepository": "https://github.com/strands-agents/harness-sdk",
+        "programmingLanguage": "Python"
+      },
+      "isBasedOn": "https://github.com/strands-agents/harness-sdk/pull/4313"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://osamamalik.me/projects/strands-agentresult-json-bytes/#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://osamamalik.me/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Open source",
+          "item": "https://osamamalik.me/open-source.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Strands #4313",
+          "item": "https://osamamalik.me/projects/strands-agentresult-json-bytes/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="/"><img src="/favicon.svg" alt="" width="30" height="30" style="display:block;border-radius:8px">Osama Malik</a>
+<nav aria-label="Main"><ul>
+<li><a href="/#about">About</a></li>
+<li><a href="/#skills">Skills</a></li>
+<li><a href="/#experience">Experience</a></li>
+<li><a href="/#work">Work</a></li>
+<li><a href="/open-source.html" aria-current="page">Open source</a></li>
+<li><a href="/blog/">Blog</a></li>
+<li><a href="/hire/">Hire</a></li>
+<li><a href="/#contact">Contact</a></li>
+</ul></nav>
+</div></header>
+<main id="main">
+<section class="hero">
+<div class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/open-source.html">Open source</a> / Strands #4313</div>
+<span class="status merged">Merged</span>
+<p class="lead">Strands Agents pull request 4313 makes <code>AgentResult.to_dict()</code> safe for <code>json.dumps</code> when a Bedrock message contains raw bytes. I wrote it, and it was merged on 14 Sep 2026.</p>
+<p class="post-meta"><time datetime="2026-11-24">24 Nov 2026</time> · <a href="https://osamamalik.me/">Osama Malik, AI Agent Engineer</a></p>
+<h1>Making Strands AgentResult.to_dict JSON safe with bytes</h1>
+<p class="muted">The pull request is <a href="https://github.com/strands-agents/harness-sdk/pull/4313" rel="noopener">strands-agents/harness-sdk #4313</a>, titled <code>fix(agent): make AgentResult.to_dict JSON-serializable with bytes</code>. It fixes issue <a href="https://github.com/strands-agents/harness-sdk/issues/4167" rel="noopener">#4167</a>.</p>
+</div>
+</section>
+<section>
+<div class="wrap">
+<h2>The problem</h2>
+<p>In the Strands Agents Python SDK, <code>AgentResult.to_dict()</code> is documented as converting the result "to JSON-serializable dictionary". Issue <a href="https://github.com/strands-agents/harness-sdk/issues/4167" rel="noopener">#4167</a> reported that it was not, for some messages. With a Bedrock model that called a tool and then answered, the final assistant message contained a <code>reasoningContent</code> block whose <code>redactedContent</code> was raw <code>bytes</code>. <code>json.dumps(result.to_dict())</code> then raised <code>TypeError: Object of type bytes is not JSON serializable</code>.</p>
+<p>The reporter ran the agent inside a Bedrock AgentCore runtime. That runtime falls back to <code>str(obj)</code> when an object does not serialize, so the consumer received a Python repr inside a JSON string instead of a JSON object, and failed while parsing it.</p>
+</div>
+</section>
+<section>
+<div class="wrap">
+<h2>Root cause</h2>
+<p>The Bedrock Converse API types <code>redactedContent</code> as a blob, so it arrives in Python as <code>bytes</code>. <code>to_dict()</code> put <code>self.message</code> into the dictionary unchanged. The SDK's session persistence already handled bytes in messages with its own helpers. <code>to_dict()</code> did not use them, so the gap was specific to that method.</p>
+</div>
+</section>
+<section>
+<div class="wrap">
+<h2>The fix</h2>
+<p>I reused the helpers session persistence already uses, instead of writing a second encoder. In <code>strands-py/src/strands/agent/agent_result.py</code>, <code>to_dict()</code> now passes <code>message</code> through <code>encode_bytes_values</code>:</p>
+<pre><code>         return {
+             "type": "agent_result",
+-            "message": self.message,
++            "message": encode_bytes_values(self.message),
+             "stop_reason": self.stop_reason,
+             "checkpoint": self.checkpoint.to_dict() if self.checkpoint else None,
+         }</code></pre>
+<p><code>from_dict()</code> passes it back through <code>decode_bytes_values</code>, so a round trip restores the original bytes. The docstring now says that binary values in <code>message</code> are base64 encoded. GitHub records 2 files changed, 30 additions and 2 deletions, in one commit.</p>
+</div>
+</section>
+<section>
+<div class="wrap">
+<h2>How it was tested and reviewed</h2>
+<p>The regression test <code>test_to_dict_json_serializable_with_redacted_content_bytes</code> in <code>strands-py/tests/strands/agent/test_agent_result.py</code> builds a message with a text block and a <code>redactedContent</code> block holding bytes. It runs <code>to_dict()</code>, <code>json.dumps</code>, <code>json.loads</code> and <code>from_dict()</code>, then checks that the text and the original bytes both come back.</p>
+<p>The pull request reports <code>hatch test tests/strands/agent/test_agent_result.py</code> with 30 passed, including the new test, and <code>hatch fmt --linter</code> with all checks passed. Codecov reported that all modified and coverable lines are covered by tests. A maintainer approved it and merged it on 14 Sep 2026 (UTC), which closed issue #4167.</p>
+</div>
+</section>
+<section>
+<div class="wrap">
+<h2>What this shows if you are hiring an AI agent engineer</h2>
+<ul class="clean">
+<li>I work on agent output, not only prompts. A result that does not serialize breaks every API, queue or UI that consumes the agent.</li>
+<li>I work with the AWS agent stack: Bedrock Converse content types and the Strands Agents SDK.</li>
+<li>I keep fixes small and consistent with the codebase. This one reuses existing helpers and adds a round trip test.</li>
+<li>If you need an agent built end to end, see <a href="/hire/full-stack-developer/">full stack AI developer</a>, <a href="/hire/langgraph-developer/">LangGraph developer</a> or <a href="/hire/">all services</a>.</li>
+</ul>
+<p>I did not start Strands Agents and I am not a maintainer. This is one merged fix. The other merged fixes are on the <a href="/open-source.html">open source page</a>, including <a href="/projects/genkit-openai-base64-embeddings/">Genkit #6346</a> and <a href="/blog/pipecat-5760-function-call-timeout.html">Pipecat #5760</a>.</p>
+<div class="cta">
+<a class="btn primary" href="https://github.com/strands-agents/harness-sdk/pull/4313" rel="noopener">Pull request 4313</a>
+<a class="btn" href="https://github.com/strands-agents/harness-sdk" rel="noopener">Strands harness SDK on GitHub</a>
+<a class="btn" href="/open-source.html">All open source work</a>
+<a class="btn" href="/hire/">Hire me</a>
+</div>
+<p>Working with a team abroad? See <a href="/hire/ai-agent-engineer-usa/">United States</a>, <a href="/hire/ai-agent-engineer-uk/">United Kingdom</a>, <a href="/hire/ai-agent-engineer-europe/">Europe</a> or <a href="/hire/ai-agent-engineer-uae-saudi/">UAE and Saudi Arabia</a>. More writing is on the <a href="/blog/">blog</a>.</p>
+<aside class="card author-box">
+<h2>About the author</h2>
+<p>Osama Malik (also written Usama Malik) is an AI agent engineer at Onlinx Solutions in Islamabad, Pakistan. This page is first hand from Strands pull request 4313, its diff and issue #4167. <a href="/">Home</a> · <a href="/hire/">Hire</a> · <a href="/blog/">Blog</a> · <a href="/bleedstop.html">BleedStop</a> · <a href="/portfolio-agent/case-study.html">Agent Receptionist</a>.</p>
+</aside>
+</div>
+</section>
+
+</main>
+<footer><div class="wrap">
+<div>Osama Malik. AI agent engineer and full stack developer. Remote.</div>
+<div><a href="/blog/">Blog</a> · <a href="/hire/">Hire</a> · <a href="mailto:usmamalik346@gmail.com">usmamalik346@gmail.com</a> · <a href="https://github.com/usmamalik345" rel="me noopener">GitHub</a> · <a href="https://www.linkedin.com/in/osamamalik346" rel="me noopener">LinkedIn</a> · <a href="https://x.com/Osa_ma346" rel="me noopener">X</a></div>
+</div></footer>
+</body>
+</html>

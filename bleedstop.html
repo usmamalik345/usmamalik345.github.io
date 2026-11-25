@@ -37,7 +37,7 @@
       "description": "A runtime cost guard for LLM, SMS and payment APIs, built by Osama Malik in Pakistan, with Redis budgets and results measured on one 8 vCPU machine.",
       "url": "https://osamamalik.me/bleedstop.html",
       "mainEntityOfPage": "https://osamamalik.me/bleedstop.html",
-      "dateModified": "2026-11-19T12:00:00+05:00",
+      "dateModified": "2026-11-25T12:00:00+05:00",
       "author": { "@id": "https://osamamalik.me/#person" },
       "about": { "@id": "https://osamamalik.me/bleedstop.html#code" },
       "image": "https://osamamalik.me/assets/osama-malik-ai-agent-engineer.png"
@@ -85,7 +85,7 @@
 <span class="eyebrow">Case study</span>
 <h1>BleedStop, an LLM cost and security guard for AI agents</h1>
 <p class="post-meta">By <a href="https://osamamalik.me/">Osama Malik, AI Agent Engineer</a></p>
-<p class="lead">BleedStop is a runtime cost and security guard I built for LLM, SMS and payment APIs, mapped to OWASP LLM10 (Unbounded Consumption). An application calls it before spending money, and it answers ALLOW, LIMIT, CHALLENGE or DENY.</p>
+<p class="lead">BleedStop is a runtime cost and security guard that Osama Malik, an AI Agent Engineer in Islamabad, Pakistan, built for LLM, SMS and payment APIs, mapped to OWASP LLM10 (Unbounded Consumption). An application calls it before spending money, and it answers ALLOW, LIMIT, CHALLENGE or DENY. Measured on one 8 vCPU machine, it handled 5,433 decisions per second at p99 36.2 ms with 0 failed requests out of 60,000, a capped request used 97.6% fewer output tokens (64 instead of 2,618), and 0 of 287,403 requests failed during a 6 pod Kubernetes rolling restart.</p>
 <div class="cta">
 <a class="btn primary" href="https://github.com/usmamalik345/bleedstop" rel="noopener">Source on GitHub</a>
 <a class="btn" href="https://bleedstop-demo.vercel.app" rel="noopener">Live demo</a>

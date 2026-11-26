@@ -1,6 +1,6 @@
 # Osama Malik (Usama Malik), AI Agent Engineer
 
-> Osama Malik (also written Usama Malik) is an AI agent engineer at Onlinx Solutions in Islamabad, Pakistan, and a freelance AI agent developer. He builds voice agents, RAG systems, tool calling agents, and LLM cost and security guards, and works remotely with teams in the US, UK, Europe, Australia and the Gulf. Contact: usmamalik346@gmail.com
+> Osama Malik (also written Usama Malik) is an AI agent engineer at Onlinx Solutions in Islamabad, Pakistan, and a freelance AI agent developer. He builds voice agents, RAG systems, tool calling agents, and LLM cost and security guards, and works remotely with teams in the US, UK, Europe, Australia and the Gulf. Contact: usmamalik344@gmail.com
 
 ## About
 - [Home](https://osamamalik.me/): who Osama Malik is, his experience, skills and selected work
@@ -10,6 +10,7 @@
 ## Projects and case studies
 - [BleedStop, LLM cost guard](https://osamamalik.me/bleedstop.html): cost abuse control for LLM, SMS and payment APIs with Redis budgets and measured results
 - [Agent Receptionist case study](https://osamamalik.me/portfolio-agent/case-study.html): tool calling AI agent for appointment businesses, with cited RAG, policy routing and evals
+- [Agent Receptionist platform case study](https://osamamalik.me/projects/agent-receptionist/): multi-tenant voice and chat receptionist, 22 sample tenants, writes only after a confirmed yes, release gate 270/270 cases and 670/670 turns on 25 Nov 2026
 - [Genkit #6346 write-up](https://osamamalik.me/projects/genkit-openai-base64-embeddings/): merged fix so the Genkit Python OpenAI embedder no longer fails validation when encodingFormat is base64
 - [Strands Agents #4313 write-up](https://osamamalik.me/projects/strands-agentresult-json-bytes/): merged fix so AgentResult.to_dict serializes to JSON when a Bedrock message contains raw bytes
 - [Pipecat #5760 write-up](https://osamamalik.me/projects/pipecat-5760-function-call-timeout/): merged fix so function call timeouts stay armed across intermediate results

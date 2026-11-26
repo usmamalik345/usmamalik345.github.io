@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agent Receptionist | Osama Malik</title>
+<meta name="description" content="Agent Receptionist is the multi-tenant voice and chat receptionist Osama Malik built: 22 sample tenants, booking only after a confirmed yes, and a 25 Nov 2026 release gate of 270/270 cases.">
+<link rel="canonical" href="https://osamamalik.me/projects/agent-receptionist/">
+<meta name="theme-color" content="#0b0d12">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Osama Malik">
+<meta property="og:title" content="Agent Receptionist | Osama Malik">
+<meta property="og:description" content="Agent Receptionist is the multi-tenant voice and chat receptionist Osama Malik built: 22 sample tenants, booking only after a confirmed yes, and a 25 Nov 2026 release gate of 270/270 cases.">
+<meta property="og:url" content="https://osamamalik.me/projects/agent-receptionist/">
+<meta property="og:image" content="https://osamamalik.me/assets/osama-malik-ai-agent-engineer.png">
+<meta property="og:image:alt" content="Osama Malik, AI Agent Engineer">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agent Receptionist | Osama Malik">
+<meta name="twitter:description" content="Agent Receptionist is the multi-tenant voice and chat receptionist Osama Malik built: 22 sample tenants, booking only after a confirmed yes, and a 25 Nov 2026 release gate of 270/270 cases.">
+<meta name="twitter:image" content="https://osamamalik.me/assets/osama-malik-ai-agent-engineer.png">
+<meta name="twitter:image:alt" content="Osama Malik, AI Agent Engineer">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["CreativeWork", "TechArticle"],
+      "@id": "https://osamamalik.me/projects/agent-receptionist/#article",
+      "headline": "Agent Receptionist | Osama Malik",
+      "description": "Agent Receptionist is the multi-tenant voice and chat receptionist Osama Malik built: 22 sample tenants, booking only after a confirmed yes, and a 25 Nov 2026 release gate of 270/270 cases.",
+      "url": "https://osamamalik.me/projects/agent-receptionist/",
+      "mainEntityOfPage": "https://osamamalik.me/projects/agent-receptionist/",
+      "datePublished": "2026-11-26T12:00:00+05:00",
+      "dateModified": "2026-11-26T12:00:00+05:00",
+      "author": {
+        "@type": "Person",
+        "@id": "https://osamamalik.me/#person",
+        "name": "Osama Malik",
+        "url": "https://osamamalik.me/",
+        "jobTitle": "AI Agent Engineer"
+      },
+      "image": "https://osamamalik.me/assets/osama-malik-ai-agent-engineer.png",
+      "about": { "@id": "https://osamamalik.me/projects/agent-receptionist/#software" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://osamamalik.me/projects/agent-receptionist/#software",
+      "name": "Agent Receptionist",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "A multi-tenant voice and chat receptionist that Osama Malik built. One deployment serves many businesses. Each business is a JSON file. Booking writes run only after the caller confirms.",
+      "author": { "@id": "https://osamamalik.me/#person" },
+      "creator": { "@id": "https://osamamalik.me/#person" },
+      "url": "https://osamamalik.me/projects/agent-receptionist/"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://osamamalik.me/projects/agent-receptionist/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Agent Receptionist?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Agent Receptionist is a voice and chat receptionist for many businesses at once. Osama Malik, an AI Agent Engineer in Islamabad, Pakistan, built it so a new business is one JSON file and no code change. It ships with 22 sample tenants: 11 hotels and 11 dental clinics."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are Erth Abu Dhabi and MM Dental Care invented?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Erth Abu Dhabi was built from public facts on erth.ae, and MM Dental Care was built from public facts on mmdentalcare.co.uk. Where a fact is not published, including Erth room rates and the MM Dental Care check-up price, the field is null and the agent says the team will confirm it. Nothing is invented. The other 20 tenants are fictional, and their names, addresses and phone numbers use the 555-01xx and Ofcom drama ranges."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the agent book a room or an appointment without a yes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. book_room and book_appointment run only with the confirmation id issued when the caller says yes to the read-back. The 25 Nov 2026 release gate recorded 0 writes without confirmation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How often does Agent Receptionist call a language model?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hours, prices, policies, bookings and hand-offs are answered by tools and templates. The model is called only for open FAQ questions, and it is grounded on that tenant's own knowledge passages. On the 25 Nov 2026 eval that was 60 of 670 turns."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What did the 25 Nov 2026 release gate score?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "On 25 Nov 2026, with the mock responder, in-process, the release gate passed 270 of 270 cases and 670 of 670 turns. Hotel was 140 of 140 and dental was 130 of 130. There were 0 safety failures and 0 writes without confirmation. The same 270 cases and 670 turns also passed the same day against Groq's free-plan model openai/gpt-oss-20b, with 0 safety failures, 1 guard block that caught a cross-tenant leak, 60 model turns, 17,681 tokens and a cost of $0."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What was not measured?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Speech recognition, speech synthesis, real time-to-first-audio and phone-line latency were not measured. Speech quality was not measured either. The latencies on this page are in-process, and the FAQ p95 includes the Groq call. The Docker image has not been built yet, because Docker was not available on the build box."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://osamamalik.me/projects/agent-receptionist/#breadcrumbs",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://osamamalik.me/" },
+        { "@type": "ListItem", "position": 2, "name": "Work", "item": "https://osamamalik.me/#work" },
+        { "@type": "ListItem", "position": 3, "name": "Agent Receptionist", "item": "https://osamamalik.me/projects/agent-receptionist/" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="/"><img src="/favicon.svg" alt="" width="30" height="30" style="display:block;border-radius:8px">Osama Malik</a>
+<nav aria-label="Main"><ul>
+<li><a href="/#about">About</a></li>
+<li><a href="/#skills">Skills</a></li>
+<li><a href="/#experience">Experience</a></li>
+<li><a href="/#work" aria-current="page">Work</a></li>
+<li><a href="/open-source.html">Open source</a></li>
+<li><a href="/blog/">Blog</a></li>
+<li><a href="/hire/">Hire</a></li>
+<li><a href="/#contact">Contact</a></li>
+</ul></nav>
+</div></header>
+<main id="main">
+<section class="hero">
+<div class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/#work">Work</a> / Agent Receptionist</div>
+<span class="badge"><span class="dot" aria-hidden="true"></span>Public repository, 22 sample tenants</span>
+<p class="lead">Osama Malik, an AI Agent Engineer in Islamabad, Pakistan, built Agent Receptionist, a voice and chat receptionist for many businesses at once. You onboard a new business by adding one JSON file, with no code change. Every caller turn goes through a set of small agents, and a booking is written only after the caller says yes.</p>
+<p class="post-meta"><time datetime="2026-11-26">26 Nov 2026</time> · <a href="https://osamamalik.me/">Osama Malik, AI Agent Engineer</a></p>
+<h1>Agent Receptionist, one receptionist for many businesses</h1>
+<p class="muted">It ships with 22 sample tenants: 11 hotels and 11 dental clinics. Twenty are fictional. Two, Erth Abu Dhabi and MM Dental Care, were built from public facts, and unpublished facts are left null.</p>
+<div class="cta">
+<a class="btn primary" href="https://github.com/usmamalik345/agent-receptionist" rel="noopener">Source on GitHub</a>
+<a class="btn" href="https://agent-receptionist.vercel.app/dashboard?biz=hotel" rel="noopener">Live demo: hotel</a>
+<a class="btn" href="https://agent-receptionist.vercel.app/dashboard?biz=dental" rel="noopener">Live demo: dental</a>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>The problem</h2>
+<p>A hotel desk and a dental practice both need someone to answer hours, prices, policies and bookings, and to hand a caller to a person when the question is not one of those. They do not need a separate product, and they must not share a diary, a phone number or a rate card. If the model is asked to invent a price that was never published, the caller hears a fact the business did not state.</p>
+<p>Agent Receptionist is that shared product. The tenant comes from the call, not from anything the caller can type. A missing fact stays missing.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>How a turn is handled</h2>
+<p>Caller text or speech hits a per-tenant rate limit, then an injection screen. The screen is rules, and it runs before any tool. A blocked turn goes to the guard. A turn that passes goes to the triage agent, also rules.</p>
+<p>Triage hands off, with a validated hand-off message, to one of three agents:</p>
+<ul class="clean">
+<li><strong>FAQ agent.</strong> Tools are <code>get_hours</code>, <code>get_prices</code>, <code>get_policy</code> and <code>search_knowledge</code>. An open question goes to the response agent, which is the only language-model step: cache, then a small model, then a filler line and a hand-off.</li>
+<li><strong>Booking agent.</strong> Hotel tools check room availability and book a room. Dental tools check appointment slots and book an appointment. The write tools run only with a confirmed yes.</li>
+<li><strong>Human hand-off.</strong> The tool is <code>handoff_to_human</code>.</li>
+</ul>
+<p>The guard agent then checks grounding, personal data and cross-tenant leaks. After the guard, the reply is turned into sentences and spoken. The hotel booking flow collects dates, guests, room type, name and phone, then reads it back. The dental flow collects treatment, location, day and time, name and phone, then reads it back. Each vertical has its own tools.</p>
+<p>The injection screen is the same kind of early check I describe in the <a href="/blog/prompt-injection-defence.html">prompt injection defence</a> note. <a href="/bleedstop.html">BleedStop</a> is a separate cost and security guard, with its own measurements.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>Twenty-two sample tenants, and two that use public facts</h2>
+<p>The repository ships with 22 sample tenants, 11 hotels and 11 dental clinics. Twenty are fictional. Their names, addresses and phone numbers sit in the 555-01xx and Ofcom drama ranges.</p>
+<p>The other two were built from public facts. <a href="https://erth.ae/" rel="noopener">Erth Abu Dhabi</a> uses facts from erth.ae. <a href="https://www.mmdentalcare.co.uk/" rel="noopener">MM Dental Care</a> uses facts from mmdentalcare.co.uk. Where a fact is not published, the field is <code>null</code> and the agent says the team will confirm it. Erth room rates are one of those unpublished facts. The MM Dental Care check-up price is another. Nothing is invented to fill the gap.</p>
+<p>The live demos are the <a href="https://agent-receptionist.vercel.app/dashboard?biz=hotel" rel="noopener">hotel console</a> and the <a href="https://agent-receptionist.vercel.app/dashboard?biz=dental" rel="noopener">dental console</a>. On Vercel the console runs the orchestrator in the browser with the deterministic mock responder, so no API key reaches the browser. Real model answers need the API server.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>Tenant isolation</h2>
+<p>Tools take the tenant from the call context, never from arguments, and any <code>tenant_id</code> argument is rejected. The booking store, the response cache key and the rate-limit buckets are all keyed by tenant. The cache key is the question, the tenant and the policy version. The guard blocks any reply that names another tenant's business or speaks its phone number. Tests cover all 22 tenants.</p>
+<p>On Postgres, each request runs in a transaction with <code>app.tenant_id</code> set, and row-level security hides other tenants' rows, so a query that forgets the filter still cannot read or write across tenants. The app has to connect as a normal role, because superusers bypass row-level security. Without <code>DATABASE_URL</code> the in-memory store is used, which is what tests, evals and the static Vercel demo use. SQLite is the zero-setup local file.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>Writes need a confirmed yes</h2>
+<p><code>book_room</code> and <code>book_appointment</code> run only with the confirmation id issued when the caller says yes to the read-back. A model reply is not enough to create the booking. The 25 Nov 2026 release gate recorded 0 writes without confirmation.</p>
+<p>The database backs that up for the stored rows. A partial unique index on tenant, location, date and time means a slot is not double-booked, including under races. Room nights have a primary key of tenant, room type, night and unit, so a room is not oversold under concurrent bookings. Call logs do not store the caller's words.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>The fast path, and when the model is called</h2>
+<p>Hours, prices, policies, bookings and hand-offs are answered by tools and templates. The language model is called only for open FAQ questions, and it is grounded on the tenant's own knowledge passages.</p>
+<p>On the 25 Nov 2026 platform eval, that was 60 of 670 turns.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>Results from dated runs</h2>
+<p>On 25 Nov 2026, the platform release gate, run in-process with the mock responder, passed 270 of 270 cases and 670 of 670 turns. Hotel was 140 of 140 and dental was 130 of 130. The 15 categories include booking, booking change, side question, hand-off, injection, exfiltration, cross-tenant, tool error and emergency. There were 0 safety failures and 0 writes without confirmation. The gate requires at least 95 percent overall and 100 percent on the safety categories.</p>
+<p>On 25 Nov 2026, from 01:25 to 01:30 AM PKT, the same 270 cases and 670 turns passed against Groq's free-plan model <code>openai/gpt-oss-20b</code>, on a cloud box, text only. That run had 0 safety failures, 1 guard block that caught a cross-tenant leak, 60 model turns, 17,681 tokens (about 295 per answer), an FAQ-agent p50 of 0.23 ms and p95 of 401 ms, and a cost of $0.</p>
+<p>On 24 Nov 2026, from 12:30 to 12:47 PM PKT, the legacy pipeline on the same Groq free-plan model replayed 100 of 100 calls and 138 of 138 turns, with 25 of 25 grounded, 0 HTTP 429s and a cost of $0.</p>
+<p>On 25 Nov 2026, <code>npm test</code> reported 147 passing tests and 1 skipped. The skipped test is the Postgres row-level security test, which needs <code>PG_TEST_URL</code>. With that variable set on a local Postgres 17, the suite was 153 of 153. The dental eval gate the same day, on the mock responder, was 30 of 30.</p>
+<p>On 25 Nov 2026 at 01:55 PKT, one Node process served the HTTP API on localhost with the mock model. The concurrency run sent 10, 20 and 50 simultaneous 9-turn calls, described in the report as across all 20 tenants. It recorded 0 errors, 0 timeouts, 0 wrong-tenant answers or bookings, and 0 double-booked slots. Turn latency was p50 6.0, 9.1 and 16.1 ms, and p95 38, 11 and 72 ms, at about 455, 925 and 1,080 turns per second.</p>
+<p><code>MAX_TOKENS_PER_CALL</code> of 2,500 and <code>TOKEN_RESERVE_PER_ANSWER</code> of 550 come from measured token use: an average of 304 tokens and a maximum of 544 tokens per model answer, across a replay of n=25 and a probe of n=90. <code>CALLER_SILENCE_MS</code> of 7,000 is a design default and was not measured. The per-agent table for the release gate is written to <code>metrics/platform-eval.md</code> by the command. That file is generated and is not committed.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>What</th><th>When (PKT)</th><th>Conditions</th><th>Result</th></tr></thead>
+<tbody>
+<tr>
+<td>Platform eval, release gate</td>
+<td>25 Nov 2026</td>
+<td>Mock responder, in-process, <code>npm run eval:platform:gate</code></td>
+<td>270/270 cases, 670/670 turns (hotel 140/140, dental 130/130). 15 categories, including booking, booking change, side question, hand-off, injection, exfiltration, cross-tenant, tool error and emergency. 0 safety failures, 0 writes without confirmation. Gate: at least 95% overall, 100% on safety categories.</td>
+</tr>
+<tr>
+<td>Platform eval, real model</td>
+<td>25 Nov 2026, 01:25 to 01:30 AM</td>
+<td>Groq free plan <code>openai/gpt-oss-20b</code>, cloud box, text only</td>
+<td>270/270, 670/670, 0 safety failures, 1 guard block (cross-tenant leak caught), 60 model turns, 17,681 tokens (about 295 per answer), FAQ agent p50/p95 0.23/401 ms, $0.</td>
+</tr>
+<tr>
+<td>Legacy pipeline, real model</td>
+<td>24 Nov 2026, 12:30 to 12:47 PM</td>
+<td>Groq free plan <code>openai/gpt-oss-20b</code></td>
+<td>Replay 100/100 calls, 138/138 turns, grounded 25/25, 0 HTTP 429s, $0.</td>
+</tr>
+<tr>
+<td>Unit and integration tests</td>
+<td>25 Nov 2026</td>
+<td><code>npm test</code></td>
+<td>147 pass, 1 skipped (the Postgres row-level security test needs <code>PG_TEST_URL</code>). With <code>PG_TEST_URL</code> on a local Postgres 17: 153/153.</td>
+</tr>
+<tr>
+<td>Concurrency</td>
+<td>25 Nov 2026, 01:55</td>
+<td>One Node process, HTTP API on localhost, mock model, <code>npm run test:concurrency</code></td>
+<td>10 / 20 / 50 simultaneous 9-turn calls across all 20 tenants: 0 errors, 0 timeouts, 0 wrong-tenant answers or bookings, 0 double-booked slots. Turn p50 6.0 / 9.1 / 16.1 ms, p95 38 / 11 / 72 ms, about 455 / 925 / 1,080 turns/s.</td>
+</tr>
+<tr>
+<td>Dental eval gate</td>
+<td>25 Nov 2026</td>
+<td>Mock</td>
+<td>30/30.</td>
+</tr>
+</tbody></table></div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>Not measured</h2>
+<ul class="clean">
+<li>Speech recognition (STT) was not measured.</li>
+<li>Speech synthesis (TTS) was not measured.</li>
+<li>Real time-to-first-audio was not measured.</li>
+<li>Phone-line latency was not measured.</li>
+<li>Speech quality, STT accuracy, TTS latency and time-to-first-audio were not measured.</li>
+</ul>
+<p>The latencies above are in-process. The FAQ p95 includes the Groq call. Timings in the browser console are in-browser and are not phone latency. <code>CALLER_SILENCE_MS</code> of 7,000 was not measured. It is a design default.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>The Docker image has not been built</h2>
+<p>The image has not been built yet: Docker was not available on the build box. <code>docker-compose.yml</code> itself was not run for the same reason. The setup, the init role script, the migrations, row-level security and the API in production mode were run against a local Postgres 17. Building and scanning the Docker image is still an open item. The image, when it is built, is specified to run as a non-root user with a health check on <code>/healthz</code>.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>What this shows if you need a voice or chat receptionist</h2>
+<ul class="clean">
+<li>Many businesses can share one receptionist without sharing bookings, cache entries or phone numbers. The tenant is taken from the call, and a <code>tenant_id</code> argument is rejected.</li>
+<li>Most turns never call a model. On the dated eval, the model ran for 60 of 670 turns, and only for open questions grounded on that tenant's passages.</li>
+<li>A write waits for a confirmed yes. The release gate's count of writes without confirmation was 0.</li>
+<li>Missing public facts stay null. Erth room rates and the MM Dental Care check-up price are examples.</li>
+<li>The limits are written down: speech, phone latency and a built Docker image are not in these results.</li>
+</ul>
+<p>If that is the work you need, see <a href="/hire/voice-ai-developer/">hire a voice AI developer</a> or <a href="/hire/ai-chatbot-developer/">hire an AI chatbot developer</a>. I do not publish rates. Email the scope and I will send a quote.</p>
+<p>Related work on this site: <a href="/">the homepage</a>, <a href="/bleedstop.html">BleedStop</a>, and the <a href="/blog/prompt-injection-defence.html">prompt injection defence</a> note.</p>
+<div class="cta">
+<a class="btn primary" href="/hire/voice-ai-developer/">Voice AI developer</a>
+<a class="btn" href="/hire/ai-chatbot-developer/">AI chatbot developer</a>
+<a class="btn" href="/hire/">Hire me</a>
+</div>
+</div>
+</section>
+
+<section id="faq">
+<div class="wrap">
+<h2>Questions about Agent Receptionist</h2>
+<div class="grid g2">
+<article class="card"><h3>What is Agent Receptionist?</h3><p class="muted">A voice and chat receptionist for many businesses at once. A new business is one JSON file. It ships with 22 sample tenants: 11 hotels and 11 dental clinics. The source is <a href="https://github.com/usmamalik345/agent-receptionist" rel="noopener">usmamalik345/agent-receptionist</a>.</p></article>
+<article class="card"><h3>Are Erth Abu Dhabi and MM Dental Care invented?</h3><p class="muted">No. Erth Abu Dhabi comes from public facts on erth.ae, and MM Dental Care from public facts on mmdentalcare.co.uk. Unpublished facts, including Erth room rates and the MM check-up price, are null, and the agent says the team will confirm them. The other 20 tenants are fictional, with 555-01xx and Ofcom drama numbers.</p></article>
+<article class="card"><h3>Can it book without a yes?</h3><p class="muted">No. <code>book_room</code> and <code>book_appointment</code> run only with the confirmation id from a yes to the read-back. The 25 Nov 2026 release gate recorded 0 writes without confirmation.</p></article>
+<article class="card"><h3>How often does it call a model?</h3><p class="muted">Only for open FAQ questions, grounded on that tenant's knowledge passages. On the 25 Nov 2026 eval the model was called for 60 of 670 turns. Hours, prices, policies, bookings and hand-offs stay on tools and templates.</p></article>
+<article class="card"><h3>What did the 25 Nov 2026 release gate score?</h3><p class="muted">270 of 270 cases and 670 of 670 turns with the mock responder, in-process: hotel 140/140, dental 130/130, 0 safety failures, 0 writes without confirmation. The same cases passed the same day on Groq <code>openai/gpt-oss-20b</code>, with 1 guard block that caught a cross-tenant leak, 60 model turns, 17,681 tokens and a cost of $0.</p></article>
+<article class="card"><h3>What was not measured?</h3><p class="muted">Speech recognition, speech synthesis, real time-to-first-audio, phone-line latency and speech quality were not measured. The latencies here are in-process, and the FAQ p95 includes the Groq call. The Docker image has not been built yet, because Docker was not available on the build box.</p></article>
+</div>
+<aside class="card author-box">
+<h2>About the author</h2>
+<p>Osama Malik (also written Usama Malik) is an AI agent engineer at Onlinx Solutions in Islamabad, Pakistan. This page is from the public Agent Receptionist repository and the dated runs recorded there. <a href="/">Home</a> · <a href="/hire/voice-ai-developer/">Voice AI developer</a> · <a href="/hire/ai-chatbot-developer/">AI chatbot developer</a> · <a href="/blog/prompt-injection-defence.html">Prompt injection defence</a> · <a href="/bleedstop.html">BleedStop</a>.</p>
+</aside>
+</div>
+</section>
+</main>
+<footer><div class="wrap">
+<div>Osama Malik. AI agent engineer and full stack developer. Remote.</div>
+<div><a href="/blog/">Blog</a> · <a href="/hire/">Hire</a> · <a href="mailto:usmamalik344@gmail.com">usmamalik344@gmail.com</a> · <a href="https://github.com/usmamalik345" rel="me noopener">GitHub</a> · <a href="https://www.linkedin.com/in/osamamalik346" rel="me noopener">LinkedIn</a> · <a href="https://x.com/Osa_ma346" rel="me noopener">X</a></div>
+</div></footer>
+</body>
+</html>

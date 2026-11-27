@@ -19,7 +19,7 @@
 
 ## Blog
 - [How much does an AI agent cost to build and run? Real numbers from BleedStop](https://osamamalik.me/blog/how-much-does-an-ai-agent-cost.html)
-- [Hiring an AI agent developer from Pakistan: what to check](https://osamamalik.me/blog/hire-ai-agent-developer-pakistan.html)
+- [Hiring an AI agent developer from Pakistan: what to check](https://osamamalik.me/blog/hire-ai-agent-developer-pakistan.html): checklist updated 27 Nov 2026, with the Agent Receptionist 25 Nov 2026 release gate (270/270 cases, 670/670 turns), merged Pipecat, Genkit and Strands fixes, and PKT overlap with the UK, Europe, the US, the Gulf and Australia
 - [BleedStop: how I built an LLM cost and security guard](https://osamamalik.me/blog/bleedstop-cost-and-security-guard.html)
 - [Fixing function call timeouts in Pipecat (PR 5760)](https://osamamalik.me/blog/pipecat-5760-function-call-timeout.html)
 - [Prompt injection defense layers for AI agents](https://osamamalik.me/blog/prompt-injection-defence.html)

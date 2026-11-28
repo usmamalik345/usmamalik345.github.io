@@ -37,7 +37,7 @@
       "name": "Hire a RAG Developer and Consultant | Osama Malik",
       "description": "Hire Osama Malik, a RAG developer and consultant. Embeddings, vector search and cited answers over your own data. Remote worldwide, contact for quote.",
       "datePublished": "2026-11-19T12:00:00+05:00",
-      "dateModified": "2026-11-25T12:00:00+05:00",
+      "dateModified": "2026-11-28T12:00:00+05:00",
       "inLanguage": "en",
       "about": {
         "@id": "https:\/\/osamamalik.me\/#person"
@@ -167,6 +167,46 @@
             "@type": "Answer",
             "text": "I work remotely from PKT (UTC+5), with overlap for US, UK, EU, Gulf and Australian teams."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "Who builds the RAG systems on this page?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Osama Malik, an AI Agent Engineer in Islamabad, has been an AI Agent Engineer at Onlinx Solutions since July 2024 and builds retrieval that answers from your own documents and cites the source."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where can I see cited RAG answers he has measured?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Agent Receptionist case study shows cited RAG answers, with a deterministic eval of 44/44 and a live Groq eval of 43/44 on fictional businesses."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Has he fixed an embeddings bug in a public framework?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Genkit pull request 6346, merged on 23 September 2026, stops the Python OpenAI plugin from failing validation when an embedder is asked for base64."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if retrieved text carries a prompt injection?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "BleedStop checks the text before the model spends. The default detector is a phrase list, and an optional DeBERTa classifier caught 77.5% of held-out injections at a 5% false positive rate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What did he do before the AI agent role?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "He was a Full Stack Engineer at IT Pixelz from March 2023 to June 2024, where he built booking flows for a doctor booking platform of about 50 doctors across 20 clinics. Before that he was a part-time Angular developer at Zepto Systems from January 2022 to February 2023. He holds a BS in Computer Science from Allama Iqbal Open University, 2017 to 2021."
+          }
         }
       ]
     },
@@ -247,7 +287,7 @@
 <p class="lead">Proof you can check:</p>
 <ul class="clean">
 <li><a href="https://github.com/genkit-ai/genkit/pull/6346" rel="noopener">Genkit #6346</a>, merged: OpenAI embeddings returned as base64 no longer fail validation in the Python plugin. Write-up: <a href="/projects/genkit-openai-base64-embeddings/">Genkit base64 embeddings fix</a>.</li>
-<li>The <a href="/portfolio-agent/case-study.html">Agent Receptionist</a>: cited RAG answers, fixed rules for emergencies and opening hours at zero tokens, deterministic eval 44/44 and live Groq eval 43/44 on fictional businesses.</li>
+<li>The <a href="/portfolio-agent/case-study.html">Agent Receptionist</a>: cited RAG answers, fixed rules for emergencies and opening hours at zero tokens, deterministic eval 44/44 and live Groq eval 43/44 on fictional businesses. The multi-tenant chat and voice build is the <a href="/projects/agent-receptionist/">Agent Receptionist platform write-up</a>.</li>
 <li>Data work across PostgreSQL, Redis, MySQL and MongoDB, and deployments with Docker, Kubernetes and AWS. More on the <a href="/open-source.html">open source page</a> and the <a href="/">homepage</a>.</li>
 </ul>
 </div>
@@ -272,6 +312,20 @@
 <article class="card"><h3>Can you improve a RAG system we already run?</h3><p class="muted">Yes. I can add evals, citations, better retrieval and prompt injection checks to what you have.</p></article>
 <article class="card"><h3>Do you also do RAG consulting?</h3><p class="muted">Yes. I can review your design and suggest changes, or build the whole pipeline.</p></article>
 <article class="card"><h3>Which time zones do you cover?</h3><p class="muted">I work remotely from PKT (UTC+5), with overlap for US, UK, EU, Gulf and Australian teams.</p></article>
+</div>
+</div>
+</section>
+
+<section id="common-questions">
+<div class="wrap">
+<span class="eyebrow">FAQ</span>
+<h2>Common questions</h2>
+<div class="grid g2">
+<article class="card"><h3>Who builds the RAG systems on this page?</h3><p class="muted">Osama Malik, an AI Agent Engineer in Islamabad, has been an AI Agent Engineer at Onlinx Solutions since July 2024 and builds retrieval that answers from your own documents and cites the source.</p></article>
+<article class="card"><h3>Where can I see cited RAG answers he has measured?</h3><p class="muted">The <a href="/portfolio-agent/case-study.html">Agent Receptionist case study</a> shows cited RAG answers, with a deterministic eval of 44/44 and a live Groq eval of 43/44 on fictional businesses.</p></article>
+<article class="card"><h3>Has he fixed an embeddings bug in a public framework?</h3><p class="muted">Yes. <a href="/projects/genkit-openai-base64-embeddings/">Genkit pull request 6346</a>, merged on 23 September 2026, stops the Python OpenAI plugin from failing validation when an embedder is asked for base64.</p></article>
+<article class="card"><h3>What if retrieved text carries a prompt injection?</h3><p class="muted"><a href="/bleedstop.html">BleedStop</a> checks the text before the model spends. The default detector is a phrase list, and an optional DeBERTa classifier caught 77.5% of held-out injections at a 5% false positive rate.</p></article>
+<article class="card"><h3>What did he do before the AI agent role?</h3><p class="muted">He was a Full Stack Engineer at IT Pixelz from March 2023 to June 2024, where he built booking flows for a <a href="/projects/doctor-booking-platform/">doctor booking platform</a> of about 50 doctors across 20 clinics. Before that he was a part-time Angular developer at Zepto Systems from January 2022 to February 2023. He holds a BS in Computer Science from Allama Iqbal Open University, 2017 to 2021.</p></article>
 </div>
 </div>
 </section>

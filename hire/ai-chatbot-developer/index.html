@@ -37,7 +37,7 @@
       "name": "Hire an AI Chatbot Developer | Osama Malik",
       "description": "Hire Osama Malik, an AI chatbot developer. LLM chatbots with cited answers, cost caps and prompt injection defense. Remote worldwide, contact for quote.",
       "datePublished": "2026-11-19T12:00:00+05:00",
-      "dateModified": "2026-11-21T12:00:00+05:00",
+      "dateModified": "2026-11-28T12:00:00+05:00",
       "inLanguage": "en",
       "about": {
         "@id": "https:\/\/osamamalik.me\/#person"
@@ -167,6 +167,46 @@
             "@type": "Answer",
             "text": "I work remotely from PKT (UTC+5), with overlap for US, UK, EU, Gulf and Australian teams."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "Who builds the chatbots on this page?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Osama Malik, an AI Agent Engineer in Islamabad, has been an AI Agent Engineer at Onlinx Solutions since July 2024 and builds chatbots that answer from your data, call your tools and stay inside a budget."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What chatbot has he already scored?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Agent Receptionist case study scored 19/20 on a live 20-question test for fictional hotel and dental businesses. On the multi-tenant receptionist, the model ran on 60 of 670 eval turns on 25 Nov 2026."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does he cap what a chatbot can spend?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "BleedStop returns ALLOW, LIMIT, CHALLENGE or DENY before a call spends. In one test a capped request returned 64 output tokens instead of 2,618."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which framework fixes sit behind this work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "He has merged fixes in Pipecat, Genkit and Strands. Pipecat pull request 5760 was merged on 15 September 2026, Genkit pull request 6346 on 23 September 2026, and Strands pull request 4313 on 14 September 2026."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where did he work before Onlinx Solutions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "He was a Full Stack Engineer at IT Pixelz from March 2023 to June 2024, including Gemini-assisted booking flows. Before that he was a part-time Angular developer at Zepto Systems from January 2022 to February 2023. He holds a BS in Computer Science from Allama Iqbal Open University, 2017 to 2021."
+          }
         }
       ]
     },
@@ -233,7 +273,7 @@
 <h2>Chatbots for customers and for your team</h2>
 <div class="grid g2">
 <article class="card"><h3>Support and front desk bots</h3><p class="muted">Chatbots that answer from your own content with citations, and use fixed rules where a guess would be risky.</p></article>
-<article class="card"><h3>Booking and action bots</h3><p class="muted">Bots that call your APIs to book, look up or update things. I built the booking flows for a doctor booking platform with React, Node.js and MongoDB, including Gemini assisted booking.</p></article>
+<article class="card"><h3>Booking and action bots</h3><p class="muted">Bots that call your APIs to book, look up or update things. I built the booking flows for a <a href="/projects/doctor-booking-platform/">doctor booking platform</a> with React, Node.js and MongoDB, including Gemini assisted booking.</p></article>
 <article class="card"><h3>Guarded bots</h3><p class="muted">Token and budget caps, <a href="/blog/prompt-injection-defence.html">prompt injection defense</a> and an audit log, from <a href="/bleedstop.html">BleedStop</a>.</p></article>
 <article class="card"><h3>Voice when you need it</h3><p class="muted">The same bot can answer calls. See the <a href="/hire/voice-ai-developer/">voice AI developer page</a>.</p></article>
 </div>
@@ -249,7 +289,7 @@
 <li>The <a href="/portfolio-agent/case-study.html">Agent Receptionist</a>, an LLM agent for appointment businesses with live demos for a hotel and a dental clinic (fictional businesses). Live 20 question test: 19/20.</li>
 <li>The <a href="/projects/agent-receptionist/">Agent Receptionist platform case study</a> is the multi-tenant chat and voice receptionist. Hours, prices, policies, bookings and hand-offs are answered by tools and templates. The model runs only for open questions: 60 of 670 eval turns on 25 Nov 2026.</li>
 <li><a href="/bleedstop.html">BleedStop</a>: a capped request returned 64 output tokens instead of 2,618, and the classifier caught 77.5% of held out injections at a 5% false positive rate.</li>
-<li>Merged fixes in <a href="https://github.com/pipecat-ai/pipecat/pull/5760" rel="noopener">Pipecat</a>, <a href="https://github.com/genkit-ai/genkit/pull/6346" rel="noopener">Genkit</a> and <a href="https://github.com/strands-agents/harness-sdk/pull/4313" rel="noopener">Strands</a>. See the <a href="/open-source.html">open source page</a>.</li>
+<li>Merged fixes in <a href="https://github.com/pipecat-ai/pipecat/pull/5760" rel="noopener">Pipecat</a>, <a href="https://github.com/genkit-ai/genkit/pull/6346" rel="noopener">Genkit</a> and <a href="https://github.com/strands-agents/harness-sdk/pull/4313" rel="noopener">Strands</a>. See the <a href="/open-source.html">open source page</a>, plus the <a href="/projects/pipecat-5760-function-call-timeout/">function-call timeout note</a>, the <a href="/projects/genkit-openai-base64-embeddings/">base64 embeddings note</a> and the <a href="/projects/strands-agentresult-json-bytes/">AgentResult JSON note</a>.</li>
 </ul>
 </div>
 </section>
@@ -273,6 +313,20 @@
 <article class="card"><h3>Can people trick the bot with prompts?</h3><p class="muted">Prompt injection is a real risk. I add layered checks and limits, and I tell you honestly what they catch and what they miss.</p></article>
 <article class="card"><h3>Can it work with our backend?</h3><p class="muted">Yes. I am also a full stack developer with Node.js, Python, .NET, Angular and React. See the <a href="/hire/full-stack-developer/">full stack page</a>.</p></article>
 <article class="card"><h3>Which time zones do you cover?</h3><p class="muted">I work remotely from PKT (UTC+5), with overlap for US, UK, EU, Gulf and Australian teams.</p></article>
+</div>
+</div>
+</section>
+
+<section id="common-questions">
+<div class="wrap">
+<span class="eyebrow">FAQ</span>
+<h2>Common questions</h2>
+<div class="grid g2">
+<article class="card"><h3>Who builds the chatbots on this page?</h3><p class="muted">Osama Malik, an AI Agent Engineer in Islamabad, has been an AI Agent Engineer at Onlinx Solutions since July 2024 and builds chatbots that answer from your data, call your tools and stay inside a budget.</p></article>
+<article class="card"><h3>What chatbot has he already scored?</h3><p class="muted">The <a href="/portfolio-agent/case-study.html">Agent Receptionist case study</a> scored 19/20 on a live 20-question test for fictional hotel and dental businesses. On the <a href="/projects/agent-receptionist/">multi-tenant receptionist</a>, the model ran on 60 of 670 eval turns on 25 Nov 2026.</p></article>
+<article class="card"><h3>How does he cap what a chatbot can spend?</h3><p class="muted"><a href="/bleedstop.html">BleedStop</a> returns ALLOW, LIMIT, CHALLENGE or DENY before a call spends. In one test a capped request returned 64 output tokens instead of 2,618.</p></article>
+<article class="card"><h3>Which framework fixes sit behind this work?</h3><p class="muted">He has merged fixes in Pipecat, Genkit and Strands. <a href="/projects/pipecat-5760-function-call-timeout/">Pipecat pull request 5760</a> was merged on 15 September 2026, <a href="/projects/genkit-openai-base64-embeddings/">Genkit pull request 6346</a> on 23 September 2026, and <a href="/projects/strands-agentresult-json-bytes/">Strands pull request 4313</a> on 14 September 2026.</p></article>
+<article class="card"><h3>Where did he work before Onlinx Solutions?</h3><p class="muted">He was a Full Stack Engineer at IT Pixelz from March 2023 to June 2024, including Gemini-assisted booking flows. Before that he was a part-time Angular developer at Zepto Systems from January 2022 to February 2023. He holds a BS in Computer Science from Allama Iqbal Open University, 2017 to 2021.</p></article>
 </div>
 </div>
 </section>

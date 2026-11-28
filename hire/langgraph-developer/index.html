@@ -37,7 +37,7 @@
       "name": "Hire a LangGraph Developer for AI Agents | Osama Malik",
       "description": "Hire Osama Malik, a freelance LangGraph and LangChain developer. AI agents with guards, timeouts and evals. Remote worldwide, contact for quote.",
       "datePublished": "2026-11-19T12:00:00+05:00",
-      "dateModified": "2026-11-25T12:00:00+05:00",
+      "dateModified": "2026-11-28T12:00:00+05:00",
       "inLanguage": "en",
       "about": {
         "@id": "https://osamamalik.me/#person"
@@ -169,6 +169,46 @@
             "@type": "Answer",
             "text": "Yes. I am open to full time remote roles and to contracts."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "Who builds LangGraph agents on this page?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Osama Malik, an AI Agent Engineer in Islamabad, has been an AI Agent Engineer at Onlinx Solutions since July 2024 and builds tool-using agents with LangGraph and LangChain, plus guards around the graph."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which measured agent shows that tool-calling pattern?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Agent Receptionist is a tool-calling agent with cited answers and a guard on every sentence: deterministic eval 44/44 and live Groq eval 43/44 on fictional hotel and dental businesses."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Has he fixed a hanging tool call in a framework?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Pipecat pull request 5760, merged on 15 September 2026, keeps the function-call timeout armed when a tool reports an intermediate result. Only a final result clears the deadline."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does he put in front of an agent that can spend?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "BleedStop caps tokens and budget per request. A capped request returned 64 output tokens instead of 2,618, and the defence layers are described in the prompt injection post."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is his path into this work, and how do you hire him?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "He was a Full Stack Engineer at IT Pixelz from March 2023 to June 2024 and a part-time Angular developer at Zepto Systems from January 2022 to February 2023, and he holds a BS in Computer Science from Allama Iqbal Open University, 2017 to 2021. He works from PKT (UTC+5), does not publish rates, and is open to contracts and to full time remote roles."
+          }
         }
       ]
     },
@@ -248,8 +288,8 @@
 <h2>Real work you can check</h2>
 <p class="lead">Proof you can check today, not promises:</p>
 <ul class="clean">
-<li>Merged fixes in the frameworks agents run on: <a href="https://github.com/pipecat-ai/pipecat/pull/5760" rel="noopener">Pipecat #5760</a> (function call timeouts), <a href="https://github.com/genkit-ai/genkit/pull/6346" rel="noopener">Genkit #6346</a> (OpenAI embeddings) and <a href="https://github.com/strands-agents/harness-sdk/pull/4313" rel="noopener">Strands #4313</a> (AgentResult serialization). LiveKit Agents #7186 is still open. Details are on the <a href="/open-source.html">open source page</a>, with write-ups for the <a href="/projects/strands-agentresult-json-bytes/">Strands AgentResult JSON fix</a> and the <a href="/projects/genkit-openai-base64-embeddings/">Genkit embeddings fix</a>.</li>
-<li>The <a href="/portfolio-agent/case-study.html">Agent Receptionist</a>, a tool calling agent with cited RAG answers and a guard on every sentence. Deterministic eval 44/44, live Groq eval 43/44, on fictional hotel and dental businesses.</li>
+<li>Merged fixes in the frameworks agents run on: <a href="https://github.com/pipecat-ai/pipecat/pull/5760" rel="noopener">Pipecat #5760</a> (function call timeouts), <a href="https://github.com/genkit-ai/genkit/pull/6346" rel="noopener">Genkit #6346</a> (OpenAI embeddings) and <a href="https://github.com/strands-agents/harness-sdk/pull/4313" rel="noopener">Strands #4313</a> (AgentResult serialization). LiveKit Agents #7186 is still open. Details are on the <a href="/open-source.html">open source page</a>, with write-ups for the <a href="/projects/strands-agentresult-json-bytes/">Strands AgentResult JSON fix</a>, the <a href="/projects/genkit-openai-base64-embeddings/">Genkit embeddings fix</a> and the <a href="/projects/pipecat-5760-function-call-timeout/">Pipecat timeout fix</a>.</li>
+<li>The <a href="/portfolio-agent/case-study.html">Agent Receptionist</a>, a tool calling agent with cited RAG answers and a guard on every sentence. Deterministic eval 44/44, live Groq eval 43/44, on fictional hotel and dental businesses. The version that serves many businesses from one JSON file is the <a href="/projects/agent-receptionist/">multi-tenant receptionist project</a>.</li>
 <li><a href="/bleedstop.html">BleedStop</a>: Redis budgets, a Postgres audit log and layered <a href="/blog/prompt-injection-defence.html">prompt injection defense</a>. A capped request returned 64 output tokens instead of 2,618.</li>
 </ul>
 </div>
@@ -274,6 +314,20 @@
 <article class="card"><h3>Can you fix an agent we already have?</h3><p class="muted">Yes. Timeouts, runaway token spend and prompt injection are the problems I like most. My Pipecat fix was exactly that kind of bug.</p></article>
 <article class="card"><h3>Which time zones do you cover?</h3><p class="muted">I work remotely from PKT (UTC+5). I overlap with UK, EU and Gulf working hours, US mornings are my evening, and Australian afternoons are my morning.</p></article>
 <article class="card"><h3>Are you open to full time roles?</h3><p class="muted">Yes. I am open to full time remote roles and to contracts.</p></article>
+</div>
+</div>
+</section>
+
+<section id="common-questions">
+<div class="wrap">
+<span class="eyebrow">FAQ</span>
+<h2>Common questions</h2>
+<div class="grid g2">
+<article class="card"><h3>Who builds LangGraph agents on this page?</h3><p class="muted">Osama Malik, an AI Agent Engineer in Islamabad, has been an AI Agent Engineer at Onlinx Solutions since July 2024 and builds tool-using agents with LangGraph and LangChain, plus guards around the graph.</p></article>
+<article class="card"><h3>Which measured agent shows that tool-calling pattern?</h3><p class="muted">The <a href="/portfolio-agent/case-study.html">Agent Receptionist</a> is a tool-calling agent with cited answers and a guard on every sentence: deterministic eval 44/44 and live Groq eval 43/44 on fictional hotel and dental businesses.</p></article>
+<article class="card"><h3>Has he fixed a hanging tool call in a framework?</h3><p class="muted">Yes. <a href="/projects/pipecat-5760-function-call-timeout/">Pipecat pull request 5760</a>, merged on 15 September 2026, keeps the function-call timeout armed when a tool reports an intermediate result. Only a final result clears the deadline.</p></article>
+<article class="card"><h3>What does he put in front of an agent that can spend?</h3><p class="muted"><a href="/bleedstop.html">BleedStop</a> caps tokens and budget per request. A capped request returned 64 output tokens instead of 2,618, and the defence layers are described in the <a href="/blog/prompt-injection-defence.html">prompt injection post</a>.</p></article>
+<article class="card"><h3>What is his path into this work, and how do you hire him?</h3><p class="muted">He was a Full Stack Engineer at IT Pixelz from March 2023 to June 2024 and a part-time Angular developer at Zepto Systems from January 2022 to February 2023, and he holds a BS in Computer Science from Allama Iqbal Open University, 2017 to 2021. He works from PKT (UTC+5), does not publish rates, and is open to contracts and to full time remote roles.</p></article>
 </div>
 </div>
 </section>
